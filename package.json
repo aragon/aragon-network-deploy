@@ -1,0 +1,18 @@
+{
+  "name": "@aragon/court-deploy",
+  "version": "1.0.0",
+  "description": "Aragon Court deployment scripts",
+  "author": "Aragon Association",
+  "license": "GPL-3.0",
+  "scripts": {
+    "start": "node ./bin/index.js"
+  },
+  "dependencies": {
+    "@aragon/court": "aragon/aragon-court#development",
+    "@truffle/config": "^1.1.21",
+    "@truffle/contract": "^4.0.32",
+    "chalk": "^2.4.2",
+    "web3": "^1.2.1",
+    "yargs": "^14.0.0"
+  }
+}
