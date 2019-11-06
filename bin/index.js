@@ -36,4 +36,5 @@ yargs
   .help()
   .showHelpOnFail(true)
   .demandCommand(1, 'Please run any of the commands listed above')
+  .strict()
   .argv

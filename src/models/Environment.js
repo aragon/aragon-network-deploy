@@ -15,19 +15,24 @@ module.exports = class {
 
   async getArtifacts() {
     if (!this.artifacts) {
-      let { from, gasPrice, gas, provider } = this._getNetworkConfig()
-      if (!from) from = await this.getSender()
-      const defaults = { from, gasPrice, gas }
-      this.artifacts = new Artifacts(provider, defaults)
+      const from = await this.getSender()
+      const { gasPrice, gas, provider } = this._getNetworkConfig()
+      this.artifacts = new Artifacts(provider, { from, gasPrice, gas })
     }
     return this.artifacts
   }
 
   async getSender() {
     if (!this.sender) {
-      const web3 = this.getWeb3()
-      const accounts = await web3.eth.getAccounts()
-      this.sender = accounts[0]
+      const { from } = this._getNetworkConfig()
+      if (from) {
+        this.sender = from
+      }
+      else {
+        const web3 = this.getWeb3()
+        const accounts = await web3.eth.getAccounts()
+        this.sender = accounts[0]
+      }
     }
     return this.sender
   }

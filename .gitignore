@@ -6,4 +6,5 @@ package-lock.json
 
 # Builds
 build/
-output/
+court.json
+presale.json
