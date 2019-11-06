@@ -6,7 +6,7 @@ const CourtDeployer = require('../../../src/models/CourtDeployer')
 const { assertBn } = require('../../helpers/assertBn')
 const { MAX_UINT64 } = require('../../../src/helpers/numbers')
 
-contract('CourtDeployer command', ([sender]) => {
+contract('CourtDeployer', ([_, sender]) => {
   let controller, court, treasury, voting, registry, subscriptions
 
   beforeEach('run command', async () => {
