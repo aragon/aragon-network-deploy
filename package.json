@@ -5,6 +5,7 @@
   "author": "Aragon Association",
   "license": "GPL-3.0",
   "scripts": {
+    "test": "./node_modules/@aragon/test-helpers/ganache-cli.sh",
     "compile": "truffle compile",
     "deploy:rpc": "npm run compile && node ./bin/index.js core -n rpc"
   },
@@ -18,6 +19,7 @@
     "yargs": "^14.0.0"
   },
   "devDependencies": {
+    "@aragon/test-helpers": "^2.1.0",
     "truffle": "^5.0.34"
   }
 }
