@@ -1,4 +1,4 @@
-const { bn, bigExp } = require('./src/helpers/numbers')
+const { bn, bigExp } = require('../src/helpers/numbers')
 
 const HOURS_8 = 60 * 60 * 8
 const START_DATE = Math.floor(new Date('2020-01-31T12:30:00.000Z') / 1000) // 2020, Jan 31st 12.30 UTC
@@ -59,10 +59,10 @@ module.exports = {
     governorSharePct:              bn(1000),                   // 10% of the subscription fees
   },
   controller: {
-    court:                        '0x26f3b895987e349a46d6d91132234924c6d45cfdc564b33427f53e3f9284955c',
-    treasury:                     '0x06aa03964db1f7257357ef09714a5f0ca3633723df419e97015e0c7a3e83edb7',
-    voting:                       '0x7cbb12e82a6d63ff16fe43977f43e3e2b247ecd4e62c0e340da8800a48c67346',
-    registry:                     '0x3b21d36b36308c830e6c4053fb40a3b6d79dde78947fbf6b0accd30720ab5370',
-    subscriptions:                '0x2bfa3327fe52344390da94c32a346eeb1b65a8b583e4335a419b9471e88c1365'
+    court:                        '0x26f3b895987e349a46d6d91132234924c6d45cfdc564b33427f53e3f9284955c',   // COURT module ID
+    treasury:                     '0x06aa03964db1f7257357ef09714a5f0ca3633723df419e97015e0c7a3e83edb7',   // TREASURY module ID
+    voting:                       '0x7cbb12e82a6d63ff16fe43977f43e3e2b247ecd4e62c0e340da8800a48c67346',   // VOTING module ID
+    registry:                     '0x3b21d36b36308c830e6c4053fb40a3b6d79dde78947fbf6b0accd30720ab5370',   // JURORS_REGISTRY module ID
+    subscriptions:                '0x2bfa3327fe52344390da94c32a346eeb1b65a8b583e4335a419b9471e88c1365'    // SUBSCRIPTIONS module ID
   }
 }

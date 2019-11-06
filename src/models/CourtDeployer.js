@@ -1,6 +1,6 @@
 const fs = require('fs')
 const Deployer = require('./Deployer')
-const logger = require('../helpers/logger')('CoreDeployer')
+const logger = require('../helpers/logger')('CourtDeployer')
 const { MAX_UINT64, tokenToString } = require('../helpers/numbers')
 
 module.exports = class extends Deployer {

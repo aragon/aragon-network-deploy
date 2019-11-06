@@ -1,18 +1,18 @@
 const path = require('path')
-const Config = require('../../../court-config')
+const Config = require('../../../config/court')
 const Environment = require('../../../src/models/Environment')
-const CoreDeployer = require('../../../src/models/CoreDeployer')
+const CourtDeployer = require('../../../src/models/CourtDeployer')
 
 const { assertBn } = require('../../helpers/assertBn')
 const { MAX_UINT64 } = require('../../../src/helpers/numbers')
 
-contract('core command', ([sender]) => {
+contract('CourtDeployer command', ([sender]) => {
   let controller, court, treasury, voting, registry, subscriptions
 
   beforeEach('run command', async () => {
     const environment = new Environment('rpc', sender)
-    const outputFilepath = path.resolve(process.cwd(), `./core.json`)
-    const deployer = new CoreDeployer(Config, environment, outputFilepath)
+    const outputFilepath = path.resolve(process.cwd(), `./court.json`)
+    const deployer = new CourtDeployer(Config, environment, outputFilepath)
 
     await deployer.call()
     const deployedContracts = require(outputFilepath)

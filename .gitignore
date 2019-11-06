@@ -6,5 +6,5 @@ package-lock.json
 
 # Builds
 build/
-core.json
+court.json
 presale.json

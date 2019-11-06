@@ -7,7 +7,7 @@
   "scripts": {
     "test": "./node_modules/@aragon/test-helpers/ganache-cli.sh",
     "compile": "truffle compile",
-    "deploy:rpc": "npm run compile && node ./bin/index.js core -n rpc"
+    "deploy:court:rpc": "npm run compile && node ./bin/index.js court -n rpc"
   },
   "dependencies": {
     "@aragon/truffle-config-v5": "^1.0.0",
