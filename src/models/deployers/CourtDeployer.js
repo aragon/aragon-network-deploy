@@ -1,17 +1,14 @@
-const Deployer = require('./Deployer')
-const logger = require('../helpers/logger')('CourtDeployer')
-const { MAX_UINT64, tokenToString } = require('../helpers/numbers')
+const BaseDeployer = require('./BaseDeployer')
+const logger = require('../../helpers/logger')('CourtDeployer')
+const { MAX_UINT64, tokenToString } = require('../../helpers/numbers')
 
-module.exports = class extends Deployer {
+module.exports = class extends BaseDeployer {
   constructor(config, environment, output) {
     super(environment, output, logger)
     this.config = config
   }
 
   async call() {
-    // TODO: remove mocked tokens and force re-deploy
-    await this.mockTokens()
-
     await this.loadOrDeployController()
     await this.loadOrDeployCourt()
     await this.loadOrDeployRegistry()
@@ -20,19 +17,7 @@ module.exports = class extends Deployer {
     await this.loadOrDeploySubscriptions()
     await this.setModules()
     await this.transferGovernor()
-  }
-
-  async mockTokens() {
-    // force drop previous deploy otherwise mocked tokens won't exist
-    this.previousDeploy = {}
-    const ERC20 = await this.environment.getArtifact('ERC20Mock', '@aragon/court')
-
-    const ANJ = await ERC20.new('ANJ Token', 'ANJ', 18)
-    this.config.jurors.token.address = ANJ.address
-
-    const DAI = await ERC20.new('DAI Token', 'ANJ', 18)
-    this.config.court.feeToken.address = DAI.address
-    this.config.subscriptions.feeToken.address = DAI.address
+    await this.transferANJController()
   }
 
   async loadOrDeployController() {
@@ -107,11 +92,29 @@ module.exports = class extends Deployer {
     if (modulesGovernor === sender) {
       logger.info(`Transferring modules governor to ${modules} ...`)
       await this.controller.changeModulesGovernor(modules)
-      logger.success('Modules governor transferred successfully')
+      logger.success(`Modules governor transferred successfully to ${modules}`)
     } else if (modulesGovernor === modules) {
       logger.success(`Modules governor is already set to ${modules}`)
     } else {
       logger.warn('Modules governor is already set to another address')
+    }
+  }
+
+  async transferANJController() {
+    const sender = await this.environment.getSender()
+    const MiniMeToken = await this.environment.getArtifact('MiniMeToken', '@aragon/apps-shared-minime')
+    const { governor: { funds }, jurors: { token: { address } } } = this.config
+    this.anj = await MiniMeToken.at(address)
+
+    const controller = await this.anj.controller()
+    if (controller === sender) {
+      logger.info(`Transferring ANJ controller to funds governor ${funds} ...`)
+      await this.anj.changeController(funds)
+      logger.success(`ANJ token controller transferred successfully to funds governor ${funds}`)
+    } else if (controller === funds) {
+      logger.success(`ANJ token controller is already set to funds governor ${funds}`)
+    } else {
+      logger.warn('ANJ token controller is already set to another address')
     }
   }
 
@@ -154,6 +157,11 @@ module.exports = class extends Deployer {
     const sender = await this.environment.getSender()
     const { clock, governor, court, jurors } = this.config
 
+    if (!court.feeToken.address) {
+      const erc20 = await this._deployERC20Mock(court.feeToken)
+      court.feeToken.address = erc20.address
+    }
+
     this.controller = await Controller.new(
       [clock.termDuration, clock.firstTermStartTime],
       [governor.funds, governor.config, sender],
@@ -183,9 +191,12 @@ module.exports = class extends Deployer {
   async _deployRegistry(JurorsRegistry) {
     if (!this.controller.address) throw Error('Controller has not been deployed yet')
     const { court, jurors } = this.config
+
+    const anj = jurors.token.address || this.anj.address
     const totalActiveBalanceLimit = jurors.minActiveBalance.mul(MAX_UINT64.div(court.finalRoundWeightPrecision))
-    this._printRegistryDeploy(totalActiveBalanceLimit)
-    this.registry = await JurorsRegistry.new(this.controller.address, jurors.token.address, totalActiveBalanceLimit)
+    this._printRegistryDeploy(anj, totalActiveBalanceLimit)
+
+    this.registry = await JurorsRegistry.new(this.controller.address, anj, totalActiveBalanceLimit)
     const { address, transactionHash } = this.registry
     logger.success(`Created JurorsRegistry instance at ${address}`)
     this._saveDeploy({ registry: { address, transactionHash }})
@@ -213,6 +224,11 @@ module.exports = class extends Deployer {
     if (!this.controller.address) throw Error('Controller has not been deployed yet')
     this._printSubscriptionsDeploy()
     const { subscriptions } = this.config
+
+    if (!subscriptions.feeToken.address) {
+      const erc20 = await this._deployERC20Mock(subscriptions.feeToken)
+      subscriptions.feeToken.address = erc20.address
+    }
 
     this.subscriptions = await Subscriptions.new(
       this.controller.address,
@@ -265,11 +281,11 @@ module.exports = class extends Deployer {
     logger.info(` - Max number of jurors per draft batch:    ${this.config.court.maxJurorsPerDraftBatch}`)
   }
 
-  _printRegistryDeploy(totalActiveBalanceLimit) {
+  _printRegistryDeploy(anjAddress, totalActiveBalanceLimit) {
     const { jurors } = this.config
     logger.info('Deploying JurorsRegistry contract with config:')
     logger.info(` - Controller:                              ${this.controller.address}`)
-    logger.info(` - Jurors token:                            ${jurors.token.symbol} at ${jurors.token.address}`)
+    logger.info(` - Jurors token:                            ${jurors.token.symbol} at ${anjAddress}`)
     logger.info(` - Minimum ANJ active balance:              ${tokenToString(jurors.minActiveBalance, jurors.token)}`)
     logger.info(` - Total ANJ active balance limit:          ${tokenToString(totalActiveBalanceLimit, jurors.token)}`)
   }
