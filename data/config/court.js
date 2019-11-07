@@ -1,4 +1,4 @@
-const { bn, bigExp } = require('../src/helpers/numbers')
+const { bn, bigExp } = require('../../src/helpers/numbers')
 
 const HOURS_8 = 60 * 60 * 8
 const START_DATE = Math.floor(new Date('2020-01-31T12:30:00.000Z') / 1000) // 2020, Jan 31st 12.30 UTC

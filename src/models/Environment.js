@@ -8,9 +8,9 @@ module.exports = class {
     this.sender = sender
   }
 
-  async getArtifact(contractName) {
+  async getArtifact(contractName, dependency = undefined) {
     const artifacts = await this.getArtifacts()
-    return artifacts.require(contractName)
+    return artifacts.require(contractName, dependency)
   }
 
   async getArtifacts() {
