@@ -7,10 +7,12 @@ module.exports = class Artifacts {
     this.provider = provider
   }
 
-  require(contractName) {
-    // TODO: Fix to load the contract artifacts from node modules once dependencies provide them
-    const schema = require(this._getLocalBuildPath(contractName))
-    const Contract = TruffleContract(schema)
+  require(contractName, dependency = undefined) {
+    const contractPath = dependency
+      ? this._getNodeModulesPath(dependency, contractName)
+      : this._getLocalBuildPath(contractName)
+
+    const Contract = TruffleContract(require(contractPath))
     Contract.defaults(this.defaults)
     Contract.setProvider(this.provider)
     return Contract

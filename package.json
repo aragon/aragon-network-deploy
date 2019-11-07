@@ -5,13 +5,13 @@
   "author": "Aragon Association",
   "license": "GPL-3.0",
   "scripts": {
+    "postinstall": "cd node_modules/@aragon/court && npm install && rm -rf build && npx truffle compile",
     "test": "./node_modules/@aragon/test-helpers/ganache-cli.sh",
-    "compile": "truffle compile",
     "deploy:court:rpc": "npm run compile && node ./bin/index.js court -n rpc"
   },
   "dependencies": {
-    "@aragon/truffle-config-v5": "^1.0.0",
     "@aragon/court": "aragon/aragon-court#development",
+    "@aragon/truffle-config-v5": "^1.0.0",
     "@truffle/config": "^1.1.21",
     "@truffle/contract": "^4.0.32",
     "chalk": "^2.4.2",
@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@aragon/test-helpers": "^2.1.0",
+    "ganache-cli": "^6.4.5",
     "truffle": "^5.0.34"
   }
 }

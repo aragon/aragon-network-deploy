@@ -1,5 +1,5 @@
 const path = require('path')
-const Config = require('../../../config/court')
+const Config = require('../../../data/config/court')
 const Environment = require('../../../src/models/Environment')
 const CourtDeployer = require('../../../src/models/CourtDeployer')
 
@@ -11,28 +11,28 @@ contract('CourtDeployer', ([_, sender]) => {
 
   beforeEach('run command', async () => {
     const environment = new Environment('rpc', sender)
-    const outputFilepath = path.resolve(process.cwd(), `./court.json`)
+    const outputFilepath = path.resolve(process.cwd(), `./data/output/court.json`)
     const deployer = new CourtDeployer(Config, environment, outputFilepath)
 
     await deployer.call()
     const deployedContracts = require(outputFilepath)
 
-    const Controller = await environment.getArtifact('Controller')
+    const Controller = await environment.getArtifact('Controller', '@aragon/court')
     controller = await Controller.at(deployedContracts.controller.address)
 
-    const Court = await environment.getArtifact('Court')
+    const Court = await environment.getArtifact('Court', '@aragon/court')
     court = await Court.at(deployedContracts.court.address)
 
-    const CourtTreasury = await environment.getArtifact('CourtTreasury')
+    const CourtTreasury = await environment.getArtifact('CourtTreasury', '@aragon/court')
     treasury = await CourtTreasury.at(deployedContracts.treasury.address)
 
-    const JurorsRegistry = await environment.getArtifact('JurorsRegistry')
+    const JurorsRegistry = await environment.getArtifact('JurorsRegistry', '@aragon/court')
     registry = await JurorsRegistry.at(deployedContracts.registry.address)
 
-    const CourtSubscriptions = await environment.getArtifact('CourtSubscriptions')
+    const CourtSubscriptions = await environment.getArtifact('CourtSubscriptions', '@aragon/court')
     subscriptions = await CourtSubscriptions.at(deployedContracts.subscriptions.address)
 
-    const CRVoting = await environment.getArtifact('CRVoting')
+    const CRVoting = await environment.getArtifact('CRVoting', '@aragon/court')
     voting = await CRVoting.at(deployedContracts.voting.address)
   })
 

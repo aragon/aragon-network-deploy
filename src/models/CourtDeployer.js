@@ -1,4 +1,3 @@
-const fs = require('fs')
 const Deployer = require('./Deployer')
 const logger = require('../helpers/logger')('CourtDeployer')
 const { MAX_UINT64, tokenToString } = require('../helpers/numbers')
@@ -26,7 +25,7 @@ module.exports = class extends Deployer {
   async mockTokens() {
     // force drop previous deploy otherwise mocked tokens won't exist
     this.previousDeploy = {}
-    const ERC20 = await this.environment.getArtifact('ERC20Mock')
+    const ERC20 = await this.environment.getArtifact('ERC20Mock', '@aragon/court')
 
     const ANJ = await ERC20.new('ANJ Token', 'ANJ', 18)
     this.config.jurors.token.address = ANJ.address
@@ -38,7 +37,7 @@ module.exports = class extends Deployer {
 
   async loadOrDeployController() {
     const { controller } = this.previousDeploy
-    const Controller = await this.environment.getArtifact('Controller')
+    const Controller = await this.environment.getArtifact('Controller', '@aragon/court')
 
     if (controller && controller.address) await this._loadController(Controller, controller.address)
     else await this._deployController(Controller)
@@ -46,7 +45,7 @@ module.exports = class extends Deployer {
 
   async loadOrDeployCourt() {
     const { court } = this.previousDeploy
-    const Court = await this.environment.getArtifact('Court')
+    const Court = await this.environment.getArtifact('Court', '@aragon/court')
 
     if (court && court.address) await this._loadCourt(Court, court.address)
     else await this._deployCourt(Court)
@@ -54,7 +53,7 @@ module.exports = class extends Deployer {
 
   async loadOrDeployRegistry() {
     const { registry } = this.previousDeploy
-    const JurorsRegistry = await this.environment.getArtifact('JurorsRegistry')
+    const JurorsRegistry = await this.environment.getArtifact('JurorsRegistry', '@aragon/court')
 
     if (registry && registry.address) await this._loadRegistry(JurorsRegistry, registry.address)
     else await this._deployRegistry(JurorsRegistry)
@@ -62,7 +61,7 @@ module.exports = class extends Deployer {
 
   async loadOrDeployVoting() {
     const { voting } = this.previousDeploy
-    const Voting = await this.environment.getArtifact('CRVoting')
+    const Voting = await this.environment.getArtifact('CRVoting', '@aragon/court')
 
     if (voting && voting.address) await this._loadVoting(Voting, voting.address)
     else await this._deployVoting(Voting)
@@ -70,7 +69,7 @@ module.exports = class extends Deployer {
 
   async loadOrDeployTreasury() {
     const { treasury } = this.previousDeploy
-    const Treasury = await this.environment.getArtifact('CourtTreasury')
+    const Treasury = await this.environment.getArtifact('CourtTreasury', '@aragon/court')
 
     if (treasury && treasury.address) await this._loadTreasury(Treasury, treasury.address)
     else await this._deployTreasury(Treasury)
@@ -78,7 +77,7 @@ module.exports = class extends Deployer {
 
   async loadOrDeploySubscriptions() {
     const { subscriptions } = this.previousDeploy
-    const Subscriptions = await this.environment.getArtifact('CourtSubscriptions')
+    const Subscriptions = await this.environment.getArtifact('CourtSubscriptions', '@aragon/court')
 
     if (subscriptions && subscriptions.address) await this._loadSubscriptions(Subscriptions, subscriptions.address)
     else await this._deploySubscriptions(Subscriptions)
