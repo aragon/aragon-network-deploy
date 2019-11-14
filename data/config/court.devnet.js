@@ -6,13 +6,13 @@ const START_DATE = Math.floor(new Date('2020-01-31T12:30:00.000Z') / 1000) // 20
 const ANJ = {
   symbol: 'ANJ',
   decimals: 18,
-  address: undefined                                           // set this address with an ANJ instance deployed locally
+  address: undefined                                           // if unset, it will try to fetch it from a previous deploy
 }
 
 const DAI = {
   symbol: 'DAI',
   decimals: 18,
-  address: undefined                                           // set this address with a DAI instance deployed locally
+  address: undefined                                           // if unset, it will try to fetch it from a previous deploy
 }
 
 module.exports = {

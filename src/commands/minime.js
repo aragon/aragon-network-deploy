@@ -1,4 +1,3 @@
-const fs = require('fs')
 const path = require('path')
 const MiniMeDeployer = require('../models/deployers/MiniMeDeployer')
 
