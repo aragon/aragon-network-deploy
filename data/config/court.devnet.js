@@ -27,11 +27,11 @@ module.exports = {
   },
   court: {
     feeToken:                      DAI,                          // fee token for the court is DAI
-    // TODO: evidenceTerms:        bn(21),                       // vote commits last 21 terms (7 days)
-    commitTerms:                   bn(5),                        // vote commits last 5 terms (1.67 days)
-    revealTerms:                   bn(2),                        // vote reveals last 5 terms (1.67 days)
-    appealTerms:                   bn(5),                        // appeals last 5 terms (1.67 days)
-    appealConfirmTerms:            bn(5),                        // appeal confirmations last 5 terms (1.67 days)
+    // TODO: evidenceTerms:        bn(21),                       // evidence period lasts 21 terms (7 days)
+    commitTerms:                   bn(6),                        // vote commits lasts 6 terms (2 days)
+    revealTerms:                   bn(6),                        // vote reveals lasts 6 terms (2 days)
+    appealTerms:                   bn(6),                        // appeals lasts 6 terms (2 days)
+    appealConfirmTerms:            bn(6),                        // appeal confirmations lasts 6 terms (2 days)
     maxJurorsPerDraftBatch:        bn(81),                       // max number of jurors drafted per batch
     jurorFee:                      bigExp(10, DAI.decimals),     // 10 fee tokens for juror fees
     draftFee:                      bigExp(18, DAI.decimals - 2), // 0.18 fee tokens for draft fees
