@@ -13,7 +13,7 @@ module.exports = class extends BaseDeployer {
 
   async call() {
     const token = this.previousDeploy[this.config.symbol]
-    const MiniMeToken = await this.environment.getArtifact('MiniMeToken', '@aragon/apps-shared-minime')
+    const MiniMeToken = await this.environment.getArtifact('MiniMeToken', '@aragon/minime')
 
     if (token && token.address) await this._loadMiniMe(MiniMeToken, token.address)
     else await this._deployMiniMe(MiniMeToken)
@@ -44,7 +44,7 @@ module.exports = class extends BaseDeployer {
 
   async _deployOrLoadMiniMeFactory() {
     const { factory } = this.config
-    const MiniMeTokenFactory = await this.environment.getArtifact('MiniMeTokenFactory', '@aragon/apps-shared-minime')
+    const MiniMeTokenFactory = await this.environment.getArtifact('MiniMeTokenFactory', '@aragon/minime')
     return factory ? MiniMeTokenFactory.at(factory) : MiniMeTokenFactory.new()
   }
 

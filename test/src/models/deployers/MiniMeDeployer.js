@@ -18,7 +18,7 @@ contract('MiniMeDeployer', ([_, sender]) => {
     await deployer.call()
     const deployedContracts = require(outputFilepath)
 
-    const MiniMeToken = await environment.getArtifact('MiniMeToken', '@aragon/apps-shared-minime')
+    const MiniMeToken = await environment.getArtifact('MiniMeToken', '@aragon/minime')
     token = await MiniMeToken.at(deployedContracts[Config.symbol].address)
   })
 

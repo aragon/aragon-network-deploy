@@ -31,7 +31,7 @@ contract('CourtDeployer', ([_, sender]) => {
     Config.court.feeToken.address = DAI.address
     Config.subscriptions.feeToken.address = DAI.address
 
-    const MiniMeToken = await environment.getArtifact('MiniMeToken', '@aragon/apps-shared-minime')
+    const MiniMeToken = await environment.getArtifact('MiniMeToken', '@aragon/minime')
     ANJ = await MiniMeToken.new(ZERO_ADDRESS, ZERO_ADDRESS, SNAPSHOT_BLOCK, 'Aragon Network Juror Token', 18, 'ANJ', true)
     Config.jurors.token.address = ANJ.address
   })

@@ -102,7 +102,7 @@ module.exports = class extends BaseDeployer {
 
   async transferANJController() {
     const sender = await this.environment.getSender()
-    const MiniMeToken = await this.environment.getArtifact('MiniMeToken', '@aragon/apps-shared-minime')
+    const MiniMeToken = await this.environment.getArtifact('MiniMeToken', '@aragon/minime')
     const { governor: { funds }, jurors: { token: { address } } } = this.config
     this.anj = await MiniMeToken.at(address)
 
