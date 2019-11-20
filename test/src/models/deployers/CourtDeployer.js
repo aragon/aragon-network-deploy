@@ -1,19 +1,43 @@
+const fs = require('fs')
 const path = require('path')
-const Config = require('../../../data/config/court')
-const Environment = require('../../../src/models/Environment')
-const CourtDeployer = require('../../../src/models/CourtDeployer')
+const Config = require('../../../../data/config/court').rpc
+const Environment = require('../../../../src/models/Environment')
+const CourtDeployer = require('../../../../src/models/deployers/CourtDeployer')
 
-const { assertBn } = require('../../helpers/assertBn')
-const { MAX_UINT64 } = require('../../../src/helpers/numbers')
+const { assertBn } = require('../../../helpers/assertBn')
+const { MAX_UINT64 } = require('../../../../src/helpers/numbers')
+
+const SNAPSHOT_BLOCK = 0
+const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
 contract('CourtDeployer', ([_, sender]) => {
+  let environment, DAI, ANJ
   let controller, court, treasury, voting, registry, subscriptions
 
-  beforeEach('run command', async () => {
-    const environment = new Environment('rpc', sender)
-    const outputFilepath = path.resolve(process.cwd(), `./data/output/court.json`)
-    const deployer = new CourtDeployer(Config, environment, outputFilepath)
+  const outputFilepath = path.resolve(process.cwd(), `./data/output/court.test.json`)
 
+  before('build environment', async () => {
+    environment = new Environment('rpc', sender)
+
+    const ERC20 = await environment.getArtifact('ERC20Mock', '@aragon/court')
+    DAI = await ERC20.new('DAI', 'DAI', 18)
+    Config.court.feeToken.address = DAI.address
+    Config.subscriptions.feeToken.address = DAI.address
+  })
+
+  before('mock tokens', async () => {
+    const ERC20 = await environment.getArtifact('ERC20Mock', '@aragon/court')
+    DAI = await ERC20.new('DAI Token', 'DAI', 18)
+    Config.court.feeToken.address = DAI.address
+    Config.subscriptions.feeToken.address = DAI.address
+
+    const MiniMeToken = await environment.getArtifact('MiniMeToken', '@aragon/minime')
+    ANJ = await MiniMeToken.new(ZERO_ADDRESS, ZERO_ADDRESS, SNAPSHOT_BLOCK, 'Aragon Network Juror Token', 18, 'ANJ', true)
+    Config.jurors.token.address = ANJ.address
+  })
+
+  beforeEach('deploy', async () => {
+    const deployer = new CourtDeployer(Config, environment, outputFilepath)
     await deployer.call()
     const deployedContracts = require(outputFilepath)
 
@@ -36,6 +60,10 @@ contract('CourtDeployer', ([_, sender]) => {
     voting = await CRVoting.at(deployedContracts.voting.address)
   })
 
+  afterEach('delete deployment output', () => {
+    if (fs.existsSync(outputFilepath)) fs.unlinkSync(outputFilepath)
+  })
+
   describe('controller', () => {
     it('sets the clock config correctly', async () => {
       const termDuration = await controller.getTermDuration()
@@ -54,9 +82,7 @@ contract('CourtDeployer', ([_, sender]) => {
     it('sets the initial config correctly', async () => {
       const { feeToken, fees, roundStateDurations, pcts, roundParams, appealCollateralParams, minActiveBalance } = await controller.getConfig(1)
 
-      // TODO: mock tokens at a test level when commands are fixed
-      // assert.equal(feeToken, Config.court.feeToken.address, 'fee token address does not match')
-
+      assert.equal(feeToken, Config.court.feeToken.address, 'fee token address does not match')
       assertBn(fees[0], Config.court.jurorFee, 'juror fee does not match')
       assertBn(fees[1], Config.court.draftFee, 'draft fee does not match')
       assertBn(fees[2], Config.court.settleFee, 'settle fee does not match')
@@ -134,9 +160,7 @@ contract('CourtDeployer', ([_, sender]) => {
       assertBn(await subscriptions.resumePrePaidPeriods(), Config.subscriptions.resumePrePaidPeriods, 'resume pre-paid periods do not match')
       assertBn(await subscriptions.latePaymentPenaltyPct(), Config.subscriptions.latePaymentPenaltyPct, 'subscriptions penalty pct does not match')
       assertBn(await subscriptions.governorSharePct(), Config.subscriptions.governorSharePct, 'subscriptions governor share does not match')
-
-      // TODO: mock tokens at a test level when commands are fixed
-      // assert.equal(await subscriptions.currentFeeToken(), Config.subscriptions.feeToken.address, 'subscriptions fee token does not match')
+      assert.equal(await subscriptions.currentFeeToken(), Config.subscriptions.feeToken.address, 'subscriptions fee token does not match')
     })
 
     it('sets the controller correctly', async () => {
@@ -149,8 +173,7 @@ contract('CourtDeployer', ([_, sender]) => {
       const totalActiveBalanceLimit = Config.jurors.minActiveBalance.mul(MAX_UINT64.div(Config.court.finalRoundWeightPrecision))
       assertBn(await registry.totalJurorsActiveBalanceLimit(), totalActiveBalanceLimit, 'total active balance limit does not match')
 
-      // TODO: mock tokens at a test level when commands are fixed
-      // assert.equal(await registry.token(), Config.jurors.token.address, 'jurors token does not match')
+      assert.equal(await registry.token(), ANJ.address, 'jurors token address does not match')
     })
 
     it('sets the controller correctly', async () => {

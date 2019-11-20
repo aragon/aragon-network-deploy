@@ -4,8 +4,7 @@ const command = 'presale'
 const describe = 'Deploy Court pre-sale contracts'
 
 const handlerAsync = async (environment, { }) => {
-  logger.warn('presale')
-  logger.error(environment)
+  logger.error('Not implemented yet')
 }
 
 module.exports = {

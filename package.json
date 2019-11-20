@@ -7,10 +7,13 @@
   "scripts": {
     "postinstall": "cd node_modules/@aragon/court && npm install && rm -rf build && npx truffle compile",
     "test": "./node_modules/@aragon/test-helpers/ganache-cli.sh",
-    "deploy:court:rpc": "npm run compile && node ./bin/index.js court -n rpc"
+    "deploy:dai:rpc": "node ./bin/index.js minime -n rpc -c ./test/data/config/dai.js",
+    "deploy:anj:rpc": "node ./bin/index.js minime -n rpc -c ./data/config/anj.js",
+    "deploy:court:rpc": "npm run deploy:dai:rpc && npm run deploy:anj:rpc && node ./bin/index.js court -n rpc"
   },
   "dependencies": {
     "@aragon/court": "aragon/aragon-court#development",
+    "@aragon/minime": "^1.0.0",
     "@aragon/truffle-config-v5": "^1.0.0",
     "@truffle/config": "^1.1.21",
     "@truffle/contract": "^4.0.32",

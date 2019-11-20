@@ -7,26 +7,25 @@ const Logger = require('../src/helpers/logger')
 const Environment = require('../src/models/Environment')
 const errorHandler = require('../src/helpers/errorHandler')
 
+const DEFAULT_OPTIONS = {
+  from: { alias: 'f', describe: 'Sender address', type: 'string' },
+  network: { alias: 'n', describe: 'Network name', type: 'string', demand: true },
+  silent: { describe: 'No logging', type: 'boolean', default: false },
+  verbose: { describe: 'Verbose logging mode', type: 'boolean', default: false },
+}
+
 const commandsDir = path.resolve(__dirname, '../src/commands')
-fs.readdirSync(commandsDir).forEach(commandFilename => {
-  const commandFilepath = path.resolve(__dirname, `../src/commands/${commandFilename}`)
-  const command = require(commandFilepath)
+const commands = fs.readdirSync(commandsDir)
 
-  command.builder = {
-    ...command.builder,
-    from: { alias: 'f', describe: 'Sender address', type: 'string' },
-    network: { alias: 'n', describe: 'Network name', type: 'string', demand: true },
-    silent: { describe: 'No logging', type: 'boolean', default: false },
-    verbose: { describe: 'Verbose logging mode', type: 'boolean', default: false },
-  }
+commands.forEach(commandFilename => {
+  const command = require(path.resolve(commandsDir, commandFilename))
 
+  command.builder = { ...command.builder, ...DEFAULT_OPTIONS }
   command.handler = argv => {
     const { from, network, silent, verbose } = argv
     Logger.setDefaults(silent, verbose)
     const environment = new Environment(network, from)
-    command.handlerAsync(environment, argv)
-      .then(() => process.exit(0))
-      .catch(errorHandler)
+    command.handlerAsync(environment, argv).then(() => process.exit(0)).catch(errorHandler)
   }
 
   yargs.command(command)

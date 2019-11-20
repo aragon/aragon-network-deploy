@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-module.exports = class Deployer {
+module.exports = class BaseDeployer {
   constructor(environment, output, logger) {
     this.output = output
     this.environment = environment
