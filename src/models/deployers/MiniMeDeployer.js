@@ -5,9 +5,15 @@ const SNAPSHOT_BLOCK = 0
 const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 const TRANSFERS_ENABLED_DEFAULT = true
 
+const VERIFICATION_HEADERS = [
+  'Commit sha: 1d5251fc88eee5024ff318d95bc9f4c5de130430',
+  'GitHub repository: https://github.com/aragon/minime',
+  'Tool used for the deploy: https://github.com/aragon/aragon-network-deploy',
+]
+
 module.exports = class extends BaseDeployer {
-  constructor(config, environment, output) {
-    super(environment, output, logger)
+  constructor(config, environment, output, verifier = undefined) {
+    super(environment, output, verifier, logger)
     this.config = config
   }
 
@@ -17,6 +23,7 @@ module.exports = class extends BaseDeployer {
 
     if (token && token.address) await this._loadMiniMe(MiniMeToken, token.address)
     else await this._deployMiniMe(MiniMeToken)
+    await this._verifyMiniMe()
   }
 
   async _loadMiniMe(MiniMeToken, address) {
@@ -46,6 +53,16 @@ module.exports = class extends BaseDeployer {
     const { factory } = this.config
     const MiniMeTokenFactory = await this.environment.getArtifact('MiniMeTokenFactory', '@aragon/minime')
     return factory ? MiniMeTokenFactory.at(factory) : MiniMeTokenFactory.new()
+  }
+
+  async _verifyMiniMe() {
+    const { symbol } = this.config
+    const token = this.previousDeploy[symbol]
+    if (this.verifier && (!token || !token.verification)) {
+      const url = await this.verifier.call(this.token, VERIFICATION_HEADERS)
+      const { address, transactionHash } = token
+      this._saveDeploy({ [symbol]: { address, transactionHash, verification: url } })
+    }
   }
 
   _printMiniMeDeploy(sender) {

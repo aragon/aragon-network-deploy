@@ -29,7 +29,7 @@ class Logger {
 
   log(msg, emoji, color = 'white') {
     if (DEFAULTS.silent) return
-    const padding = 14 - this.actor.length
+    const padding = 15 - this.actor.length
     let formattedMessage = chalk.keyword(color)(`${emoji}  ${this._stringify(msg)}`)
     if (DEFAULTS.verbose) formattedMessage = `[${this.actor}]${' '.repeat(padding)}${formattedMessage}`
     console.error(formattedMessage)
