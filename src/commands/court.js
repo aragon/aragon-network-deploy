@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const Verifier = require('../models/Verifier')
 const CourtDeployer = require('../models/deployers/CourtDeployer')
 const { command: tokenCommand } = require('../commands/minime')
 
@@ -11,10 +12,12 @@ const builder = {
   config: { alias: 'c', describe: 'Court config JSON file', type: 'string', default: './data/config/court.js' },
 }
 
-const handlerAsync = async (environment, { network, output: outputDir, config: configFilename }) => {
+const handlerAsync = async (environment, { network, verify: apiKey, output: outputDir, config: configFilename }) => {
   const outputFilepath = path.resolve(process.cwd(), `${outputDir}/${command}.${network}.json`)
   const config = require(path.resolve(process.cwd(), configFilename))[network]
-  const deployer = new CourtDeployer(config, environment, outputFilepath)
+
+  const verifyer = apiKey ? new Verifier(environment, apiKey) : undefined
+  const deployer = new CourtDeployer(config, environment, outputFilepath, verifyer)
 
   const tokenFilepath = path.resolve(process.cwd(), `${outputDir}/${tokenCommand}.${network}.json`)
   const tokenDeploy = fs.existsSync(tokenFilepath) ? require(tokenFilepath) : {}

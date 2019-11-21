@@ -2,9 +2,15 @@ const BaseDeployer = require('./BaseDeployer')
 const logger = require('../../helpers/logger')('CourtDeployer')
 const { MAX_UINT64, tokenToString } = require('../../helpers/numbers')
 
+const VERIFICATION_HEADERS = [
+  'Commit sha: development', // TODO: update with tagged version
+  'GitHub repository: https://github.com/aragon/aragon-court',
+  'Tool used for the deploy: https://github.com/aragon/aragon-network-deploy',
+]
+
 module.exports = class extends BaseDeployer {
-  constructor(config, environment, output) {
-    super(environment, output, logger)
+  constructor(config, environment, output, verifier = undefined) {
+    super(environment, output, verifier, logger)
     this.config = config
   }
 
@@ -18,6 +24,7 @@ module.exports = class extends BaseDeployer {
     await this.setModules()
     await this.transferGovernor()
     await this.transferANJController()
+    await this.verifyContracts()
   }
 
   async loadOrDeployCourt() {
@@ -115,6 +122,17 @@ module.exports = class extends BaseDeployer {
       logger.success(`ANJ token controller is already set to funds governor ${funds}`)
     } else {
       logger.warn('ANJ token controller is already set to another address')
+    }
+  }
+
+  async verifyContracts() {
+    if (this.verifier) {
+      await this._verifyAragonCourt()
+      await this._verifyDisputes()
+      await this._verifyRegistry()
+      await this._verifyVoting()
+      await this._verifyTreasury()
+      await this._verifySubscriptions()
     }
   }
 
@@ -244,6 +262,62 @@ module.exports = class extends BaseDeployer {
     const { address, transactionHash } = this.subscriptions
     logger.success(`Created Subscriptions instance at ${address}`)
     this._saveDeploy({ subscriptions: { address, transactionHash }})
+  }
+
+  /** verifying methods **/
+
+  async _verifyAragonCourt() {
+    const court = this.previousDeploy.court
+    if (!court || !court.verification) {
+      const url = await this.verifier.call(this.court, VERIFICATION_HEADERS)
+      const { address, transactionHash } = court
+      this._saveDeploy({ court: { address, transactionHash, verification: url } })
+    }
+  }
+
+  async _verifyDisputes() {
+    const disputes = this.previousDeploy.disputes
+    if (!disputes || !disputes.verification) {
+      const url = await this.verifier.call(this.disputes, VERIFICATION_HEADERS)
+      const { address, transactionHash } = disputes
+      this._saveDeploy({ disputes: { address, transactionHash, verification: url } })
+    }
+  }
+
+  async _verifyRegistry() {
+    const registry = this.previousDeploy.registry
+    if (!registry || !registry.verification) {
+      const url = await this.verifier.call(this.registry, VERIFICATION_HEADERS)
+      const { address, transactionHash } = registry
+      this._saveDeploy({ registry: { address, transactionHash, verification: url } })
+    }
+  }
+
+  async _verifyVoting() {
+    const voting = this.previousDeploy.voting
+    if (!voting || !voting.verification) {
+      const url = await this.verifier.call(this.voting, VERIFICATION_HEADERS)
+      const { address, transactionHash } = voting
+      this._saveDeploy({ voting: { address, transactionHash, verification: url } })
+    }
+  }
+
+  async _verifyTreasury() {
+    const treasury = this.previousDeploy.treasury
+    if (!treasury || !treasury.verification) {
+      const url = await this.verifier.call(this.treasury, VERIFICATION_HEADERS)
+      const { address, transactionHash } = treasury
+      this._saveDeploy({ treasury: { address, transactionHash, verification: url } })
+    }
+  }
+
+  async _verifySubscriptions() {
+    const subscriptions = this.previousDeploy.subscriptions
+    if (!subscriptions || !subscriptions.verification) {
+      const url = await this.verifier.call(this.subscriptions, VERIFICATION_HEADERS)
+      const { address, transactionHash } = subscriptions
+      this._saveDeploy({ subscriptions: { address, transactionHash, verification: url } })
+    }
   }
 
   /** logging methods **/

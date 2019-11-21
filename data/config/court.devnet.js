@@ -6,13 +6,13 @@ const START_DATE = Math.floor(new Date('2020-01-31T12:30:00.000Z') / 1000) // 20
 const ANJ = {
   symbol: 'ANJ',
   decimals: 18,
-  address: undefined                                           // if unset, it will try to fetch it from a previous deploy
+  address: undefined                                           // if unset, it will try to fetch it from a previous deploy for devnet
 }
 
 const DAI = {
   symbol: 'DAI',
   decimals: 18,
-  address: undefined                                           // if unset, it will try to fetch it from a previous deploy
+  address: undefined                                           // if unset, it will try to fetch it from a previous deploy for devnet
 }
 
 module.exports = {

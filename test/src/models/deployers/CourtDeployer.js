@@ -16,16 +16,9 @@ contract('CourtDeployer', ([_, sender]) => {
 
   const outputFilepath = path.resolve(process.cwd(), `./data/output/court.test.json`)
 
-  before('build environment', async () => {
+  before('build environment and mock tokens', async () => {
     environment = new Environment('rpc', sender)
 
-    const ERC20 = await environment.getArtifact('ERC20Mock', '@aragon/court')
-    DAI = await ERC20.new('DAI', 'DAI', 18)
-    Config.court.feeToken.address = DAI.address
-    Config.subscriptions.feeToken.address = DAI.address
-  })
-
-  before('mock tokens', async () => {
     const ERC20 = await environment.getArtifact('ERC20Mock', '@aragon/court')
     DAI = await ERC20.new('DAI Token', 'DAI', 18)
     Config.court.feeToken.address = DAI.address

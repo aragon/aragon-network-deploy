@@ -6,7 +6,7 @@ const START_DATE = Math.floor(new Date('2020-02-17T00:00:00.000Z') / 1000) // 20
 const ANJ = {
   symbol: 'ANJ',
   decimals: 18,
-  address: undefined                                           // TODO
+  address: undefined                                             // TODO
 }
 
 const DAI = {

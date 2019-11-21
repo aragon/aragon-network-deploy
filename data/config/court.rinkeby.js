@@ -1,25 +1,25 @@
 const { bn, bigExp } = require('../../src/helpers/numbers')
 
 const HOURS_8 = 60 * 60 * 8
-const START_DATE = Math.floor(new Date('2020-01-31T12:30:00.000Z') / 1000) // 2020, Jan 31st 12.30 UTC
+const START_DATE = Math.floor(new Date() / 1000 + HOURS_8 + 120) // two minutes from now
 
 const ANJ = {
   symbol: 'ANJ',
   decimals: 18,
-  address: undefined                                           // TODO
+  address: '0x69f9c4205A320C0dEff240fEE58F42052C478c08'
 }
 
 const DAI = {
   symbol: 'DAI',
   decimals: 18,
-  address: undefined                                           // TODO
+  address: '0xe9A083D88Eed757B1d633321Ce0519F432c6284d'
 }
 
 module.exports = {
   governor: {
-    funds:                         undefined,                    // TODO
-    config:                        undefined,                    // TODO
-    modules:                       undefined,                    // TODO
+    funds:                         '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076', // Agent of DAO 0x2eBe0f5854Fa5C685DAd156Dd8A07562eD1F74b1
+    config:                        '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076', // Agent of DAO 0x2eBe0f5854Fa5C685DAd156Dd8A07562eD1F74b1
+    modules:                       '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076', // Agent of DAO 0x2eBe0f5854Fa5C685DAd156Dd8A07562eD1F74b1
   },
   clock: {
     termDuration:                  bn(HOURS_8),                  // terms lasts 8 hours
