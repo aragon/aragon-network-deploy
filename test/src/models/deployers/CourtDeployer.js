@@ -12,7 +12,7 @@ const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
 contract('CourtDeployer', ([_, sender]) => {
   let environment, DAI, ANJ
-  let controller, court, treasury, voting, registry, subscriptions
+  let court, disputes, treasury, voting, registry, subscriptions
 
   const outputFilepath = path.resolve(process.cwd(), `./data/output/court.test.json`)
 
@@ -41,11 +41,11 @@ contract('CourtDeployer', ([_, sender]) => {
     await deployer.call()
     const deployedContracts = require(outputFilepath)
 
-    const Controller = await environment.getArtifact('Controller', '@aragon/court')
-    controller = await Controller.at(deployedContracts.controller.address)
+    const AragonCourt = await environment.getArtifact('AragonCourt', '@aragon/court')
+    court = await AragonCourt.at(deployedContracts.court.address)
 
-    const Court = await environment.getArtifact('Court', '@aragon/court')
-    court = await Court.at(deployedContracts.court.address)
+    const DisputeManager = await environment.getArtifact('DisputeManager', '@aragon/court')
+    disputes = await DisputeManager.at(deployedContracts.disputes.address)
 
     const CourtTreasury = await environment.getArtifact('CourtTreasury', '@aragon/court')
     treasury = await CourtTreasury.at(deployedContracts.treasury.address)
@@ -64,15 +64,15 @@ contract('CourtDeployer', ([_, sender]) => {
     if (fs.existsSync(outputFilepath)) fs.unlinkSync(outputFilepath)
   })
 
-  describe('controller', () => {
+  describe('court', () => {
     it('sets the clock config correctly', async () => {
-      const termDuration = await controller.getTermDuration()
+      const termDuration = await court.getTermDuration()
       assertBn(termDuration, Config.clock.termDuration, 'term duration does not match')
 
-      const currentTermId = await controller.getCurrentTermId()
+      const currentTermId = await court.getCurrentTermId()
       assertBn(currentTermId, 0, 'current term ID does not match')
 
-      const { startTime, randomnessBN, randomness } = await controller.getTerm(0)
+      const { startTime, randomnessBN, randomness } = await court.getTerm(0)
       const expectedZeroTermStartTime = Config.clock.firstTermStartTime.sub(termDuration)
       assertBn(startTime, expectedZeroTermStartTime, 'zero term start time does not match')
       assertBn(randomnessBN, 0, 'randomness BN does not match')
@@ -80,17 +80,18 @@ contract('CourtDeployer', ([_, sender]) => {
     })
 
     it('sets the initial config correctly', async () => {
-      const { feeToken, fees, roundStateDurations, pcts, roundParams, appealCollateralParams, minActiveBalance } = await controller.getConfig(1)
+      const { feeToken, fees, roundStateDurations, pcts, roundParams, appealCollateralParams, minActiveBalance } = await court.getConfig(1)
 
       assert.equal(feeToken, Config.court.feeToken.address, 'fee token address does not match')
       assertBn(fees[0], Config.court.jurorFee, 'juror fee does not match')
       assertBn(fees[1], Config.court.draftFee, 'draft fee does not match')
       assertBn(fees[2], Config.court.settleFee, 'settle fee does not match')
 
-      assertBn(roundStateDurations[0], Config.court.commitTerms, 'commit terms do not match')
-      assertBn(roundStateDurations[1], Config.court.revealTerms, 'reveal terms do not match')
-      assertBn(roundStateDurations[2], Config.court.appealTerms, 'appeal terms do not match')
-      assertBn(roundStateDurations[3], Config.court.appealConfirmTerms, 'appeal confirmation terms do not match')
+      assertBn(roundStateDurations[0], Config.court.evidenceTerms, 'evidence terms do not match')
+      assertBn(roundStateDurations[1], Config.court.commitTerms, 'commit terms do not match')
+      assertBn(roundStateDurations[2], Config.court.revealTerms, 'reveal terms do not match')
+      assertBn(roundStateDurations[3], Config.court.appealTerms, 'appeal terms do not match')
+      assertBn(roundStateDurations[4], Config.court.appealConfirmTerms, 'appeal confirmation terms do not match')
 
       assertBn(pcts[0], Config.court.penaltyPct, 'penalty pct does not match')
       assertBn(pcts[1], Config.court.finalRoundReduction, 'final round reduction does not match')
@@ -107,48 +108,48 @@ contract('CourtDeployer', ([_, sender]) => {
     })
 
     it('sets the modules correctly', async () => {
-      assert.equal(await controller.getCourt(), court.address, 'court module does not match')
-      assert.equal(await controller.getModule(Config.controller.court), court.address, 'court module does not match')
+      assert.equal(await court.getDisputeManager(), disputes.address, 'disputes module does not match')
+      assert.equal(await court.getModule(Config.controller.disputes), disputes.address, 'disputes module does not match')
 
-      assert.equal(await controller.getTreasury(), treasury.address, 'treasury module does not match')
-      assert.equal(await controller.getModule(Config.controller.treasury), treasury.address, 'treasury module does not match')
+      assert.equal(await court.getTreasury(), treasury.address, 'treasury module does not match')
+      assert.equal(await court.getModule(Config.controller.treasury), treasury.address, 'treasury module does not match')
 
-      assert.equal(await controller.getVoting(), voting.address, 'voting module does not match')
-      assert.equal(await controller.getModule(Config.controller.voting), voting.address, 'voting module does not match')
+      assert.equal(await court.getVoting(), voting.address, 'voting module does not match')
+      assert.equal(await court.getModule(Config.controller.voting), voting.address, 'voting module does not match')
 
-      assert.equal(await controller.getJurorsRegistry(), registry.address, 'registry module does not match')
-      assert.equal(await controller.getModule(Config.controller.registry), registry.address, 'registry module does not match')
+      assert.equal(await court.getJurorsRegistry(), registry.address, 'registry module does not match')
+      assert.equal(await court.getModule(Config.controller.registry), registry.address, 'registry module does not match')
 
-      assert.equal(await controller.getSubscriptions(), subscriptions.address, 'subscriptions module does not match')
-      assert.equal(await controller.getModule(Config.controller.subscriptions), subscriptions.address, 'subscriptions module does not match')
+      assert.equal(await court.getSubscriptions(), subscriptions.address, 'subscriptions module does not match')
+      assert.equal(await court.getModule(Config.controller.subscriptions), subscriptions.address, 'subscriptions module does not match')
     })
 
     it('sets the governor correctly', async () => {
-      assert.equal(await controller.getFundsGovernor(), Config.governor.funds, 'funds governor does not match')
-      assert.equal(await controller.getConfigGovernor(), Config.governor.config, 'config governor does not match')
-      assert.equal(await controller.getModulesGovernor(), Config.governor.modules, 'modules governor does not match')
+      assert.equal(await court.getFundsGovernor(), Config.governor.funds, 'funds governor does not match')
+      assert.equal(await court.getConfigGovernor(), Config.governor.config, 'config governor does not match')
+      assert.equal(await court.getModulesGovernor(), Config.governor.modules, 'modules governor does not match')
     })
   })
 
-  describe('court', () => {
+  describe('disputes', () => {
     it('sets the config correctly', async () => {
-      assertBn(await court.maxJurorsPerDraftBatch(), Config.court.maxJurorsPerDraftBatch, 'max jurors per draft batch does not match')
+      assertBn(await disputes.maxJurorsPerDraftBatch(), Config.court.maxJurorsPerDraftBatch, 'max jurors per draft batch does not match')
     })
 
     it('sets the controller correctly', async () => {
-      assert.equal(await court.getController(), controller.address, 'court controller does not match')
+      assert.equal(await disputes.getController(), court.address, 'court controller does not match')
     })
   })
 
   describe('voting', () => {
     it('sets the controller correctly', async () => {
-      assert.equal(await voting.getController(), controller.address, 'voting controller does not match')
+      assert.equal(await voting.getController(), court.address, 'voting controller does not match')
     })
   })
 
   describe('treasury', () => {
     it('sets the controller correctly', async () => {
-      assert.equal(await treasury.getController(), controller.address, 'treasury controller does not match')
+      assert.equal(await treasury.getController(), court.address, 'treasury controller does not match')
     })
   })
 
@@ -164,7 +165,7 @@ contract('CourtDeployer', ([_, sender]) => {
     })
 
     it('sets the controller correctly', async () => {
-      assert.equal(await subscriptions.getController(), controller.address, 'subscriptions controller does not match')
+      assert.equal(await subscriptions.getController(), court.address, 'subscriptions controller does not match')
     })
   })
 
@@ -177,7 +178,7 @@ contract('CourtDeployer', ([_, sender]) => {
     })
 
     it('sets the controller correctly', async () => {
-      assert.equal(await registry.getController(), controller.address, 'registry controller does not match')
+      assert.equal(await registry.getController(), court.address, 'registry controller does not match')
     })
   })
 })
