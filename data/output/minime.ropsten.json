@@ -1,0 +1,11 @@
+{
+  "ANJ": {
+    "address": "0xc863E1CcC047befF17022F4229DBE6321A6BCe65",
+    "transactionHash": "0x1ea29c244c5b5a1ee98d251c3610a528bc272f787102ed2a76a83453873e50ad",
+    "verification": "https://ropsten.etherscan.io/address/0xc863E1CcC047befF17022F4229DBE6321A6BCe65#code"
+  },
+  "DAI": {
+    "address": "0x4E1F48Db14D7E1ada090c42ffE15FF3024EEc8Bf",
+    "transactionHash": "0x31d3fd16e0190a51f5f68dfa3b7632b0e3ec7b5eba4eefcd4a4a3a8e9934723f"
+  }
+}

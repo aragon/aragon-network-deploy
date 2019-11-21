@@ -5,4 +5,4 @@ node_modules/
 package-lock.json
 
 # Builds
-data/output/*.json
+data/output/*.rpc.json
