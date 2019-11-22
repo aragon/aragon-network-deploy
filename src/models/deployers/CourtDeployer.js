@@ -3,7 +3,7 @@ const logger = require('../../helpers/logger')('CourtDeployer')
 const { MAX_UINT64, tokenToString } = require('../../helpers/numbers')
 
 const VERIFICATION_HEADERS = [
-  'Commit sha: development', // TODO: update with tagged version
+  'Commit sha: c7bf36f004a2b0e11d7e14234cea7853fd3a523a',
   'GitHub repository: https://github.com/aragon/aragon-court',
   'Tool used for the deploy: https://github.com/aragon/aragon-network-deploy',
 ]
