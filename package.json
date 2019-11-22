@@ -8,8 +8,16 @@
     "postinstall": "cd node_modules/@aragon/court && npm install && rm -rf build && npx truffle compile",
     "test": "./node_modules/@aragon/test-helpers/ganache-cli.sh",
     "deploy:dai:rpc": "node ./bin/index.js minime -n rpc -c ./test/data/config/dai.js",
+    "deploy:dai:rinkeby": "node ./bin/index.js minime -n rinkeby -c ./test/data/config/dai.js",
+    "deploy:dai:ropsten": "node ./bin/index.js minime -n ropsten -c ./test/data/config/dai.js",
     "deploy:anj:rpc": "node ./bin/index.js minime -n rpc -c ./data/config/anj.js",
-    "deploy:court:rpc": "npm run deploy:dai:rpc && npm run deploy:anj:rpc && node ./bin/index.js court -n rpc"
+    "deploy:anj:ropsten": "node ./bin/index.js minime -n ropsten -c ./data/config/anj.js",
+    "deploy:anj:rinkeby": "node ./bin/index.js minime -n rinkeby -c ./data/config/anj.js",
+    "deploy:anj:mainnet": "node ./bin/index.js minime -n mainnet -c ./data/config/anj.js",
+    "deploy:court:rpc": "npm run deploy:dai:rpc && npm run deploy:anj:rpc && node ./bin/index.js court -n rpc",
+    "deploy:court:ropsten": "node ./bin/index.js court -n ropsten",
+    "deploy:court:rinkeby": "node ./bin/index.js court -n rinkeby",
+    "deploy:court:mainnet": "node ./bin/index.js court -n mainnet"
   },
   "dependencies": {
     "@aragon/court": "aragon/aragon-court#development",
@@ -17,7 +25,9 @@
     "@aragon/truffle-config-v5": "^1.0.0",
     "@truffle/config": "^1.1.21",
     "@truffle/contract": "^4.0.32",
+    "axios": "^0.19.0",
     "chalk": "^2.4.2",
+    "truffle-flattener": "^1.4.2",
     "web3": "^1.2.1",
     "yargs": "^14.0.0"
   },

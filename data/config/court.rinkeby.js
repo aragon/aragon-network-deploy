@@ -1,25 +1,25 @@
 const { bn, bigExp } = require('../../src/helpers/numbers')
 
 const HOURS_8 = 60 * 60 * 8
-const START_DATE = Math.floor(new Date('2020-01-31T12:30:00.000Z') / 1000) // 2020, Jan 31st 12.30 UTC
+const START_DATE = Math.floor(new Date() / 1000 + HOURS_8 + 120) // two minutes from now
 
 const ANJ = {
   symbol: 'ANJ',
   decimals: 18,
-  address: undefined                                           // TODO
+  address: '0x69f9c4205A320C0dEff240fEE58F42052C478c08'
 }
 
 const DAI = {
   symbol: 'DAI',
   decimals: 18,
-  address: undefined                                           // TODO
+  address: '0xe9A083D88Eed757B1d633321Ce0519F432c6284d'
 }
 
 module.exports = {
   governor: {
-    funds:                         undefined,                    // TODO
-    config:                        undefined,                    // TODO
-    modules:                       undefined,                    // TODO
+    funds:                         '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076', // Agent of DAO 0x2eBe0f5854Fa5C685DAd156Dd8A07562eD1F74b1
+    config:                        '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076', // Agent of DAO 0x2eBe0f5854Fa5C685DAd156Dd8A07562eD1F74b1
+    modules:                       '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076', // Agent of DAO 0x2eBe0f5854Fa5C685DAd156Dd8A07562eD1F74b1
   },
   clock: {
     termDuration:                  bn(HOURS_8),                  // terms lasts 8 hours
@@ -27,7 +27,7 @@ module.exports = {
   },
   court: {
     feeToken:                      DAI,                          // fee token for the court is DAI
-    // TODO: evidenceTerms:        bn(21),                       // evidence period lasts 21 terms (7 days)
+    evidenceTerms:                 bn(21),                       // evidence period lasts 21 terms (7 days)
     commitTerms:                   bn(6),                        // vote commits last 6 terms (2 days)
     revealTerms:                   bn(6),                        // vote reveals last 6 terms (2 days)
     appealTerms:                   bn(6),                        // appeals last 6 terms (2 days)
@@ -60,7 +60,7 @@ module.exports = {
     governorSharePct:              bn(0),                        // 0% of the subscription fees
   },
   controller: {
-    court:                        '0x26f3b895987e349a46d6d91132234924c6d45cfdc564b33427f53e3f9284955c',   // COURT module ID
+    disputes:                     '0x14a6c70f0f6d449c014c7bbc9e68e31e79e8474fb03b7194df83109a2d888ae6',   // DISPUTE_MANAGER module ID
     treasury:                     '0x06aa03964db1f7257357ef09714a5f0ca3633723df419e97015e0c7a3e83edb7',   // TREASURY module ID
     voting:                       '0x7cbb12e82a6d63ff16fe43977f43e3e2b247ecd4e62c0e340da8800a48c67346',   // VOTING module ID
     registry:                     '0x3b21d36b36308c830e6c4053fb40a3b6d79dde78947fbf6b0accd30720ab5370',   // JURORS_REGISTRY module ID

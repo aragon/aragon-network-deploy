@@ -12,6 +12,7 @@ const DEFAULT_OPTIONS = {
   network: { alias: 'n', describe: 'Network name', type: 'string', demand: true },
   silent: { describe: 'No logging', type: 'boolean', default: false },
   verbose: { describe: 'Verbose logging mode', type: 'boolean', default: false },
+  verify: { describe: 'Verify deployed contracts on Etherscan, provide API key', type: 'string' },
 }
 
 const commandsDir = path.resolve(__dirname, '../src/commands')

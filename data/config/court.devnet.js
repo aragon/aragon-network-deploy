@@ -6,13 +6,13 @@ const START_DATE = Math.floor(new Date('2020-01-31T12:30:00.000Z') / 1000) // 20
 const ANJ = {
   symbol: 'ANJ',
   decimals: 18,
-  address: undefined                                           // if unset, it will try to fetch it from a previous deploy
+  address: undefined                                           // if unset, it will try to fetch it from a previous deploy for devnet
 }
 
 const DAI = {
   symbol: 'DAI',
   decimals: 18,
-  address: undefined                                           // if unset, it will try to fetch it from a previous deploy
+  address: undefined                                           // if unset, it will try to fetch it from a previous deploy for devnet
 }
 
 module.exports = {
@@ -27,7 +27,7 @@ module.exports = {
   },
   court: {
     feeToken:                      DAI,                          // fee token for the court is DAI
-    // TODO: evidenceTerms:        bn(21),                       // evidence period lasts 21 terms (7 days)
+    evidenceTerms:                 bn(21),                       // evidence period lasts 21 terms (7 days)
     commitTerms:                   bn(6),                        // vote commits lasts 6 terms (2 days)
     revealTerms:                   bn(6),                        // vote reveals lasts 6 terms (2 days)
     appealTerms:                   bn(6),                        // appeals lasts 6 terms (2 days)
@@ -60,7 +60,7 @@ module.exports = {
     governorSharePct:              bn(0),                        // 0% of the subscription fees
   },
   controller: {
-    court:                        '0x26f3b895987e349a46d6d91132234924c6d45cfdc564b33427f53e3f9284955c',   // COURT module ID
+    disputes:                     '0x14a6c70f0f6d449c014c7bbc9e68e31e79e8474fb03b7194df83109a2d888ae6',   // DISPUTE_MANAGER module ID
     treasury:                     '0x06aa03964db1f7257357ef09714a5f0ca3633723df419e97015e0c7a3e83edb7',   // TREASURY module ID
     voting:                       '0x7cbb12e82a6d63ff16fe43977f43e3e2b247ecd4e62c0e340da8800a48c67346',   // VOTING module ID
     registry:                     '0x3b21d36b36308c830e6c4053fb40a3b6d79dde78947fbf6b0accd30720ab5370',   // JURORS_REGISTRY module ID

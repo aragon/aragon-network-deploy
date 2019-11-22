@@ -1,9 +1,10 @@
 const fs = require('fs')
 
 module.exports = class BaseDeployer {
-  constructor(environment, output, logger) {
+  constructor(environment, output, verifier, logger) {
     this.output = output
     this.environment = environment
+    this.verifier = verifier
     this.previousDeploy = {}
 
     if (this._existsPreviousDeploy()) {

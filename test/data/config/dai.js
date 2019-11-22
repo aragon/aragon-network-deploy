@@ -8,5 +8,7 @@ const config = {
 
 module.exports = {
   rpc: config,
-  devnet: config
+  devnet: config,
+  rinkeby: config,
+  ropsten: config
 }
