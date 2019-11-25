@@ -23,7 +23,6 @@ module.exports = class extends BaseDeployer {
     await this.loadOrDeploySubscriptions()
     await this.setModules()
     await this.transferGovernor()
-    await this.transferANJController()
     await this.verifyContracts()
   }
 
@@ -104,24 +103,6 @@ module.exports = class extends BaseDeployer {
       logger.success(`Modules governor is already set to ${modules}`)
     } else {
       logger.warn('Modules governor is already set to another address')
-    }
-  }
-
-  async transferANJController() {
-    const sender = await this.environment.getSender()
-    const MiniMeToken = await this.environment.getArtifact('MiniMeToken', '@aragon/minime')
-    const { governor: { funds }, jurors: { token: { address } } } = this.config
-    this.anj = await MiniMeToken.at(address)
-
-    const controller = await this.anj.controller()
-    if (controller === sender) {
-      logger.info(`Transferring ANJ controller to funds governor ${funds} ...`)
-      await this.anj.changeController(funds)
-      logger.success(`ANJ token controller transferred successfully to funds governor ${funds}`)
-    } else if (controller === funds) {
-      logger.success(`ANJ token controller is already set to funds governor ${funds}`)
-    } else {
-      logger.warn('ANJ token controller is already set to another address')
     }
   }
 
