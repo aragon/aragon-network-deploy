@@ -1,5 +1,5 @@
 const config = {
-  name: 'Aragon Network Juror token',
+  name: 'Aragon Network Juror',
   symbol: 'ANJ',
   decimals: 18
 }
@@ -22,7 +22,8 @@ module.exports = {
   },
   mainnet: {
     ...config,
-    factory:          '0x909d05f384d0663ed4be59863815ab43b4f347ec',   // mini me token factory used for the templates
+    controller:       '0x5e8c17a6065c35b172b10e80493d2266e2947df4',   // Agent of AN DAO
+    factory:          '0x081d5b92280eBF7deacdfFECEc6f2D356f47266C',   // mini me token factory used for the templates
     transfersEnabled: true,
   },
 }
