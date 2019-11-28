@@ -35,7 +35,7 @@ module.exports = {
     maxJurorsPerDraftBatch:        bn(81),                       // max number of jurors drafted per batch
     jurorFee:                      bigExp(10, DAI.decimals),     // 10 fee tokens for juror fees
     draftFee:                      bigExp(18, DAI.decimals - 2), // 0.18 fee tokens for draft fees
-    settleFee:                     bigExp(11, DAI.decimals - 2), // 0.1 fee tokens for settle fees
+    settleFee:                     bigExp(11, DAI.decimals - 2), // 0.11 fee tokens for settle fees
     penaltyPct:                    bn(1000),                     // 10% of the min active balance will be locked to each drafted juror
     finalRoundReduction:           bn(5000),                     // 50% of discount for final rounds
     firstRoundJurorsNumber:        bn(3),                        // disputes will start with 3 jurors
