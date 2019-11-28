@@ -1,0 +1,32 @@
+{
+  "court": {
+    "address": "0xee4650cBe7a2B23701D416f58b41D8B76b617797",
+    "transactionHash": "0x1e5ceb49396e5434f3e8bad4e8c6ed36e3c8bea8e8fb09e8272ee14e5b957295",
+    "verification": "https://etherscan.io/address/0xee4650cBe7a2B23701D416f58b41D8B76b617797#code"
+  },
+  "disputes": {
+    "address": "0xd6F2E30B99214B6eaffBE2B270d2e42c762a929B",
+    "transactionHash": "0x1268bfe1dc6adbf94f2864332c143708ac63b8d32c16236660b16d58f882ea19",
+    "verification": "https://etherscan.io/address/0xd6F2E30B99214B6eaffBE2B270d2e42c762a929B#code"
+  },
+  "registry": {
+    "address": "0x8bEa04A94aEc27CE8C2409b0e0F28A02996d264d",
+    "transactionHash": "0x6d65aa529c45b86c9ccb0c9b98660ca0f7dba468512a72832309ef19600b7207",
+    "verification": "https://etherscan.io/address/0x8bEa04A94aEc27CE8C2409b0e0F28A02996d264d#code"
+  },
+  "voting": {
+    "address": "0xA612843B7274384c6F3E78fC78f1EBa22Db26e11",
+    "transactionHash": "0xde54e5674381cf1f1d73345a515d1fbc787831a6594643fb4b69d690ac5853a7",
+    "verification": "https://etherscan.io/address/0xA612843B7274384c6F3E78fC78f1EBa22Db26e11#code"
+  },
+  "treasury": {
+    "address": "0xb25F52c06ef14EDCF92972630Ab4232aaFA3B504",
+    "transactionHash": "0xe86dacd3bc9c845ea3c29ecfa07d5360d4313ae18f79a758def01b008303b89b",
+    "verification": "https://etherscan.io/address/0xb25F52c06ef14EDCF92972630Ab4232aaFA3B504#code"
+  },
+  "subscriptions": {
+    "address": "0x3b4c91Cfc006f48344eAFCe8783E46b690d5068F",
+    "transactionHash": "0xb8e1c0ce0a03e5ccb74ce6db11d14f37f0c1482129c3d0004fbff8841d1050f5",
+    "verification": "https://etherscan.io/address/0x3b4c91Cfc006f48344eAFCe8783E46b690d5068F#code"
+  }
+}
