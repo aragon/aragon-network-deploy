@@ -2,8 +2,8 @@ const { bn, bigExp } = require('../../src/helpers/numbers')
 
 const HOURS_8 = 60 * 60 * 8
 
-// 2020, Feb 10th 10.20 UTC, three years after: https://twitter.com/AragonProject/status/830013470737309697
-const START_DATE = Math.floor(new Date('2020-02-10T10:20:00.000Z') / 1000)
+// 2020, Feb 10th 00.00 UTC, three years after: https://twitter.com/AragonProject/status/830013470737309697
+const START_DATE = Math.floor(new Date('2020-02-10T00:00:00.000Z') / 1000)
 
 const ANJ = {
   symbol: 'ANJ',
