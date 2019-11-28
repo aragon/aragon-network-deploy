@@ -38,7 +38,7 @@ module.exports = {
     maxJurorsPerDraftBatch:        bn(81),                       // max number of jurors drafted per batch
     jurorFee:                      bigExp(10, DAI.decimals),     // 10 fee tokens for juror fees
     draftFee:                      bigExp(18, DAI.decimals - 2), // 0.18 fee tokens for draft fees
-    settleFee:                     bigExp(1, DAI.decimals - 1),  // 0.1 fee tokens for settle fees
+    settleFee:                     bigExp(11, DAI.decimals - 2), // 0.11 fee tokens for settle fees
     penaltyPct:                    bn(3000),                     // 30% of the min active balance will be locked to each drafted juror
     finalRoundReduction:           bn(5000),                     // 50% of discount for final rounds
     firstRoundJurorsNumber:        bn(3),                        // disputes will start with 3 jurors
@@ -59,7 +59,7 @@ module.exports = {
     periodDuration:                bn(90),                       // each subscription period lasts 90 terms (30 days)
     prePaymentPeriods:             bn(12),                       // cannot pre-pay more than 12 periods in advance (1 year)
     resumePrePaidPeriods:          bn(12),                       // 12 pre-paid periods when resuming activity (1 year)
-    latePaymentPenaltyPct:         bn(1000),                     // late payment subscriptions are charged 20%
+    latePaymentPenaltyPct:         bn(1000),                     // late payment subscriptions are charged 10%
     governorSharePct:              bn(0),                        // 0% of the subscription fees
   },
   controller: {
