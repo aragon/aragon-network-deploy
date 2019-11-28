@@ -1,12 +1,14 @@
 const { bn, bigExp } = require('../../src/helpers/numbers')
 
 const HOURS_8 = 60 * 60 * 8
-const START_DATE = Math.floor(new Date('2020-02-17T00:00:00.000Z') / 1000) // 2020, Feb 17th 00.00 UTC
+
+// 2020, Feb 10th 10.20 UTC, three years after: https://twitter.com/AragonProject/status/830013470737309697
+const START_DATE = Math.floor(new Date('2020-02-10T10:20:00.000Z') / 1000)
 
 const ANJ = {
   symbol: 'ANJ',
   decimals: 18,
-  address: undefined                                             // TODO
+  address: '0xcD62b1C403fa761BAadFC74C525ce2B51780b184'          // AGP-126
 }
 
 const DAI = {
@@ -16,10 +18,11 @@ const DAI = {
 }
 
 module.exports = {
+  // Agent of network.aragonid.eth (AGP-126)
   governor: {
-    funds:                         undefined,                    // TODO
-    config:                        undefined,                    // TODO
-    modules:                       undefined,                    // TODO
+    funds:                         '0x5e8c17a6065c35b172b10e80493d2266e2947df4',
+    config:                        '0x5e8c17a6065c35b172b10e80493d2266e2947df4',
+    modules:                       '0x5e8c17a6065c35b172b10e80493d2266e2947df4',
   },
   clock: {
     termDuration:                  bn(HOURS_8),                  // terms lasts 8 hours
@@ -36,7 +39,7 @@ module.exports = {
     jurorFee:                      bigExp(10, DAI.decimals),     // 10 fee tokens for juror fees
     draftFee:                      bigExp(18, DAI.decimals - 2), // 0.18 fee tokens for draft fees
     settleFee:                     bigExp(1, DAI.decimals - 1),  // 0.1 fee tokens for settle fees
-    penaltyPct:                    bn(1000),                     // 10% of the min active balance will be locked to each drafted juror
+    penaltyPct:                    bn(3000),                     // 30% of the min active balance will be locked to each drafted juror
     finalRoundReduction:           bn(5000),                     // 50% of discount for final rounds
     firstRoundJurorsNumber:        bn(3),                        // disputes will start with 3 jurors
     appealStepFactor:              bn(3),                        // the number of jurors to be drafted will be incremented 3 times on each appeal
@@ -48,7 +51,7 @@ module.exports = {
   },
   jurors: {
     token:                         ANJ,
-    minActiveBalance:              bigExp(100, ANJ.decimals),    // 100 ANJ is the minimum balance jurors must activate to participate in the Court
+    minActiveBalance:              bigExp(10000, ANJ.decimals),  // 10k ANJ is the minimum balance jurors must activate to participate in the Court
   },
   subscriptions: {
     feeToken:                      DAI,                          // fee token for subscriptions is DAI
