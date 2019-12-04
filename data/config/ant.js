@@ -1,13 +1,12 @@
 const config = {
-  name: 'Aragon Network Juror',
-  symbol: 'ANJ',
+  name: 'Aragon Network Token',
+  symbol: 'ANT',
   decimals: 18
 }
 
 module.exports = {
   rpc: {
     ...config,
-    controller:       '0xb4124cEB3451635DAcedd11767f004d8a28c6eE7',   // aragen address #1
     factory:          undefined,                                      // will be deployed unless specified
     transfersEnabled: true,
   },
@@ -19,12 +18,6 @@ module.exports = {
   ropsten: {
     ...config,
     factory:          '0x1ce5621d386b2801f5600f1dbe29522805b8ac11',   // mini me token factory used for the templates
-    transfersEnabled: true,
-  },
-  mainnet: {
-    ...config,
-    controller:       '0x5e8c17a6065c35b172b10e80493d2266e2947df4',   // Agent of AN DAO
-    factory:          '0x081d5b92280eBF7deacdfFECEc6f2D356f47266C',   // mini me token factory used for the templates
     transfersEnabled: true,
   },
 }
