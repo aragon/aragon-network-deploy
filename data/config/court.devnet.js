@@ -1,28 +1,28 @@
 const { bn, bigExp } = require('../../src/helpers/numbers')
 
-const HOURS_8 = 60 * 60 * 8
-const START_DATE = Math.floor(new Date('2020-01-31T12:30:00.000Z') / 1000) // 2020, Jan 31st 12.30 UTC
+const TERM_DURATION = 60 // 1 minute
+const START_DATE = Math.floor(new Date() / 1000) + (TERM_DURATION * 2) // in 2 minutes
 
 const ANJ = {
   symbol: 'ANJ',
   decimals: 18,
-  address: undefined                                           // if unset, it will try to fetch it from a previous deploy for devnet
+  address: undefined              // if unset, it will try to fetch it from a previous deploy for devnet
 }
 
 const DAI = {
   symbol: 'DAI',
   decimals: 18,
-  address: undefined                                           // if unset, it will try to fetch it from a previous deploy for devnet
+  address: undefined              // if unset, it will try to fetch it from a previous deploy for devnet
 }
 
 module.exports = {
   governor: {
-    funds:                        '0x0000000000000000000000000000000000000001',
-    config:                       '0x0000000000000000000000000000000000000002',
-    modules:                      '0x0000000000000000000000000000000000000003',
+    funds:                        '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', // ganache initial deterministic address
+    config:                       '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', // ganache initial deterministic address
+    modules:                      '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', // ganache initial deterministic address
   },
   clock: {
-    termDuration:                  bn(HOURS_8),                  // terms lasts 8 hours
+    termDuration:                  bn(TERM_DURATION),            // terms lasts 1 minute
     firstTermStartTime:            bn(START_DATE),               // first term start timestamp in seconds
   },
   court: {
