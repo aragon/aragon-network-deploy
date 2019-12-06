@@ -1,18 +1,18 @@
 const { bn, bigExp } = require('../../src/helpers/numbers')
 
-const TERM_DURATION = 60 // 1 minute
-const START_DATE = Math.floor(new Date() / 1000) + (TERM_DURATION * 2) // in 2 minutes
+const TERM_DURATION = 60 * 60                                        // 10 minutes
+const START_DATE = Math.floor(new Date() / 1000 + 2 * TERM_DURATION) // 20 minutes from now
 
 const ANJ = {
   symbol: 'ANJ',
   decimals: 18,
-  address: undefined              // if unset, it will try to fetch it from a previous deploy for devnet
+  address: undefined              // if unset, it will try to fetch it from a previous deploy for devnet rpc
 }
 
 const DAI = {
   symbol: 'DAI',
   decimals: 18,
-  address: undefined              // if unset, it will try to fetch it from a previous deploy for devnet
+  address: undefined              // if unset, it will try to fetch it from a previous deploy for devnet rpc
 }
 
 module.exports = {
@@ -22,7 +22,7 @@ module.exports = {
     modules:                      '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', // ganache initial deterministic address
   },
   clock: {
-    termDuration:                  bn(TERM_DURATION),            // terms lasts 1 minute
+    termDuration:                  bn(TERM_DURATION),            // terms lasts 10 minutes
     firstTermStartTime:            bn(START_DATE),               // first term start timestamp in seconds
   },
   court: {

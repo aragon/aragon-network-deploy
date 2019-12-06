@@ -1,7 +1,7 @@
 const { bn, bigExp } = require('../../src/helpers/numbers')
 
-const TERM_DURATION = 60 * 10                                        // 10 minutes
-const START_DATE = Math.floor(new Date() / 1000 + 2 * TERM_DURATION) // 20 minutes from now
+const TERM_DURATION = 60 * 60 * 8                                      // 8 hours
+const START_DATE = Math.floor(new Date() / 1000 + TERM_DURATION + 120) // 2 minutes from now
 
 const ANJ = {
   symbol: 'ANJ',
@@ -22,7 +22,7 @@ module.exports = {
     modules:                       '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076', // Agent of DAO 0x2eBe0f5854Fa5C685DAd156Dd8A07562eD1F74b1
   },
   clock: {
-    termDuration:                  bn(TERM_DURATION),            // terms lasts 10 minutes
+    termDuration:                  bn(TERM_DURATION),            // terms lasts 8 hours
     firstTermStartTime:            bn(START_DATE),               // first term start timestamp in seconds
   },
   court: {

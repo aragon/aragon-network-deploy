@@ -1,6 +1,7 @@
 const { bn, bigExp } = require('../../src/helpers/numbers')
 
-const HOURS_8 = 60 * 60 * 8
+// 8 hours
+const TERM_DURATION = 60 * 60 * 8
 
 // 2020, Feb 10th 00.00 UTC, three years after: https://twitter.com/AragonProject/status/830013470737309697
 const START_DATE = Math.floor(new Date('2020-02-10T00:00:00.000Z') / 1000)
@@ -18,14 +19,13 @@ const DAI = {
 }
 
 module.exports = {
-  // Agent of network.aragonid.eth (AGP-126)
-  governor: {
+  governor: {                      // Agent of network.aragonid.eth (AGP-126)
     funds:                         '0x5e8c17a6065c35b172b10e80493d2266e2947df4',
     config:                        '0x5e8c17a6065c35b172b10e80493d2266e2947df4',
     modules:                       '0x5e8c17a6065c35b172b10e80493d2266e2947df4',
   },
   clock: {
-    termDuration:                  bn(HOURS_8),                  // terms lasts 8 hours
+    termDuration:                  bn(TERM_DURATION),            // terms lasts 8 hours
     firstTermStartTime:            bn(START_DATE),               // first term start timestamp in seconds
   },
   court: {
