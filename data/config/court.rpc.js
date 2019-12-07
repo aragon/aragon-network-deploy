@@ -1,6 +1,6 @@
 const { bn, bigExp } = require('../../src/helpers/numbers')
 
-const TERM_DURATION = 60 * 60                                        // 10 minutes
+const TERM_DURATION = 60 * 10                                        // 10 minutes
 const START_DATE = Math.floor(new Date() / 1000 + 2 * TERM_DURATION) // 20 minutes from now
 
 const ANJ = {
