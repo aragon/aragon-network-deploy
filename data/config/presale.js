@@ -1,10 +1,9 @@
-const devnet = require('./presale.devnet')
+const rpc = require('./presale.rpc')
 const rinkeby = require('./presale.rinkeby')
 const mainnet = require('./presale.mainnet')
 
 module.exports = {
-  rpc: devnet,
-  devnet,
+  rpc,
   rinkeby,
   mainnet
 }
