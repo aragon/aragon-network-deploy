@@ -116,7 +116,7 @@ module.exports = class extends BaseDeployer {
     )
 
     const Kernel = await this.environment.getArtifact('Kernel', '@aragon/os')
-    const installedApps = (await getInstalledAppsById(instanceReceipt, APP_IDS, Kernel))
+    const installedApps = getInstalledAppsById(instanceReceipt, APP_IDS, Kernel)
     Object.keys(installedApps).map((name) => {
       const addresses = installedApps[name]
       if (addresses.length == 0) {

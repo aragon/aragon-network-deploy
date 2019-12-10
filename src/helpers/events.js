@@ -11,19 +11,18 @@ const decodeEvents = ({ receipt }, contractAbi, eventName) => {
   })
 }
 
-const getInstalledApps = async (receipt, appId, kernel) => {
+const getInstalledApps = (receipt, appId, kernel) => {
   const events = decodeEvents(receipt, kernel.abi, 'NewAppProxy')
   const appEvents = events.filter(e => e.args.appId === appId)
   const installedAddresses = appEvents.map(e => e.args.proxy)
   return installedAddresses
 }
 
-const getInstalledAppsById = async (receipt, appIds, kernel) => {
-  return Object.keys(appIds).reduce(async (previousPromise, appName) => {
-    const apps = await previousPromise
-    apps[appName] = await getInstalledApps(receipt, appIds[appName], kernel)
+const getInstalledAppsById = (receipt, appIds, kernel) => {
+  return Object.keys(appIds).reduce((apps, appName) => {
+    apps[appName] = getInstalledApps(receipt, appIds[appName], kernel)
     return apps
-  }, Promise.resolve({}))
+  }, {})
 }
 
 module.exports = {
