@@ -40,9 +40,9 @@ module.exports = class extends BaseDeployer {
     await this._verifyPresaleTemplate()
 
     // TODO: remove once it's in aragen
-    if (this.environment.isLocal()) {
+    //if (this.environment.isLocal()) {
       await this._publishBalanceRedirectPresale()
-    }
+    //}
 
     if (this.deployInstance) {
       const installedApps = await this._deployPresaleInstance()
