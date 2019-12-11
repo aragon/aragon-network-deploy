@@ -6,20 +6,20 @@ const START_DATE = Math.floor(new Date() / 1000 + 2 * TERM_DURATION) // 20 minut
 const ANJ = {
   symbol: 'ANJ',
   decimals: 18,
-  address: '0x69f9c4205A320C0dEff240fEE58F42052C478c08'
+  address: undefined              // if unset, it will try to fetch it from a previous deploy for devnet rpc
 }
 
 const DAI = {
   symbol: 'DAI',
   decimals: 18,
-  address: '0xe9A083D88Eed757B1d633321Ce0519F432c6284d'
+  address: undefined              // if unset, it will try to fetch it from a previous deploy for devnet rpc
 }
 
 module.exports = {
   governor: {
-    funds:                         '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076', // Agent of DAO 0x2eBe0f5854Fa5C685DAd156Dd8A07562eD1F74b1
-    config:                        '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076', // Agent of DAO 0x2eBe0f5854Fa5C685DAd156Dd8A07562eD1F74b1
-    modules:                       '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076', // Agent of DAO 0x2eBe0f5854Fa5C685DAd156Dd8A07562eD1F74b1
+    funds:                        '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', // ganache initial deterministic address
+    config:                       '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', // ganache initial deterministic address
+    modules:                      '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', // ganache initial deterministic address
   },
   clock: {
     termDuration:                  bn(TERM_DURATION),            // terms lasts 10 minutes
@@ -28,10 +28,10 @@ module.exports = {
   court: {
     feeToken:                      DAI,                          // fee token for the court is DAI
     evidenceTerms:                 bn(21),                       // evidence period lasts 21 terms (7 days)
-    commitTerms:                   bn(6),                        // vote commits last 6 terms (2 days)
-    revealTerms:                   bn(6),                        // vote reveals last 6 terms (2 days)
-    appealTerms:                   bn(6),                        // appeals last 6 terms (2 days)
-    appealConfirmTerms:            bn(6),                        // appeal confirmations last 6 terms (2 days)
+    commitTerms:                   bn(6),                        // vote commits lasts 6 terms (2 days)
+    revealTerms:                   bn(6),                        // vote reveals lasts 6 terms (2 days)
+    appealTerms:                   bn(6),                        // appeals lasts 6 terms (2 days)
+    appealConfirmTerms:            bn(6),                        // appeal confirmations lasts 6 terms (2 days)
     maxJurorsPerDraftBatch:        bn(81),                       // max number of jurors drafted per batch
     jurorFee:                      bigExp(10, DAI.decimals),     // 10 fee tokens for juror fees
     draftFee:                      bigExp(18, DAI.decimals - 2), // 0.18 fee tokens for draft fees

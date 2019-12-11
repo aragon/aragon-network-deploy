@@ -1,7 +1,7 @@
 const { bn, bigExp } = require('../../src/helpers/numbers')
 
-const HOURS_8 = 60 * 60 * 8
-const START_DATE = Math.floor(new Date() / 1000 + HOURS_8 + 120) // two minutes from now
+const TERM_DURATION = 60 * 60 * 8                                      // 8 hours
+const START_DATE = Math.floor(new Date() / 1000 + TERM_DURATION + 120) // two minutes from now
 
 const ANJ = {
   symbol: 'ANJ',
@@ -22,7 +22,7 @@ module.exports = {
     modules:                       '0x0090aED150056316E37FE6DFa10Dc63E79D173B6', // EOA
   },
   clock: {
-    termDuration:                  bn(HOURS_8),                  // terms lasts 8 hours
+    termDuration:                  bn(TERM_DURATION),            // terms lasts 8 hours
     firstTermStartTime:            bn(START_DATE),               // first term start timestamp in seconds
   },
   court: {
