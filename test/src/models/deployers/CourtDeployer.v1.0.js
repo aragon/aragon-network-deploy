@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const Config = require('../../../../data/config/court').rpc
 const Environment = require('../../../../src/models/Environment')
-const CourtDeployer = require('../../../../src/models/deployers/CourtDeployer')
+const CourtDeployer = require('../../../../src/models/deployers/CourtDeployer.v1.0')
 
 const { assertBn } = require('../../../helpers/assertBn')
 const { MAX_UINT64 } = require('../../../../src/helpers/numbers')
@@ -10,7 +10,7 @@ const { MAX_UINT64 } = require('../../../../src/helpers/numbers')
 const SNAPSHOT_BLOCK = 0
 const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
-contract('CourtDeployer', ([_, sender]) => {
+contract('CourtDeployer v1.0', ([_, sender]) => {
   let environment, DAI, ANJ
   let court, disputes, treasury, voting, registry, subscriptions
 
