@@ -39,6 +39,11 @@ module.exports = class extends BaseDeployer {
 
     await this._verifyPresaleTemplate()
 
+    // TODO: remove once it's in aragen
+    if (this.environment.isLocal()) {
+      await this._publishBalanceRedirectPresale()
+    }
+
     if (this.deployInstance) {
       const installedApps = await this._deployPresaleInstance()
       await this._verifyFundraisingContracts(installedApps)
@@ -46,7 +51,7 @@ module.exports = class extends BaseDeployer {
 
     if (this.generateEvmScript) {
       const callsScript = this._generateEvmScript()
-      logger.info(`Call script to be sent to AN DAO token manager forwarder: ${callsScript}`)
+      logger.info(`Call script sent to AN DAO token manager forwarder: ${callsScript}`)
       await this._runEvmScript(callsScript)
     }
   }
@@ -104,11 +109,6 @@ module.exports = class extends BaseDeployer {
 
     // change bonded token controller to Template
     await this._changeBondedTokenController(bondedToken)
-
-    // TODO: remove once it's in aragen
-    if (this.environment.isLocal()) {
-      await this._publishBalanceRedirectPresale()
-    }
 
     // new instance
     const instanceReceipt = await this.presaleTemplate.newInstance(
@@ -274,6 +274,6 @@ module.exports = class extends BaseDeployer {
     const { tokenManager: tokenManagerAddress } = this.config.aragonNetworkDao
     const tokenManager = await TokenManager.at(tokenManagerAddress)
     const receipt = await tokenManager.forward(callsScript)
-    logger.info(`EVM Script run on tx: ${receipt.tx}. Gas used: ${receipt.receipt.gas}`)
+    logger.info(`EVM Script run on tx: ${receipt.tx}. Gas used: ${receipt.receipt.gasUsed}`)
   }
 }
