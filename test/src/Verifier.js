@@ -51,7 +51,7 @@ contract('Verifier', ([_, sender]) => {
     })
 
     it('verifies contract', async () => {
-      const url = await verifier.call(court)
+      const url = await verifier.call(court, '@aragon/court')
       assert.equal(url, `https://rpc.etherscan.io/address/${court.address}#code`, 'contract URL does not match')
     })
   })
@@ -63,7 +63,7 @@ contract('Verifier', ([_, sender]) => {
 
     it('throws', async () => {
       try {
-        await verifier.call(court)
+        await verifier.call(court, '@aragon/court')
       } catch (error) {
         assert.equal(error.message, 'Error while trying to verify contract: Something went wrong')
       }
