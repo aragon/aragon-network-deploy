@@ -19,7 +19,7 @@
     "deploy:court:mainnet": "node ./bin/index.js court -n mainnet"
   },
   "dependencies": {
-    "@aragon/court": "^1.0.0",
+    "@aragon/court": "1.1.0-rc.1",
     "@aragon/minime": "^1.0.0",
     "@aragon/truffle-config-v5": "^1.0.0",
     "@truffle/config": "^1.1.21",
