@@ -250,7 +250,7 @@ module.exports = class extends BaseDeployer {
   async _verifyAragonCourt() {
     const court = this.previousDeploy.court
     if (!court || !court.verification) {
-      const url = await this.verifier.call(this.court, VERIFICATION_HEADERS)
+      const url = await this.verifier.call(this.court, '@aragon/court', VERIFICATION_HEADERS)
       const { address, transactionHash } = court
       this._saveDeploy({ court: { address, transactionHash, verification: url } })
     }
@@ -259,7 +259,7 @@ module.exports = class extends BaseDeployer {
   async _verifyDisputes() {
     const disputes = this.previousDeploy.disputes
     if (!disputes || !disputes.verification) {
-      const url = await this.verifier.call(this.disputes, VERIFICATION_HEADERS)
+      const url = await this.verifier.call(this.disputes, '@aragon/court', VERIFICATION_HEADERS)
       const { address, transactionHash } = disputes
       this._saveDeploy({ disputes: { address, transactionHash, verification: url } })
     }
@@ -268,7 +268,7 @@ module.exports = class extends BaseDeployer {
   async _verifyRegistry() {
     const registry = this.previousDeploy.registry
     if (!registry || !registry.verification) {
-      const url = await this.verifier.call(this.registry, VERIFICATION_HEADERS)
+      const url = await this.verifier.call(this.registry, '@aragon/court', VERIFICATION_HEADERS)
       const { address, transactionHash } = registry
       this._saveDeploy({ registry: { address, transactionHash, verification: url } })
     }
@@ -277,7 +277,7 @@ module.exports = class extends BaseDeployer {
   async _verifyVoting() {
     const voting = this.previousDeploy.voting
     if (!voting || !voting.verification) {
-      const url = await this.verifier.call(this.voting, VERIFICATION_HEADERS)
+      const url = await this.verifier.call(this.voting, '@aragon/court', VERIFICATION_HEADERS)
       const { address, transactionHash } = voting
       this._saveDeploy({ voting: { address, transactionHash, verification: url } })
     }
@@ -286,7 +286,7 @@ module.exports = class extends BaseDeployer {
   async _verifyTreasury() {
     const treasury = this.previousDeploy.treasury
     if (!treasury || !treasury.verification) {
-      const url = await this.verifier.call(this.treasury, VERIFICATION_HEADERS)
+      const url = await this.verifier.call(this.treasury, '@aragon/court', VERIFICATION_HEADERS)
       const { address, transactionHash } = treasury
       this._saveDeploy({ treasury: { address, transactionHash, verification: url } })
     }
@@ -295,7 +295,7 @@ module.exports = class extends BaseDeployer {
   async _verifySubscriptions() {
     const subscriptions = this.previousDeploy.subscriptions
     if (!subscriptions || !subscriptions.verification) {
-      const url = await this.verifier.call(this.subscriptions, VERIFICATION_HEADERS)
+      const url = await this.verifier.call(this.subscriptions, '@aragon/court', VERIFICATION_HEADERS)
       const { address, transactionHash } = subscriptions
       this._saveDeploy({ subscriptions: { address, transactionHash, verification: url } })
     }

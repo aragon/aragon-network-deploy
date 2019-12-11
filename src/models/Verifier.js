@@ -1,3 +1,5 @@
+const fs = require('fs')
+const path = require('path')
 const axios = require('axios')
 const query = require('querystring')
 const sleep = require('../helpers/sleep')
@@ -33,7 +35,7 @@ module.exports = class {
     this.retrySleepTime = retrySleepTime
   }
 
-  async call(instance, headers = []) {
+  async call(instance, dependency = undefined, headers = []) {
     const schema = instance.constructor._json
     const compilerversion = `v${schema.compiler.version.replace('.Emscripten.clang', '')}`
     const metadata = schema.metadata ? JSON.parse(schema.metadata) : DEFAULT_OPTIMIZER_SETTINGS
@@ -46,7 +48,8 @@ module.exports = class {
     const apiUrl = `https://${apiSubdomain}.etherscan.io/api`
     const etherscanUrl = `https://${network === 'mainnet' ? '' : `${network}.`}etherscan.io/address`
 
-    const flattenedCode = await flattener([schema.sourcePath], process.cwd())
+    const sourcePath = this._findSourcePah(schema, dependency)
+    const flattenedCode = await flattener([sourcePath], process.cwd())
     const sourceCode = `/**\n* ${headers.join('\n* ')}\n**/\n${flattenedCode}`
     const contractname = schema.contractName
     const contractaddress = instance.address
@@ -117,5 +120,30 @@ module.exports = class {
   async _fetchConstructor(apiUrl, address) {
     const queryParams = query.stringify({ address, action: 'txlist', module: 'account', page: 1, sort: 'asc', offset: 1 })
     return axios.get(`${apiUrl}?${queryParams}`)
+  }
+
+  _findSourcePah(schema, dependency = undefined) {
+    const absolutePath = schema.sourcePath
+    const fileName = absolutePath.replace(/^.*[\\\/]/, '')
+    const dir = dependency
+      ? `${process.cwd()}/node_modules/${dependency}`
+      : `${process.cwd()}/contracts`
+
+    return this._findFile(dir, fileName)
+  }
+
+  _findFile(dir, findingFileName) {
+    const stat = fs.statSync(dir)
+    if (!stat || !stat.isDirectory()) {
+      const currentFileName = dir.replace(/^.*[\\\/]/, '')
+      return currentFileName === findingFileName ? dir : undefined
+    }
+
+    const list = fs.readdirSync(dir)
+    for (const fileName of list) {
+      const filePath = path.resolve(dir, fileName)
+      const foundFile = this._findFile(filePath, findingFileName)
+      if (foundFile) return foundFile
+    }
   }
 }
