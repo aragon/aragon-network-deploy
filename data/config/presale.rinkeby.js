@@ -5,9 +5,9 @@ module.exports = {
     registrar: '0x3665e7bfd4d3254ae7796779800f5b603c43c60d'
   },
   instance: {
-    owner: '',
+    owner: '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076',           // AN-DAO controller
     id: 'anj-presale',
-    collateralToken: '',
+    collateralToken: '0xF68eb8077744b49F2B289c0Fd12Bbc9f3729dFe3', // ANT
     bondedToken: '0x1B1EdCF4f3C5bB705a7670154e2C65569d0676Be',     // ANJ
     period: '86400',                                               // 1 day
     exchangeRate: '100000000',                                     // 1/100
