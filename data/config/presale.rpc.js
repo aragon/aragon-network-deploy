@@ -15,5 +15,10 @@ module.exports = {
     reserveRatio: '33333',                                    // 33.333%
     batchBlocks: '1',
     slippage: '100000000000000000'                            // 10%
+  },
+  aragonNetworkDao: {
+    votingApp: '0x3bf37efD74354A29f9507D1A21329b773bB49F58',
+    tokenManager: '0xEB62b78213c6C2E5c0698dDa67E3260007b8C999',
+    voteDescription: 'Change ANJ controller to template and deploy new presale and bonding curve instance'
   }
 }

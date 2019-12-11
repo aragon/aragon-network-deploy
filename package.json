@@ -23,9 +23,9 @@
     "upgrade:court:rinkeby": "node ./bin/index.js court-upgrade -n rinkeby",
     "upgrade:court:mainnet": "node ./bin/index.js court-upgrade -n mainnet",
     "deploy:presale:rpc": "rm -f data/output/minime.rpc.json data/output/presale.rpc.json && npm run deploy:ant:rpc && npm run deploy:anj:rpc && node ./bin/index.js presale --instance -n rpc",
-    "deploy:presale:ropsten": "node ./bin/index.js presale -n ropsten",
-    "deploy:presale:rinkeby": "node ./bin/index.js presale -n rinkeby",
-    "deploy:presale:mainnet": "node ./bin/index.js presale -n mainnet"
+    "deploy:presale:ropsten": "node ./bin/index.js presale -n ropsten --evmScript",
+    "deploy:presale:rinkeby": "node ./bin/index.js presale -n rinkeby --evmScript",
+    "deploy:presale:mainnet": "node ./bin/index.js presale -n mainnet --evmScript"
   },
   "dependencies": {
     "@aragon/apps-agent": "^2.0.0",

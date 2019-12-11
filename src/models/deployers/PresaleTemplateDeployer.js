@@ -2,6 +2,8 @@ const { APP_IDS } = require('@aragon/templates-externally-owned-presale-bonding-
 const BaseDeployer = require('./BaseDeployer')
 const logger = require('../../helpers/logger')('PresaleTemplateDeployer')
 const { getInstalledApps, getInstalledAppsById } = require('../../helpers/events')
+// TODO: import from https://github.com/sohkai/agent-voting or alike
+const { encodeCallsScript, encodeNewVote, encodeExecute, encodeChangeController, encodeNewInstance } = require('../../helpers/encoding')
 
 const VERIFICATION_HEADERS = [
   'Commit sha: 68b894fe4fd81cbf43c8b1e128be9ddfffd41380',
@@ -18,10 +20,11 @@ const VERIFICATION_HEADERS_OS = [
 const ZERO_ADDRESS = '0x' + '0'.repeat(40)
 
 module.exports = class extends BaseDeployer {
-  constructor(config, environment, output, verifier = undefined, deployInstance = false) {
+  constructor(config, environment, output, verifier = undefined, deployInstance = false, generateEvmScript = false) {
     super(environment, output, verifier, logger)
     this.config = config
     this.deployInstance = deployInstance
+    this.generateEvmScript = generateEvmScript
   }
 
   async call() {
@@ -39,6 +42,12 @@ module.exports = class extends BaseDeployer {
     if (this.deployInstance) {
       const installedApps = await this._deployPresaleInstance()
       await this._verifyFundraisingContracts(installedApps)
+    }
+
+    if (this.generateEvmScript) {
+      const callsScript = this._generateEvmScript()
+      logger.info(`Call script to be sent to AN DAO token manager forwarder: ${callsScript}`)
+      await this._runEvmScript(callsScript)
     }
   }
 
@@ -226,5 +235,45 @@ module.exports = class extends BaseDeployer {
       const { address, transactionHash } = previousContract
       this._saveDeploy({ [contractName]: { address, transactionHash, verification: url } })
     }
+  }
+
+  _generateEvmScript() {
+    // owner of the instance is the agent of the external DAO
+    const { owner } = this.config.instance
+    const agentCallsScript = []
+    agentCallsScript.push({
+      to: owner,
+      data: this._changeControllerScript()
+    })
+    agentCallsScript.push({
+      to: owner,
+      data: this._newInstanceScript()
+    })
+
+    const { votingApp, voteDescription } = this.config.aragonNetworkDao
+    const tokenManagerScript = [ {
+      to: votingApp,
+      data: encodeNewVote(encodeCallsScript(agentCallsScript), voteDescription)
+    }]
+    return encodeCallsScript(tokenManagerScript)
+  }
+
+  _changeControllerScript() {
+    const { bondedToken } = this.config.instance
+    const data = encodeChangeController(this.presaleTemplate.address)
+    return encodeExecute(bondedToken, 0, data)
+  }
+
+  _newInstanceScript() {
+    const data = encodeNewInstance(this.config.instance)
+    return encodeExecute(this.presaleTemplate.address, 0, data)
+  }
+
+  async _runEvmScript(callsScript) {
+    const TokenManager = await this.environment.getArtifact('TokenManager', '@aragon/apps-token-manager')
+    const { tokenManager: tokenManagerAddress } = this.config.aragonNetworkDao
+    const tokenManager = await TokenManager.at(tokenManagerAddress)
+    const receipt = await tokenManager.forward(callsScript)
+    logger.info(`EVM Script run on tx: ${receipt.tx}. Gas used: ${receipt.receipt.gas}`)
   }
 }
