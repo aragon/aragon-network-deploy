@@ -2,6 +2,8 @@ const BaseDeployer = require('./BaseDeployer')
 const logger = require('../../helpers/logger')('CourtDeployer')
 const { MAX_UINT64, tokenToString } = require('../../helpers/numbers')
 
+const VERSION = 'v1.0'
+
 const VERIFICATION_HEADERS = [
   'Commit sha: c7bf36f004a2b0e11d7e14234cea7853fd3a523a',
   'GitHub repository: https://github.com/aragon/aragon-court',
@@ -175,7 +177,7 @@ module.exports = class extends BaseDeployer {
 
     const { address, transactionHash } = this.court
     logger.success(`Created AragonCourt instance at ${address}`)
-    this._saveDeploy({ court: { address, transactionHash }})
+    this._saveDeploy({ court: { address, transactionHash, version: VERSION }})
   }
 
   async _deployDisputes(DisputeManager) {
@@ -184,7 +186,7 @@ module.exports = class extends BaseDeployer {
     this.disputes = await DisputeManager.new(this.court.address, this.config.court.maxJurorsPerDraftBatch)
     const { address, transactionHash } = this.disputes
     logger.success(`Created DisputeManager instance at ${address}`)
-    this._saveDeploy({ disputes: { address, transactionHash }})
+    this._saveDeploy({ disputes: { address, transactionHash, version: VERSION }})
   }
 
   async _deployRegistry(JurorsRegistry) {
@@ -198,7 +200,7 @@ module.exports = class extends BaseDeployer {
     this.registry = await JurorsRegistry.new(this.court.address, anj, totalActiveBalanceLimit)
     const { address, transactionHash } = this.registry
     logger.success(`Created JurorsRegistry instance at ${address}`)
-    this._saveDeploy({ registry: { address, transactionHash }})
+    this._saveDeploy({ registry: { address, transactionHash, version: VERSION }})
   }
 
   async _deployVoting(Voting) {
@@ -207,7 +209,7 @@ module.exports = class extends BaseDeployer {
     this.voting = await Voting.new(this.court.address)
     const { address, transactionHash } = this.voting
     logger.success(`Created Voting instance at ${address}`)
-    this._saveDeploy({ voting: { address, transactionHash }})
+    this._saveDeploy({ voting: { address, transactionHash, version: VERSION }})
   }
 
   async _deployTreasury(Treasury) {
@@ -216,7 +218,7 @@ module.exports = class extends BaseDeployer {
     this.treasury = await Treasury.new(this.court.address)
     const { address, transactionHash } = this.treasury
     logger.success(`Created Treasury instance at ${address}`)
-    this._saveDeploy({ treasury: { address, transactionHash }})
+    this._saveDeploy({ treasury: { address, transactionHash, version: VERSION }})
   }
 
   async _deploySubscriptions(Subscriptions) {
@@ -242,7 +244,7 @@ module.exports = class extends BaseDeployer {
 
     const { address, transactionHash } = this.subscriptions
     logger.success(`Created Subscriptions instance at ${address}`)
-    this._saveDeploy({ subscriptions: { address, transactionHash }})
+    this._saveDeploy({ subscriptions: { address, transactionHash, version: VERSION }})
   }
 
   /** verifying methods **/
@@ -251,8 +253,8 @@ module.exports = class extends BaseDeployer {
     const court = this.previousDeploy.court
     if (!court || !court.verification) {
       const url = await this.verifier.call(this.court, '@aragon/court', VERIFICATION_HEADERS)
-      const { address, transactionHash } = court
-      this._saveDeploy({ court: { address, transactionHash, verification: url } })
+      const { address, transactionHash, version } = court
+      this._saveDeploy({ court: { address, transactionHash, version, verification: url } })
     }
   }
 
@@ -260,8 +262,8 @@ module.exports = class extends BaseDeployer {
     const disputes = this.previousDeploy.disputes
     if (!disputes || !disputes.verification) {
       const url = await this.verifier.call(this.disputes, '@aragon/court', VERIFICATION_HEADERS)
-      const { address, transactionHash } = disputes
-      this._saveDeploy({ disputes: { address, transactionHash, verification: url } })
+      const { address, transactionHash, version } = disputes
+      this._saveDeploy({ disputes: { address, transactionHash, version, verification: url } })
     }
   }
 
@@ -269,8 +271,8 @@ module.exports = class extends BaseDeployer {
     const registry = this.previousDeploy.registry
     if (!registry || !registry.verification) {
       const url = await this.verifier.call(this.registry, '@aragon/court', VERIFICATION_HEADERS)
-      const { address, transactionHash } = registry
-      this._saveDeploy({ registry: { address, transactionHash, verification: url } })
+      const { address, transactionHash, version } = registry
+      this._saveDeploy({ registry: { address, transactionHash, version, verification: url } })
     }
   }
 
@@ -278,8 +280,8 @@ module.exports = class extends BaseDeployer {
     const voting = this.previousDeploy.voting
     if (!voting || !voting.verification) {
       const url = await this.verifier.call(this.voting, '@aragon/court', VERIFICATION_HEADERS)
-      const { address, transactionHash } = voting
-      this._saveDeploy({ voting: { address, transactionHash, verification: url } })
+      const { address, transactionHash, version } = voting
+      this._saveDeploy({ voting: { address, transactionHash, version, verification: url } })
     }
   }
 
@@ -287,8 +289,8 @@ module.exports = class extends BaseDeployer {
     const treasury = this.previousDeploy.treasury
     if (!treasury || !treasury.verification) {
       const url = await this.verifier.call(this.treasury, '@aragon/court', VERIFICATION_HEADERS)
-      const { address, transactionHash } = treasury
-      this._saveDeploy({ treasury: { address, transactionHash, verification: url } })
+      const { address, transactionHash, version } = treasury
+      this._saveDeploy({ treasury: { address, transactionHash, version, verification: url } })
     }
   }
 
@@ -296,8 +298,8 @@ module.exports = class extends BaseDeployer {
     const subscriptions = this.previousDeploy.subscriptions
     if (!subscriptions || !subscriptions.verification) {
       const url = await this.verifier.call(this.subscriptions, '@aragon/court', VERIFICATION_HEADERS)
-      const { address, transactionHash } = subscriptions
-      this._saveDeploy({ subscriptions: { address, transactionHash, verification: url } })
+      const { address, transactionHash, version } = subscriptions
+      this._saveDeploy({ subscriptions: { address, transactionHash, version, verification: url } })
     }
   }
 
@@ -305,7 +307,7 @@ module.exports = class extends BaseDeployer {
 
   _printAragonCourtDeploy() {
     const { clock, governor, court, jurors } = this.config
-    logger.info('Deploying AragonCourt contract with config:')
+    logger.info(`Deploying AragonCourt contract ${VERSION} with config:`)
     logger.info(` - Funds governor:                          ${governor.funds}`)
     logger.info(` - Config governor:                         ${governor.config}`)
     logger.info(` - Modules governor:                        ${governor.modules} (initially sender)`)
@@ -332,14 +334,14 @@ module.exports = class extends BaseDeployer {
   }
 
   _printDisputesDeploy() {
-    logger.info('Deploying Court contract with config:')
+    logger.info(`Deploying DisputeManager contract ${VERSION} with config:`)
     logger.info(` - Controller:                              ${this.court.address}`)
     logger.info(` - Max number of jurors per draft batch:    ${this.config.court.maxJurorsPerDraftBatch}`)
   }
 
   _printRegistryDeploy(anjAddress, totalActiveBalanceLimit) {
     const { jurors } = this.config
-    logger.info('Deploying JurorsRegistry contract with config:')
+    logger.info(`Deploying JurorsRegistry contract ${VERSION} with config:`)
     logger.info(` - Controller:                              ${this.court.address}`)
     logger.info(` - Jurors token:                            ${jurors.token.symbol} at ${anjAddress}`)
     logger.info(` - Minimum ANJ active balance:              ${tokenToString(jurors.minActiveBalance, jurors.token)}`)
@@ -352,13 +354,13 @@ module.exports = class extends BaseDeployer {
   }
 
   _printTreasuryDeploy() {
-    logger.info('Deploying Treasury contract with config:')
+    logger.info(`Deploying Treasury contract ${VERSION} with config:`)
     logger.info(` - Controller:                              ${this.court.address}`)
   }
 
   _printSubscriptionsDeploy() {
     const { subscriptions } = this.config
-    logger.info('Deploying Subscriptions contract with config:')
+    logger.info(`Deploying Subscriptions contract ${VERSION} with config:`)
     logger.info(` - Controller:                              ${this.court.address}`)
     logger.info(` - Period duration:                         ${subscriptions.periodDuration} terms`)
     logger.info(` - Fee token:                               ${subscriptions.feeToken.symbol} at ${subscriptions.feeToken.address}`)

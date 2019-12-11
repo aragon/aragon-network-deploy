@@ -16,7 +16,11 @@
     "deploy:court:rpc": "rm -f data/output/{minime,court}.rpc.json && npm run deploy:dai:rpc && npm run deploy:anj:rpc && node ./bin/index.js court -n rpc",
     "deploy:court:ropsten": "node ./bin/index.js court -n ropsten",
     "deploy:court:rinkeby": "node ./bin/index.js court -n rinkeby",
-    "deploy:court:mainnet": "node ./bin/index.js court -n mainnet"
+    "deploy:court:mainnet": "node ./bin/index.js court -n mainnet",
+    "upgrade:court:rpc": "node ./bin/index.js court-upgrade -n rpc",
+    "upgrade:court:ropsten": "node ./bin/index.js court-upgrade -n ropsten",
+    "upgrade:court:rinkeby": "node ./bin/index.js court-upgrade -n rinkeby",
+    "upgrade:court:mainnet": "node ./bin/index.js court-upgrade -n mainnet"
   },
   "dependencies": {
     "@aragon/court": "1.1.0-rc.1",
