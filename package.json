@@ -23,6 +23,9 @@
     "upgrade:court:mainnet": "node ./bin/index.js court-upgrade -n mainnet"
   },
   "dependencies": {
+    "@aragon/apps-agent": "^2.0.0",
+    "@aragon/apps-token-manager": "^2.1.0",
+    "@aragon/apps-voting": "^2.1.0",
     "@aragon/court": "1.1.0-rc.1",
     "@aragon/minime": "^1.0.0",
     "@aragon/truffle-config-v5": "^1.0.0",
@@ -32,6 +35,7 @@
     "chalk": "^2.4.2",
     "truffle-flattener": "^1.4.2",
     "web3": "^1.2.1",
+    "web3-eth-abi": "^1.2.4",
     "yargs": "^14.0.0"
   },
   "devDependencies": {

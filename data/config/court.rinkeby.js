@@ -16,6 +16,10 @@ const DAI = {
 }
 
 module.exports = {
+  aragonNetworkDAO: {
+    voting:                        '0xb0c839957bc47541d747e5238c06990e3a41c2a3', // Voting of DAO 0x2eBe0f5854Fa5C685DAd156Dd8A07562eD1F74b1
+    tokenManager:                  '0x0cc31e2d5117d25fe50ee9d569613851e6bb0dd9', // Token Manager of DAO 0x2eBe0f5854Fa5C685DAd156Dd8A07562eD1F74b1
+  },
   governor: {
     funds:                         '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076', // Agent of DAO 0x2eBe0f5854Fa5C685DAd156Dd8A07562eD1F74b1
     config:                        '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076', // Agent of DAO 0x2eBe0f5854Fa5C685DAd156Dd8A07562eD1F74b1
