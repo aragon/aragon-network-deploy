@@ -144,8 +144,8 @@ module.exports = class extends BaseDeployer {
     const disputes = this.previousDeploy.disputes
     if (!disputes || !disputes.verification) {
       const url = await this.verifier.call(this.disputes, '@aragon/court', VERIFICATION_HEADERS)
-      const { address, transactionHash } = disputes
-      this._saveDeploy({ disputes: { address, transactionHash, verification: url } })
+      const { address, transactionHash, version } = disputes
+      this._saveDeploy({ disputes: { address, transactionHash, version, verification: url } })
     }
   }
 
@@ -153,8 +153,8 @@ module.exports = class extends BaseDeployer {
     const registry = this.previousDeploy.registry
     if (!registry || !registry.verification) {
       const url = await this.verifier.call(this.registry, '@aragon/court', VERIFICATION_HEADERS)
-      const { address, transactionHash } = registry
-      this._saveDeploy({ registry: { address, transactionHash, verification: url } })
+      const { address, transactionHash, version } = registry
+      this._saveDeploy({ registry: { address, transactionHash, version, verification: url } })
     }
   }
 
@@ -162,8 +162,8 @@ module.exports = class extends BaseDeployer {
     const voting = this.previousDeploy.voting
     if (!voting || !voting.verification) {
       const url = await this.verifier.call(this.voting, '@aragon/court', VERIFICATION_HEADERS)
-      const { address, transactionHash } = voting
-      this._saveDeploy({ voting: { address, transactionHash, verification: url } })
+      const { address, transactionHash, version } = voting
+      this._saveDeploy({ voting: { address, transactionHash, version, verification: url } })
     }
   }
 

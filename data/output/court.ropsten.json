@@ -2,31 +2,37 @@
   "court": {
     "address": "0x3b26bc496aebaed5b3E0E81cDE6B582CDe71396e",
     "transactionHash": "0x62e303535eedc509069f6d69a135daaa61e1f284e4fdbf296914fd2ca6102a8c",
+    "version": "v1.0",
     "verification": "https://ropsten.etherscan.io/address/0x3b26bc496aebaed5b3E0E81cDE6B582CDe71396e#code"
   },
   "disputes": {
-    "address": "0xbea6983739c6740889903A2470E9829D205cB5EB",
-    "transactionHash": "0x1b8220b000feb55f83b46ae317afbd8e4b125398c2e058c9c39c35ca7a9ef165",
-    "verification": "https://ropsten.etherscan.io/address/0xbea6983739c6740889903A2470E9829D205cB5EB#code"
+    "address": "0x4f4aa80179b6C53BdE4091CcBDB736670369DdB6",
+    "transactionHash": "0x8961519ac870f9f9af46058ab03e227b9b487965fa1291c598c90b9fb2c2f846",
+    "version": "v1.1",
+    "verification": "https://ropsten.etherscan.io/address/0x4f4aa80179b6C53BdE4091CcBDB736670369DdB6#code"
   },
   "registry": {
-    "address": "0x770485961f0151C2C6F26ff865BCE4B36Bd8C820",
-    "transactionHash": "0x591951b94a67e37667e73b184072a8d2b1a580a829eb2986688288ca31fb27e1",
-    "verification": "https://ropsten.etherscan.io/address/0x770485961f0151C2C6F26ff865BCE4B36Bd8C820#code"
+    "address": "0x9099eFf2830D6E4A11d60064DD67A3f51409043e",
+    "transactionHash": "0x184a97ceb0e897fe77335a449632b7286be8ac0145d9f535df2352e7f09a1986",
+    "version": "v1.1",
+    "verification": "https://ropsten.etherscan.io/address/0x9099eFf2830D6E4A11d60064DD67A3f51409043e#code"
   },
   "voting": {
-    "address": "0xA65AD47253F017584597061c31c97e97F0a8bFA5",
-    "transactionHash": "0x4aa67b65e7bc63a1ee99c625820250c0cbf7f352291fb47ded5cc760f460d66d",
-    "verification": "https://ropsten.etherscan.io/address/0xA65AD47253F017584597061c31c97e97F0a8bFA5#code"
+    "address": "0x8253D4F46BAA8b0eD31D56C11b0C6d52ACDD25ad",
+    "transactionHash": "0x436634486e36f6faaaf880906e9120e890faecab29ddad328957fef720730e2e",
+    "version": "v1.1",
+    "verification": "https://ropsten.etherscan.io/address/0x8253D4F46BAA8b0eD31D56C11b0C6d52ACDD25ad#code"
   },
   "treasury": {
     "address": "0x63b52b8aC66E6e619fcE1a4FdD1a3eDb5A580fE3",
     "transactionHash": "0x44a71d862e50787767a5e0fec6e7ef8758eef8a32eff36dd34af79669791d31b",
+    "version": "v1.0",
     "verification": "https://ropsten.etherscan.io/address/0x63b52b8aC66E6e619fcE1a4FdD1a3eDb5A580fE3#code"
   },
   "subscriptions": {
     "address": "0x858870687c3270Bcd33Fd24166bE9b4a50594283",
     "transactionHash": "0x09e5449dd9b5f854f80ac13b8e143140eb20955d0dc80e23c06b39304d1bc421",
+    "version": "v1.0",
     "verification": "https://ropsten.etherscan.io/address/0x858870687c3270Bcd33Fd24166bE9b4a50594283#code"
   }
 }
