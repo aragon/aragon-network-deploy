@@ -87,10 +87,4 @@ contract('CourtDeployer v1.1', ([_, governor, someone]) => {
       assert.equal(await court.getVoting(), newVoting.address, 'new voting is not set')
     })
   })
-
-  context('when the sender is not the modules governor', () => {
-    deployAndUpgrade(someone)
-
-    // TODO: implement
-  })
 })
