@@ -1,7 +1,7 @@
 const { bn, bigExp } = require('../../src/helpers/numbers')
 
-const TERM_DURATION = 60 * 10                                        // 10 minutes
-const START_DATE = Math.floor(new Date() / 1000 + 2 * TERM_DURATION) // 20 minutes from now
+const TERM_DURATION = 60 * 60 * 8                                      // 8 hours
+const START_DATE = Math.floor(new Date() / 1000 + TERM_DURATION + 120) // 2 minutes from now
 
 const ANJ = {
   symbol: 'ANJ',
@@ -16,17 +16,17 @@ const DAI = {
 }
 
 module.exports = {
-  aragonNetworkDAO: {
-    voting:                        '0xb0c839957bc47541d747e5238c06990e3a41c2a3', // Voting of DAO 0x2eBe0f5854Fa5C685DAd156Dd8A07562eD1F74b1
-    tokenManager:                  '0x0cc31e2d5117d25fe50ee9d569613851e6bb0dd9', // Token Manager of DAO 0x2eBe0f5854Fa5C685DAd156Dd8A07562eD1F74b1
+  aragonNetworkDAO: {              // https://rinkeby.aragon.org/#/0x2eBe0f5854Fa5C685DAd156Dd8A07562eD1F74b1
+    voting:                        '0xb0c839957bc47541d747e5238c06990e3a41c2a3', // Voting of AN DAO
+    tokenManager:                  '0x0cc31e2d5117d25fe50ee9d569613851e6bb0dd9', // Token Manager of AN DAO
   },
-  governor: {
-    funds:                         '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076', // Agent of DAO 0x2eBe0f5854Fa5C685DAd156Dd8A07562eD1F74b1
-    config:                        '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076', // Agent of DAO 0x2eBe0f5854Fa5C685DAd156Dd8A07562eD1F74b1
-    modules:                       '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076', // Agent of DAO 0x2eBe0f5854Fa5C685DAd156Dd8A07562eD1F74b1
+  governor: {                      // Agent of AN DAO
+    funds:                         '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076',
+    config:                        '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076',
+    modules:                       '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076',
   },
   clock: {
-    termDuration:                  bn(TERM_DURATION),            // terms lasts 10 minutes
+    termDuration:                  bn(TERM_DURATION),            // terms lasts 8 hours
     firstTermStartTime:            bn(START_DATE),               // first term start timestamp in seconds
   },
   court: {
