@@ -6,13 +6,13 @@ const START_DATE = Math.floor(new Date() / 1000 + 2 * TERM_DURATION) // 20 minut
 const ANJ = {
   symbol: 'ANJ',
   decimals: 18,
-  address: '0x69f9c4205A320C0dEff240fEE58F42052C478c08'
+  address: '0x72e751147A2947E2018a6Df22889600873C29021'
 }
 
 const DAI = {
   symbol: 'DAI',
   decimals: 18,
-  address: '0xe9A083D88Eed757B1d633321Ce0519F432c6284d'
+  address: '0xB88D8CBD8df85fb31b7cD17Fbc6fCC0FE110F5d0'
 }
 
 module.exports = {
