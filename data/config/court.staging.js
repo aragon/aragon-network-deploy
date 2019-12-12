@@ -1,28 +1,32 @@
 const { bn, bigExp } = require('../../src/helpers/numbers')
 
-const TERM_DURATION = 60 * 60 * 8                                      // 8 hours
-const START_DATE = Math.floor(new Date() / 1000 + TERM_DURATION + 120) // 2 minutes from now
+const TERM_DURATION = 60 * 10                                        // 10 minutes
+const START_DATE = Math.floor(new Date() / 1000 + 2 * TERM_DURATION) // 20 minutes from now
 
 const ANJ = {
   symbol: 'ANJ',
   decimals: 18,
-  address: '0x69f9c4205A320C0dEff240fEE58F42052C478c08'
+  address: '0x72e751147A2947E2018a6Df22889600873C29021'
 }
 
 const DAI = {
   symbol: 'DAI',
   decimals: 18,
-  address: '0xe9A083D88Eed757B1d633321Ce0519F432c6284d'
+  address: '0xB88D8CBD8df85fb31b7cD17Fbc6fCC0FE110F5d0'
 }
 
 module.exports = {
-  governor: {
-    funds:                         '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076', // Agent of DAO 0x2eBe0f5854Fa5C685DAd156Dd8A07562eD1F74b1
-    config:                        '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076', // Agent of DAO 0x2eBe0f5854Fa5C685DAd156Dd8A07562eD1F74b1
-    modules:                       '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076', // Agent of DAO 0x2eBe0f5854Fa5C685DAd156Dd8A07562eD1F74b1
+  aragonNetworkDAO: {              // https://aragon.staging.aragonpm.com/#/andaostaging
+    voting:                        '0x5505f0db0ff6990459e812e19bf7895148c6a8b3', // Voting of AN DAO
+    tokenManager:                  '0x2cedb6250da2e4798f742eb60b075c8f4ef5ef6a', // Token Manager of AN DAO
+  },
+  governor: {                      // Agent of AN DAO
+    funds:                         '0xec5700f0774cc9e7f2d89bee4b14401124fc2d06',
+    config:                        '0xec5700f0774cc9e7f2d89bee4b14401124fc2d06',
+    modules:                       '0xec5700f0774cc9e7f2d89bee4b14401124fc2d06',
   },
   clock: {
-    termDuration:                  bn(TERM_DURATION),            // terms lasts 8 hours
+    termDuration:                  bn(TERM_DURATION),            // terms lasts 10 minutes
     firstTermStartTime:            bn(START_DATE),               // first term start timestamp in seconds
   },
   court: {
