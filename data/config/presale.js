@@ -3,6 +3,8 @@ const staging = require('./presale.staging')
 const rinkeby = require('./presale.rinkeby')
 const mainnet = require('./presale.mainnet')
 
+// There is no APM registry on Ropsten, thus we cannot publish the pre-sale there to use it from a DAO
+
 module.exports = {
   rpc,
   staging,

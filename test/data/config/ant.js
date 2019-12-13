@@ -1,8 +1,8 @@
 // This config file is only provided to test deploys locally
 
 const config = {
-  name: 'DAI Token',
-  symbol: 'DAI',
+  name: 'Aragon Network Token',
+  symbol: 'ANT',
   decimals: 18
 }
 
