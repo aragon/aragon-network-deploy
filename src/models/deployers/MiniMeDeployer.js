@@ -58,7 +58,7 @@ module.exports = class extends BaseDeployer {
   async _verifyMiniMe() {
     const { symbol } = this.config
     const token = this.previousDeploy[symbol]
-    if (this.verifier && (!token || !token.verification)) {
+    if (this.verifier && token && !token.verification) {
       const url = await this.verifier.call(this.token, '@aragon/court', VERIFICATION_HEADERS)
       const { address, transactionHash } = token
       this._saveDeploy({ [symbol]: { address, transactionHash, verification: url } })

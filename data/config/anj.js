@@ -10,6 +10,12 @@ module.exports = {
     factory:          undefined,                                      // will be deployed unless specified
     transfersEnabled: true,
   },
+  staging: {
+    ...config,
+    controller:       '0xde8bf81d4a8b67f51dc909035cca5b4e14e92d88',   // AN DAO Staging Agent
+    factory:          '0x6ffeb4038f7f077c4d20eaf1706980caec31e2bf',   // mini me token factory used for the templates
+    transfersEnabled: true,
+  },
   rinkeby: {
     ...config,
     factory:          '0x6ffeb4038f7f077c4d20eaf1706980caec31e2bf',   // mini me token factory used for the templates

@@ -53,10 +53,10 @@ module.exports = class {
     const sourceCode = `/**\n* ${headers.join('\n* ')}\n**/\n${flattenedCode}`
     const contractname = schema.contractName
     const contractaddress = instance.address
-    const constructorArguements = await this.fetchConstructorArguments(apiUrl, instance)
+    const constructorArguments = await this.fetchConstructorArguments(apiUrl, instance)
     const contractUrl = `${etherscanUrl}/${contractaddress}#code`
 
-    const body = { contractaddress, sourceCode, contractname, constructorArguements, compilerversion, optimizationUsed, runs }
+    const body = { contractaddress, sourceCode, contractname, constructorArguments, compilerversion, optimizationUsed, runs }
     logger.info(`Verifying contract ${contractname} at ${contractaddress} to ${apiUrl} ...`)
     if (Object.keys(SUBDOMAINS).includes(network)) await sleep(this.retrySleepTime)
 

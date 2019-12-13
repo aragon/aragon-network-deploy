@@ -11,8 +11,10 @@
     "deploy:dai:ropsten": "node ./bin/index.js minime -n ropsten -c ./test/data/config/dai.js",
     "deploy:anj:rpc": "node ./bin/index.js minime -n rpc -c ./data/config/anj.js",
     "deploy:anj:ropsten": "node ./bin/index.js minime -n ropsten -c ./data/config/anj.js",
+    "deploy:anj:staging": "node ./bin/index.js minime -n staging -c ./data/config/anj.js",
     "deploy:anj:rinkeby": "node ./bin/index.js minime -n rinkeby -c ./data/config/anj.js",
     "deploy:anj:mainnet": "node ./bin/index.js minime -n mainnet -c ./data/config/anj.js",
+    "deploy:ant:rpc": "node ./bin/index.js minime -n rpc -c ./data/config/ant.js",
     "deploy:court:rpc": "rm -f data/output/{minime,court}.rpc.json && npm run deploy:dai:rpc && npm run deploy:anj:rpc && node ./bin/index.js court -n rpc",
     "deploy:court:ropsten": "node ./bin/index.js court -n ropsten",
     "deploy:court:rinkeby": "node ./bin/index.js court -n rinkeby",
@@ -20,7 +22,12 @@
     "upgrade:court:rpc": "node ./bin/index.js court-upgrade -n rpc",
     "upgrade:court:ropsten": "node ./bin/index.js court-upgrade -n ropsten",
     "upgrade:court:rinkeby": "node ./bin/index.js court-upgrade -n rinkeby",
-    "upgrade:court:mainnet": "node ./bin/index.js court-upgrade -n mainnet"
+    "upgrade:court:mainnet": "node ./bin/index.js court-upgrade -n mainnet",
+    "deploy:presale:rpc": "rm -f data/output/minime.rpc.json data/output/presale.rpc.json && npm run deploy:ant:rpc && npm run deploy:anj:rpc && node ./bin/index.js presale --instance -n rpc",
+    "deploy:presale:ropsten": "node ./bin/index.js presale -n ropsten --evmScript",
+    "deploy:presale:staging": "node ./bin/index.js presale -n staging --evmScript",
+    "deploy:presale:rinkeby": "node ./bin/index.js presale -n rinkeby --evmScript",
+    "deploy:presale:mainnet": "node ./bin/index.js presale -n mainnet --evmScript"
   },
   "dependencies": {
     "@aragon/apps-agent": "^2.0.0",
@@ -28,6 +35,8 @@
     "@aragon/apps-voting": "^2.1.0",
     "@aragon/court": "1.1.0-rc.1",
     "@aragon/minime": "^1.0.0",
+    "@aragon/templates-externally-owned-presale-bonding-curve": "^0.1.0",
+    "@aragon/templates-shared": "^1.0.0",
     "@aragon/truffle-config-v5": "^1.0.0",
     "@truffle/config": "^1.1.21",
     "@truffle/contract": "^4.0.32",

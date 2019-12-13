@@ -45,6 +45,10 @@ module.exports = class {
     return this.web3
   }
 
+  isLocal() {
+    return this.network == 'rpc' || this.network == 'devnet'
+  }
+
   _getNetworkConfig() {
     if (!this.config) {
       this.config = TruffleConfig.detect({ logger: console })
