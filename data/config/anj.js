@@ -7,7 +7,6 @@ const config = {
 module.exports = {
   rpc: {
     ...config,
-    controller:       '0xb4124cEB3451635DAcedd11767f004d8a28c6eE7',   // aragen address #1
     factory:          undefined,                                      // will be deployed unless specified
     transfersEnabled: true,
   },
