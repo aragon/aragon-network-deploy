@@ -2,11 +2,40 @@ const abi = require('web3-eth-abi')
 const AGENT_ABI = require('@aragon/apps-agent/abi/Agent.json').abi
 const VOTING_ABI = require('@aragon/apps-voting/abi/Voting.json').abi
 const CONTROLLER_ABI = require('@aragon/court/abi/Controller.json').abi
+const MINIME_ABI = require('@aragon/minime/abi/MiniMeToken.json').abi
+const EOPBCTEMPLATE_ABI = require('@aragon/templates-externally-owned-presale-bonding-curve/abi/EOPBCTemplate.json').abi
 
 const CALLSCRIPT_ID = '0x00000001'
 const EMPTY_CALLSCRIPT = '0x00000001'
 
 module.exports = class CallsEncoder {
+  /**
+   * Encode a call script
+   *
+   * ```
+   * CallsScriptAction {
+   *   to: string;
+   *   data: string;
+   * }
+   * ```
+   *
+   * Example:
+   *
+   * input:
+   * [
+   *  { to: 0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, data: 0x11111111 },
+   *  { to: 0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb, data: 0x2222222222 }
+   * ]
+   *
+   * output:
+   * 0x00000001
+   *   aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa0000000411111111
+   *   bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb000000052222222222
+   *
+   *
+   * @param {Array<CallsScriptAction>} actions
+   * @returns {string}
+   */
   encodeCallsScript(actions) {
     return actions.reduce((script, { to, data }) => {
       const address = abi.encodeParameter('address', to)
@@ -30,6 +59,38 @@ module.exports = class CallsEncoder {
   encodeSetModules(ids, addresses) {
     const setModulesABI = this._getFunctionABI(CONTROLLER_ABI, 'setModules', 2)
     return abi.encodeFunctionCall(setModulesABI, [ids, addresses])
+  }
+
+  encodeChangeController (controllerAddress) {
+    const changeControllerABI = this._getFunctionABI(MINIME_ABI, 'changeController', 1)
+    return abi.encodeFunctionCall(changeControllerABI, [controllerAddress])
+  }
+
+  encodeNewInstance ({
+    owner,
+    id,
+    collateralToken,
+    bondedToken,
+    period,
+    exchangeRate,
+    openDate,
+    reserveRatio,
+    batchBlocks,
+    slippage
+  }) {
+    const newInstanceABI = this._getFunctionABI(EOPBCTEMPLATE_ABI, 'newInstance')
+    return abi.encodeFunctionCall(newInstanceABI, [
+      owner,
+      id,
+      collateralToken,
+      bondedToken,
+      period,
+      exchangeRate,
+      openDate,
+      reserveRatio,
+      batchBlocks,
+      slippage
+    ])
   }
 
   _getFunctionABI(ABI, functionName, inputsLength) {

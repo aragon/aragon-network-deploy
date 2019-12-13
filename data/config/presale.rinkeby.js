@@ -9,11 +9,11 @@ module.exports = {
     id: 'anj-presale',
     collateralToken: '0xF68eb8077744b49F2B289c0Fd12Bbc9f3729dFe3', // ANT
     bondedToken: '0x1B1EdCF4f3C5bB705a7670154e2C65569d0676Be',     // ANJ
-    period: '86400',                                               // 1 day
-    exchangeRate: '100000000',                                     // 1/100
-    openDate: '0',
+    period: '86400',                                               // presale duration, 1 day
+    exchangeRate: '100000000',                                     // for presale: 1/100
+    openDate: '0',                                                 // presale start
     reserveRatio: '33333',                                         // 33%
-    batchBlocks: '1',
+    batchBlocks: '1',                                              // market maker batch size
     slippage: '100000000000000000'                                 // 10%
   },
   aragonNetworkDao: {
