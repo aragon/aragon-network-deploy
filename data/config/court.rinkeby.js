@@ -16,7 +16,7 @@ const DAI = {
 }
 
 module.exports = {
-  aragonNetworkDAO: {              // https://rinkeby.aragon.org/#/0x2eBe0f5854Fa5C685DAd156Dd8A07562eD1F74b1
+  aragonNetworkDAO: {              // https://rinkeby.aragon.org/#/andao/
     voting:                        '0xb0c839957bc47541d747e5238c06990e3a41c2a3', // Voting of AN DAO
     tokenManager:                  '0x0cc31e2d5117d25fe50ee9d569613851e6bb0dd9', // Token Manager of AN DAO
   },
