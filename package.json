@@ -46,7 +46,7 @@
     "@aragon/apps-agent": "^2.0.0",
     "@aragon/apps-token-manager": "^2.1.0",
     "@aragon/apps-voting": "^2.1.0",
-    "@aragon/court": "1.1.0-rc.1",
+    "@aragon/court": "1.1.0",
     "@aragon/court-presale-activate": "^0.2.0",
     "@aragon/minime": "^1.0.0",
     "@aragon/templates-externally-owned-presale-bonding-curve": "^0.2.2",
