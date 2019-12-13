@@ -6,7 +6,7 @@ const { MAX_UINT64, tokenToString } = require('../../helpers/numbers')
 const VERSION = 'v1.1'
 
 const VERIFICATION_HEADERS = [
-  'Commit sha: e699a1c3cb3ea26f08e84385edcef304a6d88abe',
+  'Commit sha: ffc48f55ad10b0b307a5553090bcb4c291cedbc4',
   'GitHub repository: https://github.com/aragon/aragon-court',
   'Tool used for the deploy: https://github.com/aragon/aragon-network-deploy',
 ]

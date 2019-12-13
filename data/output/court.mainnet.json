@@ -5,19 +5,22 @@
     "verification": "https://etherscan.io/address/0xee4650cBe7a2B23701D416f58b41D8B76b617797#code"
   },
   "disputes": {
-    "address": "0xd6F2E30B99214B6eaffBE2B270d2e42c762a929B",
-    "transactionHash": "0x1268bfe1dc6adbf94f2864332c143708ac63b8d32c16236660b16d58f882ea19",
-    "verification": "https://etherscan.io/address/0xd6F2E30B99214B6eaffBE2B270d2e42c762a929B#code"
+    "address": "0xCb36d7614ED8283cBb7e606AF876c75b372bB859",
+    "transactionHash": "0xb8bfc9db49ff2b77e46183529e9d4e9987126a19a8bde7ceceb4de2a9cd72662",
+    "version": "v1.1",
+    "verification": "https://etherscan.io/address/0xCb36d7614ED8283cBb7e606AF876c75b372bB859#code"
   },
   "registry": {
-    "address": "0x8bEa04A94aEc27CE8C2409b0e0F28A02996d264d",
-    "transactionHash": "0x6d65aa529c45b86c9ccb0c9b98660ca0f7dba468512a72832309ef19600b7207",
-    "verification": "https://etherscan.io/address/0x8bEa04A94aEc27CE8C2409b0e0F28A02996d264d#code"
+    "address": "0xF9dDa954adf5E54b89f988C1560553A0a387CCE1",
+    "transactionHash": "0x239dd11dca9da87ca88edad84cf339f312523a84fc7103b1887c7d2c9680c580",
+    "version": "v1.1",
+    "verification": "https://etherscan.io/address/0xF9dDa954adf5E54b89f988C1560553A0a387CCE1#code"
   },
   "voting": {
-    "address": "0xA612843B7274384c6F3E78fC78f1EBa22Db26e11",
-    "transactionHash": "0xde54e5674381cf1f1d73345a515d1fbc787831a6594643fb4b69d690ac5853a7",
-    "verification": "https://etherscan.io/address/0xA612843B7274384c6F3E78fC78f1EBa22Db26e11#code"
+    "address": "0x96D7B5E5372743Abc69d1eAc714e893fA71d3baa",
+    "transactionHash": "0xe94402247690e4f3f5e985263bacc73a3e1599fbb30ee9b55b0a993c2fbbaa8a",
+    "version": "v1.1",
+    "verification": "https://etherscan.io/address/0x96D7B5E5372743Abc69d1eAc714e893fA71d3baa#code"
   },
   "treasury": {
     "address": "0xb25F52c06ef14EDCF92972630Ab4232aaFA3B504",
