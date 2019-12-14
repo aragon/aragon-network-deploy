@@ -23,5 +23,9 @@ module.exports = {
     votingApp: '0xaad2ccf51b42ea7f27948c38b4f7afd8174ef217',
     tokenManager: '0x08d25ce71579c2b97b688bc8a7d0b35b92504ec3',
     voteDescription: 'Change ANJ controller to template and deploy new presale and bonding curve instance'
+  },
+  wrapper: {
+    registry: '0xa0c3f2c814Cd2Ccf7666b0abf9C3E7530e642771',        // Court Jurors Registry
+    presale: '0xEA8919da52Ac77f73dF37cC8c60e1105aE134171'          // Fundraising presale contract
   }
 }

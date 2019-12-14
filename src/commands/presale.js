@@ -12,6 +12,7 @@ const builder = {
   instance: { describe: 'Deploy an instance of the template', type: 'boolean', default: false },
   evmScript: { describe: 'Generate EVM script to change bonded token controller and deploy an instance of the template', type: 'boolean', default: false },
   installedApps: { describe: 'Print installed apps for a given tx receipt', type: 'string' },
+  wrapper: { describe: 'Deploy wrapper', type: 'boolean', default: false },
 }
 
 const handlerAsync = async (environment, {
@@ -22,13 +23,23 @@ const handlerAsync = async (environment, {
   instance: deployInstance,
   evmScript: generateEvmScript,
   installedApps: printFundraisingAddresses,
+  wrapper: deployWrapper,
 }) => {
   const outputFilepath = path.resolve(process.cwd(), `${outputDir}/${command}.${network}.json`)
   const config = require(path.resolve(process.cwd(), configFilename))[network]
 
   const verifier = apiKey ? new Verifier(environment, apiKey) : undefined
 
-  const deployer = new PresaleTemplateDeployer(config, environment, outputFilepath, verifier, deployInstance, generateEvmScript, printFundraisingAddresses)
+  const deployer = new PresaleTemplateDeployer(
+    config,
+    environment,
+    outputFilepath,
+    verifier,
+    deployInstance,
+    generateEvmScript,
+    printFundraisingAddresses,
+    deployWrapper
+  )
   await deployer.call()
 }
 
