@@ -10,8 +10,9 @@ module.exports = {
     collateralToken: '0x2e25c8F88c5cCcbC9400e5bc86cF9C58C7604327',
     bondedToken: '0x019F12a7DAa44A34CD0FF35055b0e2D4679D8521',
     period: '600',                                            // 10 min
+    openDate: '0',                                            // manual presale start
     exchangeRate: '100000000',                                // 1/100
-    openDate: '0',
+    beneficiaryPct: '200000',                                 // 20%, pre-minting
     reserveRatio: '33333',                                    // 33.333%
     batchBlocks: '1',
     slippage: '100000000000000000'                            // 10%

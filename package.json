@@ -35,7 +35,7 @@
     "@aragon/apps-voting": "^2.1.0",
     "@aragon/court": "1.1.0-rc.1",
     "@aragon/minime": "^1.0.0",
-    "@aragon/templates-externally-owned-presale-bonding-curve": "^0.1.0",
+    "@aragon/templates-externally-owned-presale-bonding-curve": "^0.2.1",
     "@aragon/templates-shared": "^1.0.0",
     "@aragon/truffle-config-v5": "^1.0.0",
     "@truffle/config": "^1.1.21",

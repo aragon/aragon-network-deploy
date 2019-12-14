@@ -1,3 +1,5 @@
+const START_DATE = Math.floor(new Date() / 1000) + 1200 // now + 20 min
+
 module.exports = {
   infra: {
     ens: '0x98df287b6c145399aaa709692c8d308357bc085d',
@@ -10,8 +12,9 @@ module.exports = {
     collateralToken: '0xF68eb8077744b49F2B289c0Fd12Bbc9f3729dFe3', // ANT
     bondedToken: '0x1B1EdCF4f3C5bB705a7670154e2C65569d0676Be',     // ANJ
     period: '86400',                                               // presale duration, 1 day
+    openDate: START_DATE,                                          // presale start
     exchangeRate: '100000000',                                     // for presale: 1/100
-    openDate: '0',                                                 // presale start
+    beneficiaryPct: '200000',                                      // 20%, pre-minting
     reserveRatio: '33333',                                         // 33%
     batchBlocks: '1',                                              // market maker batch size
     slippage: '100000000000000000'                                 // 10%
