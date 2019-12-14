@@ -22,5 +22,9 @@
   "balance-redirect-presale": {
     "address": "0xEA8919da52Ac77f73dF37cC8c60e1105aE134171",
     "transactionHash": "0xda9841b7d2a54f3eafb13ca5525b7d9baf8db1c40babf6ff0ea28a1c11bfbb5a"
+  },
+  "wrapper": {
+    "address": "0x932654329E3c5391989af37eC5a9383cBE743c06",
+    "transactionHash": "0x6dd8a6be0b9410a544ad793903477ef61105efaf84c3a6baf943c8a161d30f9f"
   }
 }

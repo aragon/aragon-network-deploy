@@ -20,21 +20,34 @@ const VERIFICATION_HEADERS_OS = [
 const ZERO_ADDRESS = '0x' + '0'.repeat(40)
 
 module.exports = class extends BaseDeployer {
-  constructor(config, environment, output, verifier = undefined, deployInstance = false, generateEvmScript = false, printFundraisingAddresses = undefined) {
+  constructor(
+    config,
+    environment,
+    output,
+    verifier = undefined,
+    deployInstance = false,
+    generateEvmScript = false,
+    printFundraisingAddresses = undefined,
+    deployWrapper = false
+  ) {
     super(environment, output, verifier, logger)
     this.config = config
     this.deployInstance = deployInstance
     this.generateEvmScript = generateEvmScript
     this.printFundraisingAddresses = printFundraisingAddresses
+    this.deployWrapper = deployWrapper
     this.encoder = new CallsEncoder()
   }
 
   async call() {
 
     if (this.printFundraisingAddresses != undefined) {
-      const web3 = this.environment.getWeb3()
-      const txReceipt = await web3.eth.getTransactionReceipt(this.printFundraisingAddresses)
-      await this._getInstalledApps(txReceipt.transactionHash, txReceipt.logs)
+      await this._printFundraisingAddresses()
+      return
+    }
+
+    if (this.deployWrapper) {
+      await this._deployWrapper()
       return
     }
 
@@ -159,6 +172,12 @@ module.exports = class extends BaseDeployer {
     return installedApps
   }
 
+  async _printFundraisingAddresses() {
+      const web3 = this.environment.getWeb3()
+      const txReceipt = await web3.eth.getTransactionReceipt(this.printFundraisingAddresses)
+      await this._getInstalledApps(txReceipt.transactionHash, txReceipt.logs)
+  }
+
   async _verifyFundraisingContracts(installedApps) {
     for (const app in installedApps) {
       await this._verifyProxy(app, installedApps[app][0])
@@ -252,5 +271,19 @@ module.exports = class extends BaseDeployer {
     const tokenManager = await TokenManager.at(tokenManagerAddress)
     const receipt = await tokenManager.forward(callsScript)
     logger.info(`EVM Script run on tx: ${receipt.tx}. Gas used: ${receipt.receipt.gasUsed}`)
+  }
+
+  // ************ Wrapper ************* //
+
+  async _deployWrapper() {
+    const { bondedToken } = this.config.instance
+    const { registry, presale } = this.config.wrapper
+
+    const CourtPresaleActivate = await this.environment.getArtifact('CourtPresaleActivate', '@aragon/court-presale-activate')
+    const wrapper = await CourtPresaleActivate.new(bondedToken, registry, presale)
+
+    const { address, transactionHash } = wrapper
+    logger.success(`Created Wrapper contract at ${address}`)
+    this._saveDeploy({ wrapper: { address, transactionHash }})
   }
 }
