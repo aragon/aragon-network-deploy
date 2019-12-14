@@ -10,8 +10,8 @@ module.exports = {
     owner: '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076',           // AN-DAO controller
     id: 'anj-presale',
     collateralToken: '0xF68eb8077744b49F2B289c0Fd12Bbc9f3729dFe3', // ANT
-    bondedToken: '0x1B1EdCF4f3C5bB705a7670154e2C65569d0676Be',     // ANJ
-    period: '86400',                                               // presale duration, 1 day
+    bondedToken: '0x69f9c4205a320c0deff240fee58f42052c478c08',     // ANJ
+    period: '864000',                                              // presale duration, 10 day
     openDate: START_DATE,                                          // presale start
     exchangeRate: '100000000',                                     // for presale: 1/100
     beneficiaryPct: '200000',                                      // 20%, pre-minting
@@ -26,6 +26,6 @@ module.exports = {
   },
   wrapper: {
     registry: '0x1FFD20263cb09dAAaA6698A9ec41E1b2297E72A5',        // Court Jurors Registry
-    presale: ''          // Fundraising presale contract
+    presale: '0x1beD5441F34A27bb0f1f35fbBE90261ead1e9AeC'          // Fundraising presale contract
   }
 }
