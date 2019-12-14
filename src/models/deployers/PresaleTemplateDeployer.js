@@ -98,6 +98,7 @@ module.exports = class extends BaseDeployer {
       bondedToken,
       period,
       exchangeRate,
+      beneficiaryPct,
       openDate,
       reserveRatio,
       batchBlocks,
@@ -118,11 +119,14 @@ module.exports = class extends BaseDeployer {
       collateralToken,
       bondedToken,
       period,
-      exchangeRate,
       openDate,
-      reserveRatio,
-      batchBlocks,
-      slippage
+      [
+        exchangeRate,
+        beneficiaryPct,
+        reserveRatio,
+        batchBlocks,
+        slippage
+      ]
     )
 
     const Kernel = await this.environment.getArtifact('Kernel', '@aragon/os')

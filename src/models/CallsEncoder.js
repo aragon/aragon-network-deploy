@@ -72,8 +72,9 @@ module.exports = class CallsEncoder {
     collateralToken,
     bondedToken,
     period,
-    exchangeRate,
     openDate,
+    exchangeRate,
+    beneficiaryPct,
     reserveRatio,
     batchBlocks,
     slippage
@@ -85,11 +86,14 @@ module.exports = class CallsEncoder {
       collateralToken,
       bondedToken,
       period,
-      exchangeRate,
       openDate,
-      reserveRatio,
-      batchBlocks,
-      slippage
+      [
+        exchangeRate,
+        beneficiaryPct,
+        reserveRatio,
+        batchBlocks,
+        slippage
+      ]
     ])
   }
 
