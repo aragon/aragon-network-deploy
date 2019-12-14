@@ -11,15 +11,24 @@ const builder = {
   verify: { describe: 'Verify deployed contracts on Etherscan, provide API key', type: 'string' },
   instance: { describe: 'Deploy an instance of the template', type: 'boolean', default: false },
   evmScript: { describe: 'Generate EVM script to change bonded token controller and deploy an instance of the template', type: 'boolean', default: false },
+  installedApps: { describe: 'Print installed apps for a given tx receipt', type: 'string' },
 }
 
-const handlerAsync = async (environment, { network, verify: apiKey, output: outputDir, config: configFilename, instance: deployInstance, evmScript: generateEvmScript }) => {
+const handlerAsync = async (environment, {
+  network,
+  verify: apiKey,
+  output: outputDir,
+  config: configFilename,
+  instance: deployInstance,
+  evmScript: generateEvmScript,
+  installedApps: printFundraisingAddresses,
+}) => {
   const outputFilepath = path.resolve(process.cwd(), `${outputDir}/${command}.${network}.json`)
   const config = require(path.resolve(process.cwd(), configFilename))[network]
 
   const verifier = apiKey ? new Verifier(environment, apiKey) : undefined
 
-  const deployer = new PresaleTemplateDeployer(config, environment, outputFilepath, verifier, deployInstance, generateEvmScript)
+  const deployer = new PresaleTemplateDeployer(config, environment, outputFilepath, verifier, deployInstance, generateEvmScript, printFundraisingAddresses)
   await deployer.call()
 }
 

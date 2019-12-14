@@ -20,15 +20,24 @@ const VERIFICATION_HEADERS_OS = [
 const ZERO_ADDRESS = '0x' + '0'.repeat(40)
 
 module.exports = class extends BaseDeployer {
-  constructor(config, environment, output, verifier = undefined, deployInstance = false, generateEvmScript = false) {
+  constructor(config, environment, output, verifier = undefined, deployInstance = false, generateEvmScript = false, printFundraisingAddresses = undefined) {
     super(environment, output, verifier, logger)
     this.config = config
     this.deployInstance = deployInstance
     this.generateEvmScript = generateEvmScript
+    this.printFundraisingAddresses = printFundraisingAddresses
     this.encoder = new CallsEncoder()
   }
 
   async call() {
+
+    if (this.printFundraisingAddresses != undefined) {
+      const web3 = this.environment.getWeb3()
+      const txReceipt = await web3.eth.getTransactionReceipt(this.printFundraisingAddresses)
+      await this._getInstalledApps(txReceipt.transactionHash, txReceipt.logs)
+      return
+    }
+
     const configTemplate = this.previousDeploy.presaleTemplate
     const PresaleTemplate = await this.environment.getArtifact('EOPBCTemplate', '@aragon/templates-externally-owned-presale-bonding-curve')
 
@@ -129,8 +138,14 @@ module.exports = class extends BaseDeployer {
       ]
     )
 
+    const installedApps = this._getInstalledApps(instanceReceipt.tx, instanceReceipt.receipt.rawLogs)
+
+    return installedApps
+  }
+
+  async _getInstalledApps(txHash, logs) {
     const Kernel = await this.environment.getArtifact('Kernel', '@aragon/os')
-    const installedApps = getInstalledAppsById(instanceReceipt, APP_IDS, Kernel)
+    const installedApps = getInstalledAppsById(logs, APP_IDS, Kernel)
     Object.keys(installedApps).map((name) => {
       const addresses = installedApps[name]
       if (addresses.length == 0) {
@@ -138,7 +153,7 @@ module.exports = class extends BaseDeployer {
         return
       }
       logger.success(`Created ${name} contract at ${addresses[0]}`)
-      this._saveDeploy({ [name]: { address: addresses[0], transactionHash: instanceReceipt.tx }})
+      this._saveDeploy({ [name]: { address: addresses[0], transactionHash: txHash }})
     })
 
     return installedApps
