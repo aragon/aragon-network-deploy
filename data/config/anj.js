@@ -18,6 +18,7 @@ module.exports = {
   },
   rinkeby: {
     ...config,
+    controller:       '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076',   // Agent of AN DAO
     factory:          '0x6ffeb4038f7f077c4d20eaf1706980caec31e2bf',   // mini me token factory used for the templates
     transfersEnabled: true,
   },
