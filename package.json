@@ -27,7 +27,15 @@
     "deploy:presale:ropsten": "node ./bin/index.js presale -n ropsten --evmScript",
     "deploy:presale:staging": "node ./bin/index.js presale -n staging --evmScript",
     "deploy:presale:rinkeby": "node ./bin/index.js presale -n rinkeby --evmScript",
-    "deploy:presale:mainnet": "node ./bin/index.js presale -n mainnet --evmScript"
+    "deploy:presale:mainnet": "node ./bin/index.js presale -n mainnet --evmScript",
+    "installedApps:presale:ropsten": "node ./bin/index.js presale -n ropsten --installedApps",
+    "installedApps:presale:staging": "node ./bin/index.js presale -n staging --installedApps",
+    "installedApps:presale:rinkeby": "node ./bin/index.js presale -n rinkeby --installedApps",
+    "installedApps:presale:mainnet": "node ./bin/index.js presale -n mainnet --installedApps",
+    "deploy:wrapper:ropsten": "node ./bin/index.js presale -n ropsten --wrapper",
+    "deploy:wrapper:staging": "node ./bin/index.js presale -n staging --wrapper",
+    "deploy:wrapper:rinkeby": "node ./bin/index.js presale -n rinkeby --wrapper",
+    "deploy:wrapper:mainnet": "node ./bin/index.js presale -n mainnet --wrapper"
   },
   "dependencies": {
     "@aragon/apps-agent": "^2.0.0",
@@ -36,7 +44,7 @@
     "@aragon/court": "1.1.0-rc.1",
     "@aragon/court-presale-activate": "^0.2.0",
     "@aragon/minime": "^1.0.0",
-    "@aragon/templates-externally-owned-presale-bonding-curve": "^0.2.1",
+    "@aragon/templates-externally-owned-presale-bonding-curve": "^0.2.2",
     "@aragon/templates-shared": "^1.0.0",
     "@aragon/truffle-config-v5": "^1.0.0",
     "@truffle/config": "^1.1.21",
