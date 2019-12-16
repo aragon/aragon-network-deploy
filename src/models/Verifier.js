@@ -9,6 +9,7 @@ const flattener = require('truffle-flattener')
 const SUBDOMAINS = {
   mainnet: 'api',
   rinkeby: 'api-rinkeby',
+  staging: 'api-rinkeby',
   ropsten: 'api-ropsten',
 }
 
