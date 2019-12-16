@@ -7,5 +7,9 @@
   "DAI": {
     "address": "0x4E1F48Db14D7E1ada090c42ffE15FF3024EEc8Bf",
     "transactionHash": "0x31d3fd16e0190a51f5f68dfa3b7632b0e3ec7b5eba4eefcd4a4a3a8e9934723f"
+  },
+  "ANT": {
+    "address": "0x0cb95D9537c8Fb0C947eD48FDafc66A7b72EfC86",
+    "transactionHash": "0x2d6f9568b9993874a27c9e57e074aef4ea16963047c2277f7abf32b577c5dd74"
   }
 }
