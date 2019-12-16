@@ -1,4 +1,5 @@
 {
   "address": "0x7E9152F2eFDF6a862FeecDc8b0fb892dA6f60dEe",
-  "transactionHash": "0x18ae98fbdc5c791a50c76674ce545b279345751744cabd976359d77196fcb6fe"
+  "transactionHash": "0x18ae98fbdc5c791a50c76674ce545b279345751744cabd976359d77196fcb6fe",
+  "verification": "https://rinkeby.etherscan.io/address/0x7E9152F2eFDF6a862FeecDc8b0fb892dA6f60dEe#code"
 }
