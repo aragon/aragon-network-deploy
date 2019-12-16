@@ -40,12 +40,17 @@
     "deploy:wrapper:ropsten": "node ./bin/index.js presale -n ropsten --wrapper",
     "deploy:wrapper:staging": "node ./bin/index.js presale -n staging --wrapper",
     "deploy:wrapper:rinkeby": "node ./bin/index.js presale -n rinkeby --wrapper",
-    "deploy:wrapper:mainnet": "node ./bin/index.js presale -n mainnet --wrapper"
+    "deploy:wrapper:mainnet": "node ./bin/index.js presale -n mainnet --wrapper",
+    "deploy:faucet:staging": "node ./bin/index.js faucet -n staging",
+    "deploy:faucet:ropsten": "node ./bin/index.js faucet -n ropsten",
+    "deploy:faucet:rinkeby": "node ./bin/index.js faucet -n rinkeby",
+    "deploy:faucet:mainnet": "node ./bin/index.js faucet -n mainnet"
   },
   "dependencies": {
     "@aragon/apps-agent": "^2.0.0",
     "@aragon/apps-token-manager": "^2.1.0",
     "@aragon/apps-voting": "^2.1.0",
+    "@aragon/erc20-faucet": "https://github.com/aragonone/erc20-faucet",
     "@aragon/court": "1.1.0",
     "@aragon/court-presale-activate": "1.0.0",
     "@aragon/minime": "^1.0.0",
