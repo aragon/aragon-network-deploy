@@ -2,7 +2,7 @@ const { APP_IDS } = require('@aragon/templates-externally-owned-presale-bonding-
 const BaseDeployer = require('./BaseDeployer')
 const CallsEncoder = require('../CallsEncoder')
 const logger = require('../../helpers/logger')('PresaleTemplateDeployer')
-const { getInstalledApps, getInstalledAppsById } = require('../../helpers/events')
+const { getInstalledAppsById } = require('../../helpers/events')
 const { publishBalanceRedirectPresale } = require('../../helpers/balance_redirect_presale.js')
 
 const VERIFICATION_HEADERS = [
@@ -16,8 +16,6 @@ const VERIFICATION_HEADERS_OS = [
   'GitHub repository: https://github.com/aragon/aragonOS',
   'Tool used for the deploy: https://github.com/aragon/aragon-network-deploy',
 ]
-
-const ZERO_ADDRESS = '0x' + '0'.repeat(40)
 
 module.exports = class extends BaseDeployer {
   constructor(

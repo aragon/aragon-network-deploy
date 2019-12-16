@@ -7,11 +7,11 @@ const describe = 'Deploy Court pre-sale contracts'
 
 const builder = {
   output: { alias: 'o', describe: 'Output dir', type: 'string', default: './data/output' },
-  config: { alias: 'c', describe: 'Court config JSON file', type: 'string', default: `./data/config/${command}.js` },
+  config: { alias: 'c', describe: 'Presale config JSON file', type: 'string', default: `./data/config/${command}.js` },
   verify: { describe: 'Verify deployed contracts on Etherscan, provide API key', type: 'string' },
   instance: { describe: 'Deploy an instance of the template', type: 'boolean', default: false },
   evmScript: { describe: 'Generate EVM script to change bonded token controller and deploy an instance of the template', type: 'boolean', default: false },
-  installedApps: { describe: 'Print installed apps for a given tx receipt', type: 'string' },
+  print: { describe: 'Print installed apps for a given tx receipt', type: 'string' },
   wrapper: { describe: 'Deploy wrapper', type: 'boolean', default: false },
 }
 
@@ -22,7 +22,7 @@ const handlerAsync = async (environment, {
   config: configFilename,
   instance: deployInstance,
   evmScript: generateEvmScript,
-  installedApps: printFundraisingAddresses,
+  print: printFundraisingAddresses,
   wrapper: deployWrapper,
 }) => {
   const outputFilepath = path.resolve(process.cwd(), `${outputDir}/${command}.${network}.json`)

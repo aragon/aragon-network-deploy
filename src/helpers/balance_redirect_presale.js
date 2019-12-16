@@ -8,7 +8,6 @@ const publishBalanceRedirectPresale = async(environment, config, logger) => {
   const { hash: namehash } = require('eth-ens-namehash')
   const packageHash = namehash(`${fullName}`)
   const packageOwner = await ens.owner(packageHash)
-  const sender = await environment.getSender()
   const isRegistered = packageOwner !== '0x0000000000000000000000000000000000000000' && packageOwner !== '0x'
   if (isRegistered) {
     logger.warn(`BalanceRedirectPresale already deployed, owner: ${packageOwner}`)
