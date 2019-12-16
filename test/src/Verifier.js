@@ -36,7 +36,7 @@ contract('Verifier', ([_, sender]) => {
 
   beforeEach('create verifier and mock test network domain', async () => {
     verifier = new Verifier(environment, 'API_KEY')
-    verifier.getApiSubdomain = () => 'etherscan-rpc'
+    verifier.getApiUrl = () => 'etherscan-rpc'
     verifier._fetchConstructor = () => ({ status: 200, data: { status: '1', result: [{ input: 'constructor' }] } })
   })
 

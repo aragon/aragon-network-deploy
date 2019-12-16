@@ -45,11 +45,10 @@ module.exports = class {
     const runs = optimizer.runs
 
     const network = this.environment.network
-    const apiSubdomain = this.getApiSubdomain(network)
-    const apiUrl = `https://${apiSubdomain}.etherscan.io/api`
-    const etherscanUrl = `https://${network === 'mainnet' ? '' : `${network}.`}etherscan.io/address`
+    const apiUrl = this.getApiUrl(network)
+    const etherscanUrl = this.getEtherscanUrl(network)
 
-    const sourcePath = this._findSourcePah(schema, dependency)
+    const sourcePath = this._findSourcePath(schema, dependency)
     const flattenedCode = await flattener([sourcePath], process.cwd())
     const sourceCode = `/**\n* ${headers.join('\n* ')}\n**/\n${flattenedCode}`
     const contractname = schema.contractName
@@ -62,7 +61,7 @@ module.exports = class {
     if (Object.keys(SUBDOMAINS).includes(network)) await sleep(this.retrySleepTime)
 
     try {
-      const response = await this._verify(apiUrl, body);
+      const response = await this._verify(apiUrl, body)
       if (response.status === 200 && response.data.status === '1') {
         await this.checkVerification(response.data.result, apiUrl)
         logger.success(`${contractname} verified successfully, see ${contractUrl}`)
@@ -102,10 +101,15 @@ module.exports = class {
     }
   }
 
-  getApiSubdomain(network) {
+  getEtherscanUrl(network) {
+    const subdomain = network === 'mainnet' ? '' : (network === 'staging') ? 'rinkeby.' : `${network}.`
+    return `https://${subdomain}etherscan.io/address`
+  }
+
+  getApiUrl(network) {
     const subdomain = SUBDOMAINS[network]
     if (!subdomain) throw Error(`Invalid network, please use any of ${Object.keys(SUBDOMAINS).join(', ')}.`)
-    return subdomain
+    return `https://${subdomain}.etherscan.io/api`
   }
 
   async _verify(apiUrl, body) {
@@ -123,7 +127,7 @@ module.exports = class {
     return axios.get(`${apiUrl}?${queryParams}`)
   }
 
-  _findSourcePah(schema, dependency = undefined) {
+  _findSourcePath(schema, dependency = undefined) {
     const absolutePath = schema.sourcePath
     const fileName = absolutePath.replace(/^.*[\\\/]/, '')
     const dir = dependency
