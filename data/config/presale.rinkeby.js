@@ -25,7 +25,7 @@ module.exports = {
     voteDescription: 'Change ANJ controller to template and deploy new presale and bonding curve instance'
   },
   wrapper: {
-    registry: '0x1FFD20263cb09dAAaA6698A9ec41E1b2297E72A5',        // Court Jurors Registry
+    registry: '0xf84356bE2A93f33FEe1A959cbb3EDf3468ba5255',        // Court Jurors Registry
     presale: '0xB1C3D652C8b999AF4a17FDc0393629a317174b3B'          // Fundraising presale contract
   }
 }
