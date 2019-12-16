@@ -1,30 +1,30 @@
 {
   "presaleTemplate": {
-    "address": "0x6cD18C6287850380A89cC6ecCecC7E19C23e22C8",
-    "transactionHash": "0x87cbbd3b98deaa23293be7c5bda3db8130c3641134a2a18723786d27cd6ce655"
+    "address": "0x9C7D1474BB4FE6A8503b24bB36F4972804C1B606",
+    "transactionHash": "0x69317100b0a43d99c4000caeeada08f5b8492d9ef5ca55c2b363032fd54104d5"
   },
   "agent": {
-    "address": "0xa7087251083b100200F0a427bd792cF17651A7bD",
-    "transactionHash": "0x714a96e6ec4ed56bbbe9a857f9fb02e26bdc1f9f97220fee93e77cd5a3a09377"
+    "address": "0x628d8c3475dceca1f8c1b84bEEe4DB08Ea19e031",
+    "transactionHash": "0x00ed03f2dcdae1acfdf12e183ee5521cfa4dadedf4f53d4af8569da3e9340f23"
   },
   "token-manager": {
-    "address": "0xd810fA50aD0310F9e3695e60826Dc45d78dB8B93",
-    "transactionHash": "0x714a96e6ec4ed56bbbe9a857f9fb02e26bdc1f9f97220fee93e77cd5a3a09377"
+    "address": "0x29a8277A08FEB0C3Cce6d08fbb31A887E06a96AB",
+    "transactionHash": "0x00ed03f2dcdae1acfdf12e183ee5521cfa4dadedf4f53d4af8569da3e9340f23"
   },
   "batched-bancor-market-maker": {
-    "address": "0x005126022eE24d047EDb1CA1fF1C3b83ab502e35",
-    "transactionHash": "0x714a96e6ec4ed56bbbe9a857f9fb02e26bdc1f9f97220fee93e77cd5a3a09377"
+    "address": "0x160e221B887D737b6defB5E29a8e7BAD2c99e766",
+    "transactionHash": "0x00ed03f2dcdae1acfdf12e183ee5521cfa4dadedf4f53d4af8569da3e9340f23"
   },
   "aragon-fundraising": {
-    "address": "0x3568205ceEdfB8c0C7B1f84f6320c72776adE88e",
-    "transactionHash": "0x714a96e6ec4ed56bbbe9a857f9fb02e26bdc1f9f97220fee93e77cd5a3a09377"
+    "address": "0x99f8ed6EB58b25295632dd0556275e248EDD495C",
+    "transactionHash": "0x00ed03f2dcdae1acfdf12e183ee5521cfa4dadedf4f53d4af8569da3e9340f23"
   },
   "balance-redirect-presale": {
-    "address": "0xB1C3D652C8b999AF4a17FDc0393629a317174b3B",
-    "transactionHash": "0x714a96e6ec4ed56bbbe9a857f9fb02e26bdc1f9f97220fee93e77cd5a3a09377"
+    "address": "0x2Bc798C4d5EB1F4E7C7c1B0770E2b34dBC79a967",
+    "transactionHash": "0x00ed03f2dcdae1acfdf12e183ee5521cfa4dadedf4f53d4af8569da3e9340f23"
   },
   "wrapper": {
-    "address": "0xD0c7283c70E06eDaCE332Eb48fA8517d95FB0Fb4",
-    "transactionHash": "0xafdfcd81eae32df27d24c5c5df7df50b2269a45c3ebe8154423c0dfad1277563"
+    "address": "0xE7C706BB93b87e0cA63D61Be96Ebd88806E35A55",
+    "transactionHash": "0xba381494804835c2c89949947c2224096630e1762426ee6c90cac6d41675785d"
   }
 }

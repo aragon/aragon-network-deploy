@@ -6,7 +6,7 @@ const START_DATE = Math.floor(new Date() / 1000 + TERM_DURATION + 120) // 2 minu
 const ANJ = {
   symbol: 'ANJ',
   decimals: 18,
-  address: '0x69f9c4205A320C0dEff240fEE58F42052C478c08'
+  address: '0x975Ef6B5fde81C24C4Ec605091f2e945872b6036'
 }
 
 const DAI = {
