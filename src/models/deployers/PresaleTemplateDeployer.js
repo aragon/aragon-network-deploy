@@ -244,7 +244,8 @@ module.exports = class extends BaseDeployer {
       data: this._newInstanceScript()
     })
 
-    const { votingApp, voteDescription } = this.config.aragonNetworkDao
+    const { votingApp } = this.config.aragonNetworkDAO
+    const voteDescription = 'Change ANJ controller to template and deploy new presale and bonding curve instance'
     const tokenManagerScript = [ {
       to: votingApp,
       data: this.encoder.encodeNewVote(this.encoder.encodeCallsScript(agentCallsScript), voteDescription)
@@ -265,7 +266,7 @@ module.exports = class extends BaseDeployer {
 
   async _runEvmScript(callsScript) {
     const TokenManager = await this.environment.getArtifact('TokenManager', '@aragon/apps-token-manager')
-    const { tokenManager: tokenManagerAddress } = this.config.aragonNetworkDao
+    const { tokenManager: tokenManagerAddress } = this.config.aragonNetworkDAO
     const tokenManager = await TokenManager.at(tokenManagerAddress)
     const receipt = await tokenManager.forward(callsScript)
     logger.info(`EVM Script run on tx: ${receipt.tx}. Gas used: ${receipt.receipt.gasUsed}`)

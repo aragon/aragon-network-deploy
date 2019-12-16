@@ -1,10 +1,17 @@
 {
   "DAI": {
     "address": "0xB88D8CBD8df85fb31b7cD17Fbc6fCC0FE110F5d0",
-    "transactionHash": "0x6290d33f24388aa7bda599259ac9e6fa686cbf109573ecf7af323cbf96db2735"
+    "transactionHash": "0x6290d33f24388aa7bda599259ac9e6fa686cbf109573ecf7af323cbf96db2735",
+    "verification": "https://rinkeby.etherscan.io/address/0xB88D8CBD8df85fb31b7cD17Fbc6fCC0FE110F5d0#code"
+  },
+  "ANT": {
+    "address": "0xd6257606740DE4A457B97D5DD469021ED72b6Ae7",
+    "transactionHash": "0x3ecbf7b26d3cfceaad40bab47793bcd5b0ca75867e2307b2619eebf7dc9a937e",
+    "verification": "https://rinkeby.etherscan.io/address/0xd6257606740DE4A457B97D5DD469021ED72b6Ae7#code"
   },
   "ANJ": {
-    "address": "0x17741e3521887D51298c573fc6ac1eeEF1E8e44B",
-    "transactionHash": "0x3dc2f06b28a75f4ca46df04a1c62660edce616cc47e3cc036ed22f01bb35c02e"
+    "address": "0xae83b8A9983b934Ebed4167BfDC4170d2A1E3D76",
+    "transactionHash": "0x52d559c4be8abc86470450550587997d786aa7f9133e9773eee5fa611720f36a",
+    "verification": "https://rinkeby.etherscan.io/address/0xae83b8A9983b934Ebed4167BfDC4170d2A1E3D76#code"
   }
 }

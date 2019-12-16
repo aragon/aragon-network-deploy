@@ -12,7 +12,7 @@ module.exports = {
   },
   staging: {
     ...config,
-    controller:       '0xde8bf81d4a8b67f51dc909035cca5b4e14e92d88',   // Agent of AN DAO Staging
+    controller:       '0xde8bf81d4a8b67f51dc909035cca5b4e14e92d88',   // Agent of AN DAO Staging (short)
     factory:          '0x6ffeb4038f7f077c4d20eaf1706980caec31e2bf',   // MiniMe token factory used for the templates
     transfersEnabled: true,
   },
