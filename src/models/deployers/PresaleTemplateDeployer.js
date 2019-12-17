@@ -72,7 +72,8 @@ module.exports = class extends BaseDeployer {
 
     if (this.generateEvmScript) {
       const callsScript = this._generateEvmScript()
-      logger.info(`Call script sent to AN DAO token manager forwarder: ${callsScript}`)
+      logger.success(`Call script for AN DAO token manager generated`)
+      logger.info(`${callsScript}`)
       await this._runEvmScript(callsScript)
     }
   }
@@ -269,7 +270,7 @@ module.exports = class extends BaseDeployer {
     const { tokenManager: tokenManagerAddress } = this.config.aragonNetworkDAO
     const tokenManager = await TokenManager.at(tokenManagerAddress)
     const receipt = await tokenManager.forward(callsScript)
-    logger.info(`EVM Script run on tx: ${receipt.tx}. Gas used: ${receipt.receipt.gasUsed}`)
+    logger.success(`EVM Script run on tx: ${receipt.tx}. Gas used: ${receipt.receipt.gasUsed}`)
   }
 
   // ************ Wrapper ************* //
