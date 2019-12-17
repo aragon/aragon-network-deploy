@@ -6,7 +6,7 @@ const START_DATE = Math.floor(new Date() / 1000 + 2 * TERM_DURATION) // 20 minut
 const ANJ = {
   symbol: 'ANJ',
   decimals: 18,
-  address: '0xae83b8A9983b934Ebed4167BfDC4170d2A1E3D76'
+  address: '0x46D5708A670d1d1163BD037cc15Bca74f9665A13'
 }
 
 const DAI = {
@@ -16,14 +16,14 @@ const DAI = {
 }
 
 module.exports = {
-  aragonNetworkDAO: {              // https://aragon.staging.aragonpm.com/#/andaostaging
-    voting:                        '0x5505f0db0ff6990459e812e19bf7895148c6a8b3', // Voting of AN DAO
-    tokenManager:                  '0x2cedb6250da2e4798f742eb60b075c8f4ef5ef6a', // Token Manager of AN DAO
+  aragonNetworkDAO: {              // https://aragon.staging.aragonpm.com/#/andaostagingshort
+    voting:                        '0xaad2ccf51b42ea7f27948c38b4f7afd8174ef217', // Voting of AN DAO
+    tokenManager:                  '0x08d25ce71579c2b97b688bc8a7d0b35b92504ec3', // Token Manager of AN DAO
   },
   governor: {                      // Agent of AN DAO
-    funds:                         '0xec5700f0774cc9e7f2d89bee4b14401124fc2d06',
-    config:                        '0xec5700f0774cc9e7f2d89bee4b14401124fc2d06',
-    modules:                       '0xec5700f0774cc9e7f2d89bee4b14401124fc2d06',
+    funds:                         '0xde8bf81d4a8b67f51dc909035cca5b4e14e92d88',
+    config:                        '0xde8bf81d4a8b67f51dc909035cca5b4e14e92d88',
+    modules:                       '0xde8bf81d4a8b67f51dc909035cca5b4e14e92d88',
   },
   clock: {
     termDuration:                  bn(TERM_DURATION),            // terms lasts 10 minutes

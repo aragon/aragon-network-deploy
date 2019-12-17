@@ -8,9 +8,9 @@ module.exports = {
   },
   instance: {
     owner:            '0xde8bf81d4a8b67f51dc909035cca5b4e14e92d88',       // Agent of AN DAO Staging (short)
-    id:               'templates-externally-owned-presale-bonding-curve', // ID of the template to be registered in aragon ID
+    id:               'templates-eopbc-1',                                // ID of the template to be registered in aragon ID
     collateralToken:  '0xd6257606740DE4A457B97D5DD469021ED72b6Ae7',       // ANT
-    bondedToken:      '0xae83b8A9983b934Ebed4167BfDC4170d2A1E3D76',       // ANJ
+    bondedToken:      '0x46D5708A670d1d1163BD037cc15Bca74f9665A13',       // ANJ
     period:           '86400',                                            // Presale period will last 1 day, bonding curve will start right after that
     exchangeRate:     '100000000',                                        // Presale exchange rate 1 ANT = 100 ANJ
     openDate:         START_DATE,                                         // Presale will start in 10 minutes from now
@@ -24,7 +24,7 @@ module.exports = {
     tokenManager:     '0x08d25ce71579c2b97b688bc8a7d0b35b92504ec3',       // Token Manager of AN DAO Staging (short)
   },
   wrapper: {
-    registry:         '0x3497b2F7eEB7f1BeEFb044c6DA90110C4D6d5C4E',       // Court's Jurors Registry instance on Staging
-    presale:          '0x373e5c71B567Ae033C4d9912eFE771bE340369A1'        // Fundraising presale instance on Staging
+    registry:         '0x2D6E7941c41be354C4D6ba56842Abce6F739a52d',       // Court's Jurors Registry instance on Staging
+    presale:          '0x2319330c6d98cCC0Acc78FE172aFa00D8C0a4383'        // Fundraising presale instance on Staging
   }
 }

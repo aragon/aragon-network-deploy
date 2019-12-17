@@ -10,8 +10,7 @@
     "verification": "https://rinkeby.etherscan.io/address/0xd6257606740DE4A457B97D5DD469021ED72b6Ae7#code"
   },
   "ANJ": {
-    "address": "0xae83b8A9983b934Ebed4167BfDC4170d2A1E3D76",
-    "transactionHash": "0x52d559c4be8abc86470450550587997d786aa7f9133e9773eee5fa611720f36a",
-    "verification": "https://rinkeby.etherscan.io/address/0xae83b8A9983b934Ebed4167BfDC4170d2A1E3D76#code"
+    "address": "0x46D5708A670d1d1163BD037cc15Bca74f9665A13",
+    "transactionHash": "0xf193b1a16f4cdba4f813c4552d43630157fa5ae3ef1e39eefa8ae00a1fb2bfe5"
   }
 }
