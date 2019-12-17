@@ -4,27 +4,27 @@
     "transactionHash": "0x69317100b0a43d99c4000caeeada08f5b8492d9ef5ca55c2b363032fd54104d5"
   },
   "agent": {
-    "address": "0x628d8c3475dceca1f8c1b84bEEe4DB08Ea19e031",
-    "transactionHash": "0x00ed03f2dcdae1acfdf12e183ee5521cfa4dadedf4f53d4af8569da3e9340f23"
+    "address": "0x84cf086c73d3196dB312519fcdc028C6BD66DAED",
+    "transactionHash": "0xa57eb9099b6f09c3cba4bd78630d9deeb77ce1524b0959b94ffe2d70efb14d20"
   },
   "token-manager": {
-    "address": "0x29a8277A08FEB0C3Cce6d08fbb31A887E06a96AB",
-    "transactionHash": "0x00ed03f2dcdae1acfdf12e183ee5521cfa4dadedf4f53d4af8569da3e9340f23"
+    "address": "0xd141a2Da2F7A5707194c7BD742c892cb63A16513",
+    "transactionHash": "0xa57eb9099b6f09c3cba4bd78630d9deeb77ce1524b0959b94ffe2d70efb14d20"
   },
   "batched-bancor-market-maker": {
-    "address": "0x160e221B887D737b6defB5E29a8e7BAD2c99e766",
-    "transactionHash": "0x00ed03f2dcdae1acfdf12e183ee5521cfa4dadedf4f53d4af8569da3e9340f23"
+    "address": "0x4bD5B0A22904348D615a72b85d18dA0F785C151A",
+    "transactionHash": "0xa57eb9099b6f09c3cba4bd78630d9deeb77ce1524b0959b94ffe2d70efb14d20"
   },
   "aragon-fundraising": {
-    "address": "0x99f8ed6EB58b25295632dd0556275e248EDD495C",
-    "transactionHash": "0x00ed03f2dcdae1acfdf12e183ee5521cfa4dadedf4f53d4af8569da3e9340f23"
+    "address": "0x3cA68fe550a3E8f654b8141e3F65c78404043157",
+    "transactionHash": "0xa57eb9099b6f09c3cba4bd78630d9deeb77ce1524b0959b94ffe2d70efb14d20"
   },
   "balance-redirect-presale": {
-    "address": "0x2Bc798C4d5EB1F4E7C7c1B0770E2b34dBC79a967",
-    "transactionHash": "0x00ed03f2dcdae1acfdf12e183ee5521cfa4dadedf4f53d4af8569da3e9340f23"
+    "address": "0x075dD6Bb8C169c99F882b42Dd71A7efc33F6A0BE",
+    "transactionHash": "0xa57eb9099b6f09c3cba4bd78630d9deeb77ce1524b0959b94ffe2d70efb14d20"
   },
   "wrapper": {
-    "address": "0xE7C706BB93b87e0cA63D61Be96Ebd88806E35A55",
-    "transactionHash": "0xba381494804835c2c89949947c2224096630e1762426ee6c90cac6d41675785d"
+    "address": "0x4e13061DE0C1B3a908831a55fc729732A92b76DF",
+    "transactionHash": "0xcbb27f69ca1768828cfdc11f9b1b3e8911ecb1e6790ebe8b215b873997aac3a9"
   }
 }

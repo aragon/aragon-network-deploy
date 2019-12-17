@@ -8,9 +8,9 @@ module.exports = {
   },
   instance: {
     owner:            '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076',       // Agent of AN DAO Rinkeby
-    id:               'templates-externally-owned-presale-bonding-curve', // ID of the template to be registered in aragon ID
+    id:               'templates-eopbc-1',                                // ID of the template to be registered in aragon ID
     collateralToken:  '0x5cC7986D7A793b9930BD80067ca54c3E6D2F261B',       // ANT
-    bondedToken:      '0x975Ef6B5fde81C24C4Ec605091f2e945872b6036',       // ANJ
+    bondedToken:      '0x8a5b1b7D0021dB0dC7F23ebd5F98bc58F2500352',       // ANJ
     period:           '864000',                                           // Presale period will last 10 days, bonding curve will start right after that
     exchangeRate:     '100000000',                                        // Presale exchange rate 1 ANT = 100 ANJ
     openDate:         START_DATE,                                         // Presale will start in 10 minutes from now
@@ -24,7 +24,7 @@ module.exports = {
     tokenManager:     '0x0cc31e2d5117d25fe50ee9d569613851e6bb0dd9',       // Token Manager of AN DAO Rinkeby
   },
   wrapper: {
-    registry:         '0xe089e929FFf1912796F55a0f09fA23190F94eD78',       // Court's Jurors Registry instance on Rinkeby
-    presale:          '0x2Bc798C4d5EB1F4E7C7c1B0770E2b34dBC79a967'        // Fundraising presale instance on Rinkeby
+    registry:         '0x8bF06Fd2f37FD71E0999FD3a06f70D633BfA0EDb',       // Court's Jurors Registry instance on Rinkeby
+    presale:          '0x075dD6Bb8C169c99F882b42Dd71A7efc33F6A0BE'        // Fundraising presale instance on Rinkeby
   }
 }

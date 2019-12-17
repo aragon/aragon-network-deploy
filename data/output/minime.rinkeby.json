@@ -4,14 +4,13 @@
     "transactionHash": "0x8e0f6b19c00310750421638e91c9e5c15ae9aa402dec1ad595e2b82603b0ffc8",
     "verification": "https://rinkeby.etherscan.io/address/0xe9A083D88Eed757B1d633321Ce0519F432c6284d#code"
   },
-  "ANJ": {
-    "address": "0x975Ef6B5fde81C24C4Ec605091f2e945872b6036",
-    "transactionHash": "0x05a562f63476762371875668fcea8070f14eb05baa48b4018a72f1fe167744f2",
-    "verification": "https://rinkeby.etherscan.io/address/0x975Ef6B5fde81C24C4Ec605091f2e945872b6036#code"
-  },
   "ANT": {
     "address": "0x5cC7986D7A793b9930BD80067ca54c3E6D2F261B",
     "transactionHash": "0x7cc556e2bae3df811df705bd6f01fdec1931b58a68deea90bb300fa894235c24",
     "verification": "https://rinkeby.etherscan.io/address/0x5cC7986D7A793b9930BD80067ca54c3E6D2F261B#code"
+  },
+  "ANJ": {
+    "address": "0x8a5b1b7D0021dB0dC7F23ebd5F98bc58F2500352",
+    "transactionHash": "0x8eaacd37611b68cdf4c157b6ab5014db1afe67d6859df7dea24a40532cbf5ae5"
   }
 }
