@@ -1,0 +1,30 @@
+{
+  "presaleTemplate": {
+    "address": "0xF5Fc4Ca75534e13d8120D8405e0d7D4662848592",
+    "transactionHash": "0xb256848ffe6db7651b4946ec5cc1562ff8aa0369b35b56e9844b6cad53a9b807"
+  },
+  "agent": {
+    "address": "0xEc0DD1579551964703246BeCfbF199C27Cb84485",
+    "transactionHash": "0x987f1d9f0d29b00426d7a172484f6e8fa8d9b0cd73ed0d41dbfeae38233a6f5c"
+  },
+  "token-manager": {
+    "address": "0x5F72044df487dC4d15B2e568bC56da4767E15CCa",
+    "transactionHash": "0x987f1d9f0d29b00426d7a172484f6e8fa8d9b0cd73ed0d41dbfeae38233a6f5c"
+  },
+  "batched-bancor-market-maker": {
+    "address": "0x5D9DbF55aF65498FaA84BDD4dDe37f7F3f8c7af1",
+    "transactionHash": "0x987f1d9f0d29b00426d7a172484f6e8fa8d9b0cd73ed0d41dbfeae38233a6f5c"
+  },
+  "aragon-fundraising": {
+    "address": "0x0b4D742d52EE0C4391439f80822B26fDF1ad6Ee7",
+    "transactionHash": "0x987f1d9f0d29b00426d7a172484f6e8fa8d9b0cd73ed0d41dbfeae38233a6f5c"
+  },
+  "balance-redirect-presale": {
+    "address": "0xf89c8752d82972f94a4D1331e010eD6593e8EC49",
+    "transactionHash": "0x987f1d9f0d29b00426d7a172484f6e8fa8d9b0cd73ed0d41dbfeae38233a6f5c"
+  },
+  "wrapper": {
+    "address": "0xe208809De93a9DE444952b644c84C8FE7f64f8a5",
+    "transactionHash": "0x3c91679ba25687f2c124faf71d212b911b63deba0954e4c7b29ec052d5f19300"
+  }
+}
