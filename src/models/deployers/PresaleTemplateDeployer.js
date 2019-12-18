@@ -6,8 +6,8 @@ const { getInstalledAppsById } = require('../../helpers/events')
 const { publishBalanceRedirectPresale } = require('../../helpers/balance_redirect_presale.js')
 
 const VERIFICATION_HEADERS = [
-  'Commit sha: 68b894fe4fd81cbf43c8b1e128be9ddfffd41380',
-  'GitHub repository: https://github.com/aragonone/fundraising',
+  'Commit sha: 4e5e611272e5a1a124ec0e90e0d93b5f1470e783',
+  'GitHub repository: https://github.com/aragonone/court-presale',
   'Tool used for the deploy: https://github.com/aragon/aragon-network-deploy',
 ]
 
@@ -246,7 +246,7 @@ module.exports = class extends BaseDeployer {
 
     const { votingApp } = this.config.aragonNetworkDAO
     const voteDescription = 'Change ANJ controller to template and deploy new presale and bonding curve instance'
-    const tokenManagerScript = [ {
+    const tokenManagerScript = [{
       to: votingApp,
       data: this.encoder.encodeNewVote(this.encoder.encodeCallsScript(agentCallsScript), voteDescription)
     }]
