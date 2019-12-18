@@ -3,7 +3,6 @@ const BaseDeployer = require('./BaseDeployer')
 const CallsEncoder = require('../CallsEncoder')
 const logger = require('../../helpers/logger')('PresaleTemplateDeployer')
 const { getInstalledAppsById } = require('../../helpers/events')
-const { publishBalanceRedirectPresale } = require('../../helpers/balance_redirect_presale.js')
 
 const VERIFICATION_HEADERS = [
   'Commit sha: 68b894fe4fd81cbf43c8b1e128be9ddfffd41380',
@@ -49,21 +48,9 @@ module.exports = class extends BaseDeployer {
       return
     }
 
-    const configTemplate = this.previousDeploy.presaleTemplate
-    const PresaleTemplate = await this.environment.getArtifact('EOPBCTemplate', '@aragon/templates-externally-owned-presale-bonding-curve')
-
-    if (configTemplate && configTemplate.address) {
-      await this._loadPresaleTemplate(PresaleTemplate, configTemplate.address)
-    } else {
-      await this._deployPresaleTemplate(PresaleTemplate)
-    }
+    await this._loadOrDeployTemplate()
 
     await this._verifyPresaleTemplate()
-
-    // TODO: remove once it's in aragen
-    if (this.environment.isLocal()) {
-      await publishBalanceRedirectPresale(this.environment, this.config, logger)
-    }
 
     if (this.deployInstance) {
       const installedApps = await this._deployPresaleInstance()
@@ -79,6 +66,17 @@ module.exports = class extends BaseDeployer {
   }
 
   // ************ Template ************* //
+
+  async _loadOrDeployTemplate () {
+    const configTemplate = this.previousDeploy.presaleTemplate
+    const PresaleTemplate = await this.environment.getArtifact('EOPBCTemplate', '@aragon/templates-externally-owned-presale-bonding-curve')
+
+    if (configTemplate && configTemplate.address) {
+      await this._loadPresaleTemplate(PresaleTemplate, configTemplate.address)
+    } else {
+      await this._deployPresaleTemplate(PresaleTemplate)
+    }
+  }
 
   async _loadPresaleTemplate(PresaleTemplate, templateAddress) {
     logger.warn(`Using previous deployed Presale Template at ${templateAddress}`)
