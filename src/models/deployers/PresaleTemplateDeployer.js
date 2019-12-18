@@ -102,7 +102,7 @@ module.exports = class extends BaseDeployer {
   }
 
   async _verifyPresaleTemplate() {
-    await this._verifyNonProxy('presaleTemplate')
+    await this._verifyNonProxy('presaleTemplate', '@aragon/templates-externally-owned-presale-bonding-curve')
   }
 
   // ************ Instance ************* //
@@ -211,20 +211,20 @@ module.exports = class extends BaseDeployer {
     await miniMeBondedToken.changeController(this.presaleTemplate.address);
   }
 
-  async _verifyNonProxy(contractName) {
-    await this._verify(contractName, this[contractName], VERIFICATION_HEADERS)
+  async _verifyNonProxy(contractName, dependency) {
+    await this._verify(contractName, this[contractName], dependency, VERIFICATION_HEADERS)
   }
 
   async _verifyProxy(contractName, contractAdress) {
     const AppProxyUpgradeable = await this.environment.getArtifact('AppProxyUpgradeable', '@aragon/os')
     const proxyContract = await AppProxyUpgradeable.at(contractAdress)
-    await this._verify(contractName, proxyContract, VERIFICATION_HEADERS_OS)
+    await this._verify(contractName, proxyContract, '@aragon/os', VERIFICATION_HEADERS_OS)
   }
 
-  async _verify(contractName, contract, verificationHeaders) {
+  async _verify(contractName, contract, dependency, verificationHeaders) {
     const previousContract = this.previousDeploy[contractName]
     if (this.verifier && previousContract && !previousContract.verification) {
-      const url = await this.verifier.call(contract, verificationHeaders)
+      const url = await this.verifier.call(contract, dependency, verificationHeaders)
       const { address, transactionHash } = previousContract
       this._saveDeploy({ [contractName]: { address, transactionHash, verification: url } })
     }
