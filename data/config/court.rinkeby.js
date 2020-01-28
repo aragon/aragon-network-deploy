@@ -1,18 +1,18 @@
 const { bn, bigExp } = require('../../src/helpers/numbers')
 
-const TERM_DURATION = 60 * 60 * 8                                      // 8 hours
+const TERM_DURATION = 150                                              // 2.5 minutes
 const START_DATE = Math.floor(new Date() / 1000 + TERM_DURATION + 120) // 2 minutes from now
 
 const ANJ = {
   symbol: 'ANJ',
   decimals: 18,
-  address: '0x975Ef6B5fde81C24C4Ec605091f2e945872b6036'
+  address: '0x929F3B27a22a7A56FC8d89617033D22e53840aC9'
 }
 
 const DAI = {
   symbol: 'DAI',
   decimals: 18,
-  address: '0xe9A083D88Eed757B1d633321Ce0519F432c6284d'
+  address: '0x55Ab9B236CDC9e2CecBD41ADa45D8261f8A6049b'
 }
 
 module.exports = {
@@ -31,11 +31,11 @@ module.exports = {
   },
   court: {
     feeToken:                      DAI,                          // fee token for the court is DAI
-    evidenceTerms:                 bn(21),                       // evidence period lasts 21 terms (7 days)
-    commitTerms:                   bn(6),                        // vote commits last 6 terms (2 days)
-    revealTerms:                   bn(6),                        // vote reveals last 6 terms (2 days)
-    appealTerms:                   bn(6),                        // appeals last 6 terms (2 days)
-    appealConfirmTerms:            bn(6),                        // appeal confirmations last 6 terms (2 days)
+    evidenceTerms:                 bn(2),                       // evidence period lasts 21 terms (7 days)
+    commitTerms:                   bn(1),                        // vote commits last 6 terms (2 days)
+    revealTerms:                   bn(1),                        // vote reveals last 6 terms (2 days)
+    appealTerms:                   bn(1),                        // appeals last 6 terms (2 days)
+    appealConfirmTerms:            bn(1),                        // appeal confirmations last 6 terms (2 days)
     maxJurorsPerDraftBatch:        bn(81),                       // max number of jurors drafted per batch
     jurorFee:                      bigExp(10, DAI.decimals),     // 10 fee tokens for juror fees
     draftFee:                      bigExp(18, DAI.decimals - 2), // 0.18 fee tokens for draft fees
@@ -45,7 +45,7 @@ module.exports = {
     firstRoundJurorsNumber:        bn(3),                        // disputes will start with 3 jurors
     appealStepFactor:              bn(3),                        // the number of jurors to be drafted will be incremented 3 times on each appeal
     maxRegularAppealRounds:        bn(4),                        // there can be up to 4 appeals in total per dispute
-    finalRoundLockTerms:           bn(21),                       // coherent jurors in the final round won't be able to withdraw for 21 terms (7 days)
+    finalRoundLockTerms:           bn(4),                       // coherent jurors in the final round won't be able to withdraw for 21 terms (7 days)
     appealCollateralFactor:        bn(30000),                    // appeal collateral is 3x of the corresponding juror fees
     appealConfirmCollateralFactor: bn(20000),                    // appeal-confirmation collateral is 2x of the corresponding juror fees
     finalRoundWeightPrecision:     bn(1000),                     // use to improve division rounding for final round maths
@@ -57,7 +57,7 @@ module.exports = {
   subscriptions: {
     feeToken:                      DAI,                          // fee token for subscriptions is DAI
     feeAmount:                     bigExp(10, DAI.decimals),     // 10 fee tokens per subscription period
-    periodDuration:                bn(90),                       // each subscription period lasts 90 terms (30 days)
+    periodDuration:                bn(1152),                       // each subscription period lasts 1152 terms (2 days)
     prePaymentPeriods:             bn(12),                       // cannot pre-pay more than 12 periods in advance (1 year)
     resumePrePaidPeriods:          bn(12),                       // 12 pre-paid periods when resuming activity (1 year)
     latePaymentPenaltyPct:         bn(1000),                     // late payment subscriptions are charged 20%
