@@ -24,7 +24,9 @@ module.exports = {
     tokenManager:     undefined,                                          // Set with the token manager of the AN DAO deployed to Aragen
   },
   wrapper: {
+    owner:            undefined,                                          // Set with an AN DAO deployed to Aragen
     registry:         '0x4eD6178D5dEf6AFD8e23334038609125cBB15C8F',       // Court's Jurors Registry instance on Aragen
-    presale:          '0x1902a0410EFe699487Dd85F12321aD672bE4ada2'        // Fundraising presale instance on Aragen
+    presale:          '0x1902a0410EFe699487Dd85F12321aD672bE4ada2',       // Fundraising presale instance on Aragen
+    uniswap:          undefined,                                          // Uniswap factory
   }
 }

@@ -29,7 +29,9 @@ module.exports = {
     tokenManager:     '0xda15e525b09266488c95c2742e849ca71683a0f5',       // Token Manager of AN DAO
   },
   wrapper: {
+    owner:            '0x5e8c17a6065c35b172b10e80493d2266e2947df4',       // Agent of AN DAO
     registry:         '0x8bEa04A94aEc27CE8C2409b0e0F28A02996d264d',       // Court's Jurors Registry instance on Mainnet
-    presale:          '0xf89c8752d82972f94a4D1331e010eD6593e8EC49'        // Fundraising presale instance on Mainnet
+    presale:          '0xf89c8752d82972f94a4D1331e010eD6593e8EC49',       // Fundraising presale instance on Mainnet
+    uniswap:          '0xc0a47dFe034B400B47bDaD5FecDa2621de6c4d95',       // Uniswap Factory address
   }
 }
