@@ -52,7 +52,7 @@
     "@aragon/apps-voting": "^2.1.0",
     "@aragon/erc20-faucet": "https://github.com/aragonone/erc20-faucet",
     "@aragon/court": "1.1.0",
-    "@aragon/court-presale-activate": "1.0.0",
+    "@aragon/court-presale-activate": "1.1.0",
     "@aragon/minime": "^1.0.0",
     "@aragon/templates-externally-owned-presale-bonding-curve": "1.1.0",
     "@aragon/templates-shared": "^1.0.0",

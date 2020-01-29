@@ -275,10 +275,10 @@ module.exports = class extends BaseDeployer {
 
   async _deployWrapper() {
     const { bondedToken } = this.config.instance
-    const { registry, presale } = this.config.wrapper
+    const { owner, registry, presale, uniswap } = this.config.wrapper
 
     const CourtPresaleActivate = await this.environment.getArtifact('CourtPresaleActivate', '@aragon/court-presale-activate')
-    const wrapper = await CourtPresaleActivate.new(bondedToken, registry, presale)
+    const wrapper = await CourtPresaleActivate.new(owner, bondedToken, registry, presale, uniswap)
 
     const { address, transactionHash } = wrapper
     logger.success(`Created Wrapper contract at ${address}`)
