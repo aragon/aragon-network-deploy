@@ -24,6 +24,10 @@
     "transactionHash": "0x987f1d9f0d29b00426d7a172484f6e8fa8d9b0cd73ed0d41dbfeae38233a6f5c"
   },
   "wrapper": {
+    "address": "0x47F0622dE95ed6FC707Ee8EEcb967d79d84cE344",
+    "transactionHash": "0x1421f29fcc244139be181cb282debbae52dfd23737115fb149f86493c737d58f"
+  },
+  "wrapper-deprecated": {
     "address": "0x5202E766DC1D11a94a2A300D2ed27C688644e8FE",
     "transactionHash": "0x132919ce4c45eb71d1b6a53f340c3ac957d24b71e5ae743e8854fc3c2a553e38"
   }
