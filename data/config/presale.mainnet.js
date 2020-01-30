@@ -29,7 +29,7 @@ module.exports = {
     tokenManager:     '0xda15e525b09266488c95c2742e849ca71683a0f5',       // Token Manager of AN DAO
   },
   wrapper: {
-    registry:         '0x8bEa04A94aEc27CE8C2409b0e0F28A02996d264d',       // Court's Jurors Registry instance on Mainnet
+    registry:         '0xF9dDa954adf5E54b89f988C1560553A0a387CCE1',       // Court's Jurors Registry instance on Mainnet
     presale:          '0xf89c8752d82972f94a4D1331e010eD6593e8EC49'        // Fundraising presale instance on Mainnet
   }
 }
