@@ -24,9 +24,7 @@ module.exports = {
     tokenManager:     '0x0cc31e2d5117d25fe50ee9d569613851e6bb0dd9',       // Token Manager of AN DAO Rinkeby
   },
   wrapper: {
-    owner:            '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076',       // Agent of AN DAO Rinkeby
     registry:         '0xe089e929FFf1912796F55a0f09fA23190F94eD78',       // Court's Jurors Registry instance on Rinkeby
-    presale:          '0x2Bc798C4d5EB1F4E7C7c1B0770E2b34dBC79a967',       // Fundraising presale instance on Rinkeby
-    uniswap:          '0xf5D915570BC477f9B8D6C0E980aA81757A3AaC36',       // Uniswap Factory address on Rinkeby
+    presale:          '0x2Bc798C4d5EB1F4E7C7c1B0770E2b34dBC79a967'        // Fundraising presale instance on Rinkeby
   }
 }
