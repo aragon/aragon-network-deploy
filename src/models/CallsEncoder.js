@@ -4,6 +4,7 @@ const VOTING_ABI = require('@aragon/apps-voting/abi/Voting.json').abi
 const CONTROLLER_ABI = require('@aragon/court/abi/Controller.json').abi
 const MINIME_ABI = require('@aragon/minime/abi/MiniMeToken.json').abi
 const EOPBCTEMPLATE_ABI = require('@aragon/templates-externally-owned-presale-bonding-curve/abi/EOPBCTemplate.json').abi
+const CONTROLLED_RECOVERABLE_ABI = require('@aragon/court/abi/ControlledRecoverable.json').abi
 
 const CALLSCRIPT_ID = '0x00000001'
 const EMPTY_CALLSCRIPT = '0x00000001'
@@ -61,12 +62,17 @@ module.exports = class CallsEncoder {
     return abi.encodeFunctionCall(setModulesABI, [ids, addresses])
   }
 
-  encodeChangeController (controllerAddress) {
+  encodeDelayStartTime(firstTermStartTime) {
+    const functionABI = this._getFunctionABI(CONTROLLER_ABI, 'delayStartTime', 1)
+    return abi.encodeFunctionCall(functionABI, [firstTermStartTime.toString()])
+  }
+
+  encodeChangeController(controllerAddress) {
     const changeControllerABI = this._getFunctionABI(MINIME_ABI, 'changeController', 1)
     return abi.encodeFunctionCall(changeControllerABI, [controllerAddress])
   }
 
-  encodeNewInstance ({
+  encodeNewInstance({
     owner,
     id,
     collateralToken,
@@ -95,6 +101,11 @@ module.exports = class CallsEncoder {
         slippage
       ]
     ])
+  }
+
+  encodeRecoverFunds(tokenAddress, destination) {
+    const functionABI = this._getFunctionABI(CONTROLLED_RECOVERABLE_ABI, 'recoverFunds', 2)
+    return abi.encodeFunctionCall(functionABI, [tokenAddress, destination])
   }
 
   _getFunctionABI(ABI, functionName, inputsLength) {

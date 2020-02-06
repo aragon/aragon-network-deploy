@@ -61,7 +61,9 @@ module.exports = class extends BaseDeployer {
       const callsScript = this._generateEvmScript()
       logger.success(`Call script for AN DAO token manager generated`)
       logger.info(`${callsScript}`)
-      await this._runEvmScript(callsScript)
+      const { tokenManager } = this.config.aragonNetworkDAO
+      const receipt = await this._runEvmScript(callsScript, tokenManager)
+      logger.success(`EVM Script run on tx: ${receipt.tx}. Gas used: ${receipt.receipt.gasUsed}`)
     }
   }
 
@@ -261,14 +263,6 @@ module.exports = class extends BaseDeployer {
   _newInstanceScript() {
     const data = this.encoder.encodeNewInstance(this.config.instance)
     return this.encoder.encodeExecute(this.presaleTemplate.address, 0, data)
-  }
-
-  async _runEvmScript(callsScript) {
-    const TokenManager = await this.environment.getArtifact('TokenManager', '@aragon/apps-token-manager')
-    const { tokenManager: tokenManagerAddress } = this.config.aragonNetworkDAO
-    const tokenManager = await TokenManager.at(tokenManagerAddress)
-    const receipt = await tokenManager.forward(callsScript)
-    logger.success(`EVM Script run on tx: ${receipt.tx}. Gas used: ${receipt.receipt.gasUsed}`)
   }
 
   // ************ Wrapper ************* //

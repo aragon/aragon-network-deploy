@@ -44,7 +44,19 @@
     "deploy:faucet:staging": "node ./bin/index.js faucet -n staging",
     "deploy:faucet:ropsten": "node ./bin/index.js faucet -n ropsten",
     "deploy:faucet:rinkeby": "node ./bin/index.js faucet -n rinkeby",
-    "deploy:faucet:mainnet": "node ./bin/index.js faucet -n mainnet"
+    "deploy:faucet:mainnet": "node ./bin/index.js faucet -n mainnet",
+    "delay:court:rpc": "node ./bin/index.js court-start-delay -n rpc --verbose",
+    "delay:court:staging": "node ./bin/index.js court-start-delay -n staging --verbose",
+    "delay:court:rinkeby": "node ./bin/index.js court-start-delay -n rinkeby --verbose",
+    "delay:court:mainnet": "node ./bin/index.js court-start-delay -n mainnet --verbose",
+    "migrate:registry:rpc": "node ./bin/index.js registry-migrate -n rpc --verbose",
+    "migrate:registry:staging": "node ./bin/index.js registry-migrate -n staging",
+    "migrate:registry:rinkeby": "node ./bin/index.js registry-migrate -n rinkeby",
+    "migrate:registry:mainnet": "node ./bin/index.js registry-migrate -n mainnet",
+    "restore:disputes:rpc": "node ./bin/index.js dispute-manager-restore -n rpc --verbose",
+    "restore:disputes:staging": "node ./bin/index.js dispute-manager-restore -n staging",
+    "restore:disputes:rinkeby": "node ./bin/index.js dispute-manager-restore -n rinkeby",
+    "restore:disputes:mainnet": "node ./bin/index.js dispute-manager-restore -n mainnet"
   },
   "dependencies": {
     "@aragon/apps-agent": "^2.0.0",

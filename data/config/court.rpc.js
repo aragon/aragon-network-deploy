@@ -17,9 +17,9 @@ const DAI = {
 
 module.exports = {
   governor: {
-    funds:                        '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', // ganache initial deterministic address
-    config:                       '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', // ganache initial deterministic address
-    modules:                      '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', // ganache initial deterministic address
+    funds:                        '0xb4124cEB3451635DAcedd11767f004d8a28c6eE7', // aragon devchain initial deterministic address
+    config:                       '0xb4124cEB3451635DAcedd11767f004d8a28c6eE7', // aragon devchain initial deterministic address
+    modules:                      '0xb4124cEB3451635DAcedd11767f004d8a28c6eE7', // aragon devchain initial deterministic address
   },
   clock: {
     termDuration:                  bn(TERM_DURATION),            // terms lasts 10 minutes
