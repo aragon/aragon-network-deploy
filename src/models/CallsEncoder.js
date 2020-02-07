@@ -5,6 +5,7 @@ const CONTROLLER_ABI = require('@aragon/court/abi/Controller.json').abi
 const MINIME_ABI = require('@aragon/minime/abi/MiniMeToken.json').abi
 const EOPBCTEMPLATE_ABI = require('@aragon/templates-externally-owned-presale-bonding-curve/abi/EOPBCTemplate.json').abi
 const CONTROLLED_RECOVERABLE_ABI = require('@aragon/court/abi/ControlledRecoverable.json').abi
+const JUROS_REGISTRY_MIGRATOR_ABI = require('@aragonone/court-registry-migrator/abi/JurorsRegistryMigrator.json').abi
 
 const CALLSCRIPT_ID = '0x00000001'
 const EMPTY_CALLSCRIPT = '0x00000001'
@@ -106,6 +107,11 @@ module.exports = class CallsEncoder {
   encodeRecoverFunds(tokenAddress, destination) {
     const functionABI = this._getFunctionABI(CONTROLLED_RECOVERABLE_ABI, 'recoverFunds', 2)
     return abi.encodeFunctionCall(functionABI, [tokenAddress, destination])
+  }
+
+  encodeCloseMigrator() {
+    const functionABI = this._getFunctionABI(JUROS_REGISTRY_MIGRATOR_ABI, 'close')
+    return abi.encodeFunctionCall(functionABI, [])
   }
 
   _getFunctionABI(ABI, functionName, inputsLength) {

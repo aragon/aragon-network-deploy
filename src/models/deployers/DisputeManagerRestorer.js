@@ -28,6 +28,7 @@ module.exports = class extends BaseDeployer {
       owner,
       court,
       disputeManager,
+      migrator,
       controllerIds
     } = this.config
 
@@ -35,6 +36,10 @@ module.exports = class extends BaseDeployer {
     agentCallsScript.push({
       to: owner,
       data: this._setModulesScript(court, controllerIds.disputes, disputeManager)
+    })
+    agentCallsScript.push({
+      to: owner,
+      data: this._closeMigratorScript(migrator)
     })
 
     const { votingApp } = this.config.aragonNetworkDAO
@@ -47,12 +52,14 @@ module.exports = class extends BaseDeployer {
   }
 
   // sets the original dispute manager back
-  _setModulesScript(
-    controllerAddress,
-    disputeManagerId,
-    disputeManagerAddress
-  ) {
+  _setModulesScript(controllerAddress, disputeManagerId, disputeManagerAddress) {
     const data = this.encoder.encodeSetModules([disputeManagerId], [disputeManagerAddress])
     return this.encoder.encodeExecute(controllerAddress, 0, data)
+  }
+
+  // closes the migrator
+  _closeMigratorScript(migratorAddress) {
+    const data = this.encoder.encodeCloseMigrator()
+    return this.encoder.encodeExecute(migratorAddress, 0, data)
   }
 }
