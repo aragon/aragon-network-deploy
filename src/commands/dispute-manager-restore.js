@@ -1,5 +1,4 @@
 const path = require('path')
-const Verifier = require('../models/Verifier')
 const DisputeManagerRestorer = require('../models/deployers/DisputeManagerRestorer')
 
 const command = 'dispute-manager-restore'

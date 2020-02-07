@@ -1,5 +1,4 @@
 const path = require('path')
-const Verifier = require('../models/Verifier')
 const CourtStartDelayer = require('../models/deployers/CourtStartDelayer')
 
 const command = 'court-start-delay'

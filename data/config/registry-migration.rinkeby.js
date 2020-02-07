@@ -13,7 +13,7 @@ module.exports = {
   court:              '0xB5fFBe75FA785725eeA5f931b64FC04E516C9C5D',       // Court's controller
   disputeManager:     '0x830E8f727355Bb1949FA6b0b91D934A64e59BfEb',       // Original Dispute Manager
   oldRegistry:        '0xe089e929FFf1912796F55a0f09fA23190F94eD78',       // Court's old Jurors Registry instance
-  newRegistry:        '',       // Court's new Jurors Registry instance
-  migrator:           '',       // Address of migrator contract
-  firstTermStartTime:  bn(START_DATE),                                    // first term start timestamp in seconds
+  newRegistry:        undefined,                                          // Court's new Jurors Registry instance (TBD)
+  migrator:           undefined,                                          // Address of the migrator contract (TBD)
+  firstTermStartTime:  bn(START_DATE),                                    // First term start timestamp in seconds
 }

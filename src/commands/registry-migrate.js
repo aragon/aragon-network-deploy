@@ -1,5 +1,4 @@
 const path = require('path')
-const Verifier = require('../models/Verifier')
 const JurorsRegistryMigrator = require('../models/deployers/JurorsRegistryMigrator')
 
 const command = 'registry-migrate'
