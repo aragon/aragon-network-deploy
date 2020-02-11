@@ -11,10 +11,10 @@
     "verification": "https://etherscan.io/address/0xCb36d7614ED8283cBb7e606AF876c75b372bB859#code"
   },
   "registry": {
-    "address": "0xF9dDa954adf5E54b89f988C1560553A0a387CCE1",
-    "transactionHash": "0x239dd11dca9da87ca88edad84cf339f312523a84fc7103b1887c7d2c9680c580",
-    "version": "v1.1",
-    "verification": "https://etherscan.io/address/0xF9dDa954adf5E54b89f988C1560553A0a387CCE1#code"
+    "address": "0x0F7471C1df2021fF45f112878F755aAbe7AA16bF",
+    "transactionHash": "0xe971239444563c7ec6925ffc1e8f4575854c2d7af2e55972378f00ce77ef6c66",
+    "version": "v1.2",
+    "verification": "https://etherscan.io/address/0x0F7471C1df2021fF45f112878F755aAbe7AA16bF#code"
   },
   "voting": {
     "address": "0x96D7B5E5372743Abc69d1eAc714e893fA71d3baa",

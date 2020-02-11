@@ -22,4 +22,12 @@ module.exports = class BaseDeployer {
     const previousDeployJSON = JSON.stringify(this.previousDeploy, null, 2)
     fs.writeFileSync(this.output, previousDeployJSON)
   }
+
+  async _runEvmScript(callsScript, tokenManagerAddress) {
+    const TokenManager = await this.environment.getArtifact('TokenManager', '@aragon/apps-token-manager')
+    const tokenManager = await TokenManager.at(tokenManagerAddress)
+    const receipt = await tokenManager.forward(callsScript)
+
+    return receipt
+  }
 }
