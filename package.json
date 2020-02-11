@@ -56,14 +56,18 @@
     "restore:disputes:rpc": "node ./bin/index.js dispute-manager-restore -n rpc --verbose",
     "restore:disputes:staging": "node ./bin/index.js dispute-manager-restore -n staging",
     "restore:disputes:rinkeby": "node ./bin/index.js dispute-manager-restore -n rinkeby",
-    "restore:disputes:mainnet": "node ./bin/index.js dispute-manager-restore -n mainnet"
+    "restore:disputes:mainnet": "node ./bin/index.js dispute-manager-restore -n mainnet",
+    "deploy:uniswap-wrapper:rpc": "node ./bin/index.js uniswap-wrapper-deploy -n rpc --verbose",
+    "deploy:uniswap-wrapper:staging": "node ./bin/index.js uniswap-wrapper-deploy -n staging",
+    "deploy:uniswap-wrapper:rinkeby": "node ./bin/index.js uniswap-wrapper-deploy -n rinkeby",
+    "deploy:uniswap-wrapper:mainnet": "node ./bin/index.js uniswap-wrapper-deploy -n mainnet"
   },
   "dependencies": {
     "@aragon/apps-agent": "^2.0.0",
     "@aragon/apps-token-manager": "^2.1.0",
     "@aragon/apps-voting": "^2.1.0",
     "@aragon/court": "1.1.1",
-    "@aragon/court-presale-activate": "1.2.0",
+    "@aragon/court-presale-activate": "1.3.0",
     "@aragon/erc20-faucet": "https://github.com/aragonone/erc20-faucet",
     "@aragon/minime": "^1.0.0",
     "@aragon/templates-externally-owned-presale-bonding-curve": "1.1.0",
