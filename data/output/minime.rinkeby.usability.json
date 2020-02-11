@@ -1,0 +1,14 @@
+{
+  "DAI": {
+    "address": "0x55Ab9B236CDC9e2CecBD41ADa45D8261f8A6049b",
+    "transactionHash": "0xd2865509209d7f493927c642aba2d137831f29bc3eac7c3975230ddd1cfcc28d"
+  },
+  "ANJ": {
+    "address": "0x929F3B27a22a7A56FC8d89617033D22e53840aC9",
+    "transactionHash": "0x6cecff3590df217e54529c2c789593b14d808e443dcde743bdc8874ebf488991"
+  },
+  "ANT": {
+    "address": "0x2D23F49a6C1B60e614952d8b0D53bd7a2DbF6433",
+    "transactionHash": "0xa2f87dea28e3263dc67554afba3b1d0a937466f5a52c2a4c118f0492b54936d2"
+  }
+}
