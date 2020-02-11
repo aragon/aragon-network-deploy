@@ -28,6 +28,12 @@ module.exports = {
     factory:          '0x6ffeb4038f7f077c4d20eaf1706980caec31e2bf',   // MiniMe token factory used for the templates
     transfersEnabled: true,
   },
+  usability: {
+    ...config,
+    controller:       '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076',   // Agent of AN DAO Rinkeby
+    factory:          '0x6ffeb4038f7f077c4d20eaf1706980caec31e2bf',   // MiniMe token factory used for the templates
+    transfersEnabled: true,
+  },
   mainnet: {
     ...config,
     controller:       '0x5e8c17a6065c35b172b10e80493d2266e2947df4',   // Agent of AN DAO

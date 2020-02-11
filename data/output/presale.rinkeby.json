@@ -1,27 +1,27 @@
 {
   "presaleTemplate": {
-    "address": "0x4D82E7c58D22BDa9286Ef9d6620c7ec7aBC7b9F9",
-    "transactionHash": "0x0666a4aad0091e4db39f95e820e787e5fc7607d592170259d45743d719494d00"
+    "address": "0x9C7D1474BB4FE6A8503b24bB36F4972804C1B606",
+    "transactionHash": "0x69317100b0a43d99c4000caeeada08f5b8492d9ef5ca55c2b363032fd54104d5"
   },
   "agent": {
-    "address": "0x8014fAd1964271E847f3682539Ea0Ab3b7880463",
-    "transactionHash": "0x9da6495be349c9e221d16e5024b2722568654ae4e063b697871f218ffe7b7f69"
+    "address": "0x628d8c3475dceca1f8c1b84bEEe4DB08Ea19e031",
+    "transactionHash": "0x00ed03f2dcdae1acfdf12e183ee5521cfa4dadedf4f53d4af8569da3e9340f23"
   },
   "token-manager": {
-    "address": "0xd6a5216bCb813b6d032916fa7014b0c7291e7C94",
-    "transactionHash": "0x9da6495be349c9e221d16e5024b2722568654ae4e063b697871f218ffe7b7f69"
+    "address": "0x29a8277A08FEB0C3Cce6d08fbb31A887E06a96AB",
+    "transactionHash": "0x00ed03f2dcdae1acfdf12e183ee5521cfa4dadedf4f53d4af8569da3e9340f23"
   },
   "batched-bancor-market-maker": {
-    "address": "0x6FE1C488F91d663f1469a1F85829920b8D657B52",
-    "transactionHash": "0x9da6495be349c9e221d16e5024b2722568654ae4e063b697871f218ffe7b7f69"
+    "address": "0x160e221B887D737b6defB5E29a8e7BAD2c99e766",
+    "transactionHash": "0x00ed03f2dcdae1acfdf12e183ee5521cfa4dadedf4f53d4af8569da3e9340f23"
   },
   "aragon-fundraising": {
-    "address": "0xcD05ed346abfE562aC27e5BD7d36EeFe193D3Ff6",
-    "transactionHash": "0x9da6495be349c9e221d16e5024b2722568654ae4e063b697871f218ffe7b7f69"
+    "address": "0x99f8ed6EB58b25295632dd0556275e248EDD495C",
+    "transactionHash": "0x00ed03f2dcdae1acfdf12e183ee5521cfa4dadedf4f53d4af8569da3e9340f23"
   },
   "balance-redirect-presale": {
-    "address": "0x51974a685c653aFECfB383017eAb65A501f35aD9",
-    "transactionHash": "0x9da6495be349c9e221d16e5024b2722568654ae4e063b697871f218ffe7b7f69"
+    "address": "0x2Bc798C4d5EB1F4E7C7c1B0770E2b34dBC79a967",
+    "transactionHash": "0x00ed03f2dcdae1acfdf12e183ee5521cfa4dadedf4f53d4af8569da3e9340f23"
   },
   "wrapper": {
     "address": "0xDAd9F5E6d092EafBe6f7e3907e2504fC0f858401",

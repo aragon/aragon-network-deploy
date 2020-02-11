@@ -40,12 +40,12 @@ module.exports = {
     jurorFee:                      bigExp(10, DAI.decimals),     // 10 fee tokens for juror fees
     draftFee:                      bigExp(18, DAI.decimals - 2), // 0.18 fee tokens for draft fees
     settleFee:                     bigExp(11, DAI.decimals - 2), // 0.1 fee tokens for settle fees
-    penaltyPct:                    bn(3000),                     // 10% of the min active balance will be locked to each drafted juror
+    penaltyPct:                    bn(3000),                     // 30% of the min active balance will be locked to each drafted juror
     finalRoundReduction:           bn(5000),                     // 50% of discount for final rounds
     firstRoundJurorsNumber:        bn(3),                        // disputes will start with 3 jurors
     appealStepFactor:              bn(3),                        // the number of jurors to be drafted will be incremented 3 times on each appeal
     maxRegularAppealRounds:        bn(4),                        // there can be up to 4 appeals in total per dispute
-    finalRoundLockTerms:           bn(4),                       // coherent jurors in the final round won't be able to withdraw for 21 terms (7 days)
+    finalRoundLockTerms:           bn(4),                        // coherent jurors in the final round won't be able to withdraw for 21 terms (7 days)
     appealCollateralFactor:        bn(30000),                    // appeal collateral is 3x of the corresponding juror fees
     appealConfirmCollateralFactor: bn(20000),                    // appeal-confirmation collateral is 2x of the corresponding juror fees
     finalRoundWeightPrecision:     bn(1000),                     // use to improve division rounding for final round maths
