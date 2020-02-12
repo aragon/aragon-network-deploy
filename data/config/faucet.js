@@ -62,7 +62,7 @@ module.exports = {
     tokens: [
       {
         symbol:   'ANT',
-        address:  '0x5cC7986D7A793b9930BD80067ca54c3E6D2F261B',       // ANT address in Rinkeby for usability testing
+        address:  '0xbF932fdf8D600398d64614eF9A10401fF046f449',       // ANT address in Rinkeby for usability testing
         period:   ONE_WEEK,                                           // The ANT quota period lasts 1 week
         amount:   bigExp(1000, 18)                                    // Accounts will be allowed to withdraw 1000 DAI per week maximum
       },
