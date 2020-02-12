@@ -30,7 +30,8 @@ module.exports = {
   },
   wrapper: {
     owner:            '0x5e8c17a6065c35b172b10e80493d2266e2947df4',       // Agent of AN DAO
-    registry:         '0xF9dDa954adf5E54b89f988C1560553A0a387CCE1',       // Court's Jurors Registry instance on Mainnet
+    // WARNING: this is the old registry, it's deprecated, don't use it. We leave it here for historic and consistency reasons (presale was deployed with it)
+    registry:         '0xF9dDa954adf5E54b89f988C1560553A0a387CCE1',       // Court's old Jurors Registry instance on Mainnet
     presale:          '0xf89c8752d82972f94a4D1331e010eD6593e8EC49',       // Fundraising presale instance on Mainnet
     uniswap:          '0xc0a47dFe034B400B47bDaD5FecDa2621de6c4d95',       // Uniswap Factory address
   }
