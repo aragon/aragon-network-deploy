@@ -58,6 +58,7 @@
     "restore:disputes:rinkeby": "node ./bin/index.js dispute-manager-restore -n rinkeby",
     "restore:disputes:mainnet": "node ./bin/index.js dispute-manager-restore -n mainnet",
     "deploy:uniswap-wrapper:rpc": "node ./bin/index.js uniswap-wrapper-deploy -n rpc --verbose",
+    "deploy:uniswap-wrapper:ropsten": "node ./bin/index.js uniswap-wrapper-deploy -n ropsten",
     "deploy:uniswap-wrapper:staging": "node ./bin/index.js uniswap-wrapper-deploy -n staging",
     "deploy:uniswap-wrapper:rinkeby": "node ./bin/index.js uniswap-wrapper-deploy -n rinkeby",
     "deploy:uniswap-wrapper:mainnet": "node ./bin/index.js uniswap-wrapper-deploy -n mainnet"
