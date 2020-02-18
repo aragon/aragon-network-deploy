@@ -1,0 +1,10 @@
+{
+  "DAI": {
+    "address": "0x55Ab9B236CDC9e2CecBD41ADa45D8261f8A6049b",
+    "transactionHash": "0xd2865509209d7f493927c642aba2d137831f29bc3eac7c3975230ddd1cfcc28d"
+  },
+  "ANJ": {
+    "address": "0xE9EFff723800bb86f31dB9A369E47C2Bf336008E",
+    "transactionHash": "0x59c860a8433efede5c352d3c73067b5e54b185312a2c4bae34dad641471a9983"
+  }
+}
