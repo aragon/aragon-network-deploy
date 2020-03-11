@@ -61,7 +61,12 @@
     "deploy:uniswap-wrapper:ropsten": "node ./bin/index.js uniswap-wrapper-deploy -n ropsten",
     "deploy:uniswap-wrapper:staging": "node ./bin/index.js uniswap-wrapper-deploy -n staging",
     "deploy:uniswap-wrapper:rinkeby": "node ./bin/index.js uniswap-wrapper-deploy -n rinkeby",
-    "deploy:uniswap-wrapper:mainnet": "node ./bin/index.js uniswap-wrapper-deploy -n mainnet"
+    "deploy:uniswap-wrapper:mainnet": "node ./bin/index.js uniswap-wrapper-deploy -n mainnet",
+    "migrate:dispute-manager:rpc": "node ./bin/index.js dispute-manager-migrate -n rpc --verbose",
+    "migrate:dispute-manager:ropsten": "node ./bin/index.js dispute-manager-migrate -n ropsten",
+    "migrate:dispute-manager:staging": "node ./bin/index.js dispute-manager-migrate -n staging",
+    "migrate:dispute-manager:rinkeby": "node ./bin/index.js dispute-manager-migrate -n rinkeby",
+    "migrate:dispute-manager:mainnet": "node ./bin/index.js dispute-manager-migrate -n mainnet"
   },
   "dependencies": {
     "@aragon/apps-agent": "^2.0.0",
