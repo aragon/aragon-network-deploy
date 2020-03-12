@@ -66,7 +66,12 @@
     "migrate:dispute-manager:ropsten": "node ./bin/index.js dispute-manager-migrate -n ropsten",
     "migrate:dispute-manager:staging": "node ./bin/index.js dispute-manager-migrate -n staging",
     "migrate:dispute-manager:rinkeby": "node ./bin/index.js dispute-manager-migrate -n rinkeby",
-    "migrate:dispute-manager:mainnet": "node ./bin/index.js dispute-manager-migrate -n mainnet"
+    "migrate:dispute-manager:mainnet": "node ./bin/index.js dispute-manager-migrate -n mainnet",
+    "set:subscriptions-params:rpc": "node ./bin/index.js subscriptions-params-manage -n rpc --verbose",
+    "set:subscriptions-params:ropsten": "node ./bin/index.js subscriptions-params-manage -n ropsten",
+    "set:subscriptions-params:staging": "node ./bin/index.js subscriptions-params-manage -n staging",
+    "set:subscriptions-params:rinkeby": "node ./bin/index.js subscriptions-params-manage -n rinkeby",
+    "set:subscriptions-params:mainnet": "node ./bin/index.js subscriptions-params-manage -n mainnet"
   },
   "dependencies": {
     "@aragon/apps-agent": "^2.0.0",
