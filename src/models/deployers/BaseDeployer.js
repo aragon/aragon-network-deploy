@@ -23,6 +23,28 @@ module.exports = class BaseDeployer {
     fs.writeFileSync(this.output, previousDeployJSON)
   }
 
+  async _generateAndRunEvmScript(logger) {
+    const callsScript = this._generateEvmScript()
+    logger.success(`Call script for AN DAO token manager generated`)
+    logger.info(`${callsScript}`)
+    const { tokenManager } = this.config.aragonNetworkDAO
+    const receipt = await this._runEvmScript(callsScript, tokenManager)
+    logger.success(`EVM Script run on tx: ${receipt.tx}. Gas used: ${receipt.receipt.gasUsed}`)
+  }
+
+  _encodeAgentCallScript(agentCallsScript) {
+    const { votingApp } = this.config.aragonNetworkDAO
+    console.log('voting', votingApp)
+    const voteDescription = ''
+    console.log('agent cs', agentCallsScript)
+    const tokenManagerScript = [{
+      to: votingApp,
+      data: this.encoder.encodeNewVote(this.encoder.encodeCallsScript(agentCallsScript), voteDescription)
+    }]
+    console.log(tokenManagerScript)
+    return this.encoder.encodeCallsScript(tokenManagerScript)
+  }
+
   async _runEvmScript(callsScript, tokenManagerAddress) {
     const TokenManager = await this.environment.getArtifact('TokenManager', '@aragon/apps-token-manager')
     const tokenManager = await TokenManager.at(tokenManagerAddress)
