@@ -36,26 +36,29 @@ module.exports = class extends BaseDeployer {
     } = this.config
 
     const agentCallsScript = []
-    // fee token
+
+    // fee token and amount
     if (this.feeToken) {
       this._addActionToCallsScript(agentCallsScript, aragonNetworkDAO.agent, this._setFeeToken(subscriptions.address, subscriptions.feeToken, subscriptions.feeAmount))
-      // fee amount
     } else if (this.feeAmount) {
-      console.log('subs', subscriptions.address)
       this._addActionToCallsScript(agentCallsScript, aragonNetworkDAO.agent, this._oneParamSetter(subscriptions.address, 'setFeeAmount', subscriptions.feeAmount))
     }
+
     // prepayment periods
     if (this.prePaymentPeriods) {
       this._addActionToCallsScript(agentCallsScript, aragonNetworkDAO.agent, this._oneParamSetter(subscriptions.address, 'setPrePaymentPeriods', subscriptions.prePaymentPeriods))
     }
+
     // late payment penalty pct
     if (this.latePaymentPenaltyPct) {
       this._addActionToCallsScript(agentCallsScript, aragonNetworkDAO.agent, this._oneParamSetter(subscriptions.address, 'setLatePaymentPenaltyPct', subscriptions.latePaymentPenaltyPct))
     }
+
     // governor pct share
     if (this.governorSharePct) {
       this._addActionToCallsScript(agentCallsScript, aragonNetworkDAO.agent, this._oneParamSetter(subscriptions.address, 'setGovernorSharePct', subscriptions.governorSharePct))
     }
+
     // resume prepaid periods
     if (this.resumePrePaidPeriods) {
       this._addActionToCallsScript(agentCallsScript, aragonNetworkDAO.agent, this._oneParamSetter(subscriptions.address, 'setResumePrePaidPeriods', subscriptions.resumePrePaidPeriods))
@@ -83,7 +86,7 @@ module.exports = class extends BaseDeployer {
   }
 
   // sets Subscription fee token
-  _setFeeAmount(subscriptionsAddress, feeToken, feeAmount) {
+  _setFeeToken(subscriptionsAddress, feeToken, feeAmount) {
     const data = this.encoder.encodeSubscriptionsSetFeeToken(feeToken, feeAmount)
     return this.encoder.encodeExecute(subscriptionsAddress, 0, data)
   }
