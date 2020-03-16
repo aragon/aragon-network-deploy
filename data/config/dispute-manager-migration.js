@@ -1,12 +1,10 @@
 const rpc = require('./dispute-manager-migration.rpc')
-const ropsten = require('./dispute-manager-migration.ropsten')
 const staging = require('./dispute-manager-migration.staging')
 const rinkeby = require('./dispute-manager-migration.rinkeby')
 const mainnet = require('./dispute-manager-migration.mainnet')
 
 const environments = {
   rpc,
-  ropsten,
   staging,
   rinkeby,
   mainnet
