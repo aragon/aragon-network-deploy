@@ -11,9 +11,9 @@ const ropsten = {
 }
 
 const staging = {
-  agent:            '0xec5700f0774cc9e7f2d89bee4b14401124fc2d06',        // Agent of AN DAO Staging (short)
-  votingApp:        '0xaad2ccf51b42ea7f27948c38b4f7afd8174ef217',       // Voting of AN DAO Staging (short)
-  tokenManager:     '0x08d25ce71579c2b97b688bc8a7d0b35b92504ec3',       // Token Manager of AN DAO Staging (short)
+  agent:            '0xec5700f0774cc9e7f2d89bee4b14401124fc2d06',       // Agent of AN DAO Staging
+  votingApp:        '0x5505f0db0ff6990459e812e19bf7895148c6a8b3',       // Voting of AN DAO Staging
+  tokenManager:     '0x2cedb6250da2e4798f742eb60b075c8f4ef5ef6a',       // Token Manager of AN DAO Staging
 }
 
 const rinkeby = {
