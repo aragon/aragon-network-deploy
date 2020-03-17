@@ -183,7 +183,7 @@ module.exports = class extends BaseDeployer {
   async _deployDisputes(DisputeManager) {
     if (!this.court.address) throw Error('AragonCourt has not been deployed yet')
     this._printDisputesDeploy()
-    this.disputes = await DisputeManager.new(this.court.address, this.config.court.maxJurorsPerDraftBatch)
+    this.disputes = await DisputeManager.new(this.court.address, this.config.court.maxJurorsPerDraftBatch, this.config.court.skippedDisputes)
     const { address, transactionHash } = this.disputes
     logger.success(`Created DisputeManager instance at ${address}`)
     this._saveDeploy({ disputes: { address, transactionHash, version: VERSION }})
@@ -337,6 +337,7 @@ module.exports = class extends BaseDeployer {
     logger.info(`Deploying DisputeManager contract ${VERSION} with config:`)
     logger.info(` - Controller:                              ${this.court.address}`)
     logger.info(` - Max number of jurors per draft batch:    ${this.config.court.maxJurorsPerDraftBatch}`)
+    logger.info(` - # of skipped disputes:                   ${this.config.court.skippedDisputes}`)
   }
 
   _printRegistryDeploy(anjAddress, totalActiveBalanceLimit) {
