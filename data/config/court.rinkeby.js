@@ -49,6 +49,7 @@ module.exports = {
     appealCollateralFactor:        bn(30000),                    // appeal collateral is 3x of the corresponding juror fees
     appealConfirmCollateralFactor: bn(20000),                    // appeal-confirmation collateral is 2x of the corresponding juror fees
     finalRoundWeightPrecision:     bn(1000),                     // use to improve division rounding for final round maths
+    skippedDisputes:               2,                            // number of dispute to skip
   },
   jurors: {
     token:                         ANJ,

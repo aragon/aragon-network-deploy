@@ -38,30 +38,30 @@ module.exports = class extends BaseDeployer {
     const agentCallsScript = []
 
     // fee token and amount
-    if (this.feeToken) {
-      this._addActionToCallsScript(agentCallsScript, aragonNetworkDAO.agent, this._setFeeToken(subscriptions.address, subscriptions.feeToken, subscriptions.feeAmount))
+    if (this.feeToken && this.feeAmount) {
+      this._addActionToCallsScript(agentCallsScript, aragonNetworkDAO.agent, this._setFeeToken(subscriptions.address, this.feeToken, this.feeAmount))
     } else if (this.feeAmount) {
-      this._addActionToCallsScript(agentCallsScript, aragonNetworkDAO.agent, this._oneParamSetter(subscriptions.address, 'setFeeAmount', subscriptions.feeAmount))
+      this._addActionToCallsScript(agentCallsScript, aragonNetworkDAO.agent, this._oneParamSetter(subscriptions.address, 'setFeeAmount', this.feeAmount))
     }
 
     // prepayment periods
     if (this.prePaymentPeriods) {
-      this._addActionToCallsScript(agentCallsScript, aragonNetworkDAO.agent, this._oneParamSetter(subscriptions.address, 'setPrePaymentPeriods', subscriptions.prePaymentPeriods))
+      this._addActionToCallsScript(agentCallsScript, aragonNetworkDAO.agent, this._oneParamSetter(subscriptions.address, 'setPrePaymentPeriods', this.prePaymentPeriods))
     }
 
     // late payment penalty pct
     if (this.latePaymentPenaltyPct) {
-      this._addActionToCallsScript(agentCallsScript, aragonNetworkDAO.agent, this._oneParamSetter(subscriptions.address, 'setLatePaymentPenaltyPct', subscriptions.latePaymentPenaltyPct))
+      this._addActionToCallsScript(agentCallsScript, aragonNetworkDAO.agent, this._oneParamSetter(subscriptions.address, 'setLatePaymentPenaltyPct', this.latePaymentPenaltyPct))
     }
 
     // governor pct share
     if (this.governorSharePct) {
-      this._addActionToCallsScript(agentCallsScript, aragonNetworkDAO.agent, this._oneParamSetter(subscriptions.address, 'setGovernorSharePct', subscriptions.governorSharePct))
+      this._addActionToCallsScript(agentCallsScript, aragonNetworkDAO.agent, this._oneParamSetter(subscriptions.address, 'setGovernorSharePct', this.governorSharePct))
     }
 
     // resume prepaid periods
     if (this.resumePrePaidPeriods) {
-      this._addActionToCallsScript(agentCallsScript, aragonNetworkDAO.agent, this._oneParamSetter(subscriptions.address, 'setResumePrePaidPeriods', subscriptions.resumePrePaidPeriods))
+      this._addActionToCallsScript(agentCallsScript, aragonNetworkDAO.agent, this._oneParamSetter(subscriptions.address, 'setResumePrePaidPeriods', this.resumePrePaidPeriods))
     }
 
     if (agentCallsScript.length == 0) {

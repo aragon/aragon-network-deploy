@@ -6,10 +6,10 @@
     "verification": "https://ropsten.etherscan.io/address/0x3b26bc496aebaed5b3E0E81cDE6B582CDe71396e#code"
   },
   "disputes": {
-    "address": "0x4f4aa80179b6C53BdE4091CcBDB736670369DdB6",
-    "transactionHash": "0x8961519ac870f9f9af46058ab03e227b9b487965fa1291c598c90b9fb2c2f846",
-    "version": "v1.1",
-    "verification": "https://ropsten.etherscan.io/address/0x4f4aa80179b6C53BdE4091CcBDB736670369DdB6#code"
+    "address": "0xD1f2Cd944456D7d8A6f58d78bA12dF13051E5591",
+    "transactionHash": "0x01f77bb63eadc5f5cb27d7e4875eba9b0a4aaccf8d727e7cc0eac487c7bfe66d",
+    "version": "v1.2",
+    "verification": "https://ropsten.etherscan.io/address/0xD1f2Cd944456D7d8A6f58d78bA12dF13051E5591#code"
   },
   "registry": {
     "address": "0x9099eFf2830D6E4A11d60064DD67A3f51409043e",

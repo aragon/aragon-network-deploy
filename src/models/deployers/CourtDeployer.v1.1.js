@@ -3,10 +3,10 @@ const CallsEncoder = require('../CallsEncoder')
 const logger = require('../../helpers/logger')('CourtDeployer')
 const { MAX_UINT64, tokenToString } = require('../../helpers/numbers')
 
-const VERSION = 'v1.1'
+const VERSION = 'v1.2'
 
 const VERIFICATION_HEADERS = [
-  'Commit sha: ffc48f55ad10b0b307a5553090bcb4c291cedbc4',
+  'Commit sha: d04b668834b9f05058f4f4e8f9b799a5e26463a1',
   'GitHub repository: https://github.com/aragon/aragon-court',
   'Tool used for the deploy: https://github.com/aragon/aragon-network-deploy',
 ]
@@ -115,7 +115,7 @@ module.exports = class extends BaseDeployer {
   async _deployDisputes(DisputeManager) {
     if (!this.court.address) throw Error('AragonCourt has not been deployed yet')
     this._printDisputesDeploy()
-    this.disputes = await DisputeManager.new(this.court.address, this.config.court.maxJurorsPerDraftBatch)
+    this.disputes = await DisputeManager.new(this.court.address, this.config.court.maxJurorsPerDraftBatch, this.config.court.skippedDisputes)
     const { address, transactionHash } = this.disputes
     logger.success(`Created DisputeManager instance at ${address}`)
     this._saveDeploy({ disputes: { address, transactionHash, version: VERSION }})
