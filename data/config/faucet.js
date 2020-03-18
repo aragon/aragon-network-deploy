@@ -68,7 +68,7 @@ module.exports = {
       },
       {
         symbol:   'ANJ',
-        address:  '0x929F3B27a22a7A56FC8d89617033D22e53840aC9',       // ANT address in Rinkeby for usability testing
+        address:  '0xE9EFff723800bb86f31dB9A369E47C2Bf336008E',       // ANT address in Rinkeby for usability testing
         period:   ONE_WEEK,                                           // The ANT quota period lasts 1 week
         amount:   bigExp(10000, 18)                                   // Accounts will be allowed to withdraw 10000 ANJ per week maximum
       },

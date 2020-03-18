@@ -32,6 +32,7 @@ module.exports = {
   rpc,
   ropsten,
   staging,
+  usability: rinkeby,
   rinkeby,
   mainnet
 }

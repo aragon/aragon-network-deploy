@@ -5,9 +5,9 @@
     "version": "v1.0"
   },
   "disputes": {
-    "address": "0xD18C4471aC528036C0E3e305A04e91B126d224Bb",
-    "transactionHash": "0xa7cdaeaba99fed3d096421106579076ffa4fb95fd0d21a38a2c8fd35b9010197",
-    "version": "v1.0"
+    "address": "0xdd560BB754133Fc328a63Ac33b5274E1f0A48e9a",
+    "transactionHash": "0x650f53f718cc1ffcb356c18052cf636d0d50c10bdf8271ba03411b61064b9d10",
+    "version": "v1.2"
   },
   "registry": {
     "address": "0x8FFD0Adb0Fc03a270dA84b6d10F87ec251296A50",
