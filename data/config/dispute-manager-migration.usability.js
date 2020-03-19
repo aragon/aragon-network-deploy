@@ -5,5 +5,5 @@ module.exports = {
     tokenManager:      '0x0cc31e2d5117d25fe50ee9d569613851e6bb0dd9',       // Token manager of the AN DAO
   },
   court:               '0x44f788370206696b20B94BC77c4f73Ca264aa05E',       // Court's controller instance
-  newDisputeManager:   '0xdd560BB754133Fc328a63Ac33b5274E1f0A48e9a',       // New Dispute Manager
+  newDisputeManager:   '0x4fCb772042b935BD7D510350c14B44e0BbBaB836',       // New Dispute Manager
 }
