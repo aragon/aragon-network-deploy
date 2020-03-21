@@ -1,19 +1,15 @@
 const path = require('path')
-const CourtStartDelayer = require('../models/deployers/CourtStartDelayer')
+const CourtStartDelayer = require('../models/modules/CourtStartDelayer')
 
-const command = 'court-start-delay'
-const describe = 'Delay Court Start Time'
+const command = 'delay-court'
+const describe = 'Delay Court start time'
 
 const builder = {
   output: { alias: 'o', describe: 'Output dir', type: 'string', default: './data/output' },
-  config: { alias: 'c', describe: 'Migration config JSON file', type: 'string', default: './data/config/registry-migration.js' },
+  config: { alias: 'c', describe: 'Migration config JS file', type: 'string', default: './data/config/court-addresses.js' },
 }
 
-const handlerAsync = async (environment, {
-  network,
-  output: outputDir,
-  config: configFilename,
-}) => {
+const handlerAsync = async (environment, { network, output: outputDir, config: configFilename }) => {
   const outputFilepath = path.resolve(process.cwd(), `${outputDir}/${command}.${network}.json`)
   const config = require(path.resolve(process.cwd(), configFilename))[network]
 
