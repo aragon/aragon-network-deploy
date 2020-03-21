@@ -20,7 +20,7 @@ module.exports = {
     slippage:         '100000000000000000'                                // 10%
   },
   aragonNetworkDAO: {
-    votingApp:        '0xb0c839957bc47541d747e5238c06990e3a41c2a3',       // Voting of AN DAO Rinkeby
+    voting:           '0xb0c839957bc47541d747e5238c06990e3a41c2a3',       // Voting of AN DAO Rinkeby
     tokenManager:     '0x0cc31e2d5117d25fe50ee9d569613851e6bb0dd9',       // Token Manager of AN DAO Rinkeby
   },
   wrapper: {

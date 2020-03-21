@@ -25,7 +25,7 @@ module.exports = {
     slippage:         '100000000000000000'                                // 10% (PPM)
   },
   aragonNetworkDAO: {
-    votingApp:        '0x240b4de6000b4ad52ceaa1057c2647bfc24ce697',       // Voting of AN DAO
+    voting:           '0x240b4de6000b4ad52ceaa1057c2647bfc24ce697',       // Voting of AN DAO
     tokenManager:     '0xda15e525b09266488c95c2742e849ca71683a0f5',       // Token Manager of AN DAO
   },
   wrapper: {

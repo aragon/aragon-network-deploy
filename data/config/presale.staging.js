@@ -20,7 +20,7 @@ module.exports = {
     slippage:         '100000000000000000'                                // TODO
   },
   aragonNetworkDAO: {
-    votingApp:        '0xaad2ccf51b42ea7f27948c38b4f7afd8174ef217',       // Voting of AN DAO Staging (short)
+    voting:           '0xaad2ccf51b42ea7f27948c38b4f7afd8174ef217',       // Voting of AN DAO Staging (short)
     tokenManager:     '0x08d25ce71579c2b97b688bc8a7d0b35b92504ec3',       // Token Manager of AN DAO Staging (short)
   },
   wrapper: {

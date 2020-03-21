@@ -33,12 +33,12 @@ module.exports = class BaseDeployer {
   }
 
   _encodeAgentCallScript(agentCallsScript) {
-    const { votingApp } = this.config.aragonNetworkDAO
-    console.log('voting', votingApp)
+    const { voting } = this.config.aragonNetworkDAO
+    console.log('voting', voting)
     const voteDescription = ''
     console.log('agent cs', agentCallsScript)
     const tokenManagerScript = [{
-      to: votingApp,
+      to: voting,
       data: this.encoder.encodeNewVote(this.encoder.encodeCallsScript(agentCallsScript), voteDescription)
     }]
     console.log(tokenManagerScript)

@@ -36,10 +36,10 @@ module.exports = class extends BaseDeployer {
       data: this._delayStartTime(court, firstTermStartTime)
     })
 
-    const { votingApp } = this.config.aragonNetworkDAO
+    const { voting } = this.config.aragonNetworkDAO
     const voteDescription = ''
     const tokenManagerScript = [{
-      to: votingApp,
+      to: voting,
       data: this.encoder.encodeNewVote(this.encoder.encodeCallsScript(agentCallsScript), voteDescription)
     }]
     return this.encoder.encodeCallsScript(tokenManagerScript)
