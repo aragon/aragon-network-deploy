@@ -6,13 +6,13 @@ const START_DATE = Math.floor(new Date() / 1000 + 2 * TERM_DURATION) // 20 minut
 const ANJ = {
   symbol: 'ANJ',
   decimals: 18,
-  address: undefined              // if unset, it will try to fetch it from a previous deploy for devnet rpc
+  address: require('../output/minime.rpc').ANJ.address
 }
 
 const DAI = {
   symbol: 'DAI',
   decimals: 18,
-  address: undefined              // if unset, it will try to fetch it from a previous deploy for devnet rpc
+  address: require('../output/minime.rpc').DAI.address
 }
 
 module.exports = {

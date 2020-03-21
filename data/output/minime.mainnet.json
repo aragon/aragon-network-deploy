@@ -3,5 +3,15 @@
     "address": "0xcD62b1C403fa761BAadFC74C525ce2B51780b184",
     "transactionHash": "0x814eaa6e8cfd0194dfc5a3691574291d5d3babadadcfd63fb067f451c645dc47",
     "verification": "https://etherscan.io/address/0xcD62b1C403fa761BAadFC74C525ce2B51780b184#code"
+  },
+  "ANT": {
+    "address": "0x960b236A07cf122663c4303350609A66A7B288C0",
+    "transactionHash": "0x99b299fc023a10779fb67bbbd13630acb7b07d0efd37a51e8f52d6ce2d9d0679",
+    "verification": "https://etherscan.io/address/0x960b236A07cf122663c4303350609A66A7B288C0#code"
+  },
+  "DAI": {
+    "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+    "transactionHash": "0x495402df7d45fe36329b0bd94487f49baee62026d50f654600f6771bd2a596ab",
+    "verification": "https://etherscan.io/address/0x6b175474e89094c44da98b954eedeac495271d0f#code"
   }
 }
