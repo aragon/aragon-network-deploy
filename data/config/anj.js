@@ -1,3 +1,5 @@
+const ANDAO = require('./ANDAO')
+
 const config = {
   name: 'Aragon Network Juror',
   symbol: 'ANJ',
@@ -12,7 +14,7 @@ module.exports = {
   },
   staging: {
     ...config,
-    controller:       '0xde8bf81d4a8b67f51dc909035cca5b4e14e92d88',   // Agent of AN DAO Staging (short)
+    controller:       ANDAO.staging.agent,                            // Agent of AN DAO Staging (short)
     factory:          '0x6ffeb4038f7f077c4d20eaf1706980caec31e2bf',   // MiniMe token factory used for the templates
     transfersEnabled: true,
   },
@@ -24,19 +26,19 @@ module.exports = {
   },
   rinkeby: {
     ...config,
-    controller:       '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076',   // Agent of AN DAO Rinkeby
+    controller:       ANDAO.rinkeby.agent,                            // Agent of AN DAO Rinkeby
     factory:          '0x6ffeb4038f7f077c4d20eaf1706980caec31e2bf',   // MiniMe token factory used for the templates
     transfersEnabled: true,
   },
   usability: {
     ...config,
-    controller:       '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076',   // Agent of AN DAO Rinkeby
+    controller:       ANDAO.usability.agent,                          // Agent of AN DAO Rinkeby
     factory:          '0x6ffeb4038f7f077c4d20eaf1706980caec31e2bf',   // MiniMe token factory used for the templates
     transfersEnabled: true,
   },
   mainnet: {
     ...config,
-    controller:       '0x5e8c17a6065c35b172b10e80493d2266e2947df4',   // Agent of AN DAO
+    controller:       ANDAO.mainnet.agent,                            // Agent of AN DAO
     factory:          '0x081d5b92280eBF7deacdfFECEc6f2D356f47266C',   // MiniMe token factory used for the templates
     transfersEnabled: true,
   },
