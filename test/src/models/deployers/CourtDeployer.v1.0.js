@@ -6,6 +6,7 @@ const CourtDeployer = require('../../../../src/models/deployers/CourtDeployer.v1
 
 const { assertBn } = require('../../../helpers/assertBn')
 const { MAX_UINT64 } = require('../../../../src/helpers/numbers')
+const { DISPUTE_MANAGER_ID, SUBSCRIPTIONS_ID, VOTING_ID, TREASURY_ID, JURORS_REGISTRY_ID } = require('../../../../src/helpers/court-modules')
 
 const SNAPSHOT_BLOCK = 0
 const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
@@ -102,19 +103,19 @@ contract('CourtDeployer v1.0', ([_, sender]) => {
 
     it('sets the modules correctly', async () => {
       assert.equal(await court.getDisputeManager(), disputes.address, 'disputes module does not match')
-      assert.equal(await court.getModule(Config.controller.disputes), disputes.address, 'disputes module does not match')
+      assert.equal(await court.getModule(DISPUTE_MANAGER_ID), disputes.address, 'disputes module does not match')
 
       assert.equal(await court.getTreasury(), treasury.address, 'treasury module does not match')
-      assert.equal(await court.getModule(Config.controller.treasury), treasury.address, 'treasury module does not match')
+      assert.equal(await court.getModule(TREASURY_ID), treasury.address, 'treasury module does not match')
 
       assert.equal(await court.getVoting(), voting.address, 'voting module does not match')
-      assert.equal(await court.getModule(Config.controller.voting), voting.address, 'voting module does not match')
+      assert.equal(await court.getModule(VOTING_ID), voting.address, 'voting module does not match')
 
       assert.equal(await court.getJurorsRegistry(), registry.address, 'registry module does not match')
-      assert.equal(await court.getModule(Config.controller.registry), registry.address, 'registry module does not match')
+      assert.equal(await court.getModule(JURORS_REGISTRY_ID), registry.address, 'registry module does not match')
 
       assert.equal(await court.getSubscriptions(), subscriptions.address, 'subscriptions module does not match')
-      assert.equal(await court.getModule(Config.controller.subscriptions), subscriptions.address, 'subscriptions module does not match')
+      assert.equal(await court.getModule(SUBSCRIPTIONS_ID), subscriptions.address, 'subscriptions module does not match')
     })
 
     it('sets the governor correctly', async () => {

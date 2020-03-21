@@ -1,6 +1,7 @@
 const BaseDeployer = require('./BaseDeployer')
 const CallsEncoder = require('../CallsEncoder')
 const logger = require('../../helpers/logger')('JurorsRegistryMigrator')
+const { JURORS_REGISTRY_ID, DISPUTE_MANAGER_ID } = require('../../helpers/court-modules')
 
 module.exports = class extends BaseDeployer {
   constructor(
@@ -31,7 +32,6 @@ module.exports = class extends BaseDeployer {
       oldRegistry,
       newRegistry,
       migrator,
-      controllerIds
     } = this.config
 
     const agentCallsScript = []
@@ -41,7 +41,7 @@ module.exports = class extends BaseDeployer {
     })
     agentCallsScript.push({
       to: owner,
-      data: this._setModulesScript(court, controllerIds.registry, newRegistry, controllerIds.disputes, migrator)
+      data: this._setModulesScript(court, JURORS_REGISTRY_ID, newRegistry, DISPUTE_MANAGER_ID, migrator)
     })
 
     const { voting } = this.config.aragonNetworkDAO

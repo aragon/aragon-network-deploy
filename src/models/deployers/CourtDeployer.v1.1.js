@@ -2,6 +2,7 @@ const BaseDeployer = require('./BaseDeployer')
 const CallsEncoder = require('../CallsEncoder')
 const logger = require('../../helpers/logger')('CourtDeployer')
 const { MAX_UINT64, tokenToString } = require('../../helpers/numbers')
+const { DISPUTE_MANAGER_ID, VOTING_ID, SUBSCRIPTIONS_ID } = require('../../helpers/court-modules')
 
 const VERSION = 'v1.2'
 
@@ -59,13 +60,12 @@ module.exports = class extends BaseDeployer {
   }
 
   async setModules() {
-    const { controller } = this.config
     const sender = await this.environment.getSender()
     const modulesGovernor = await this.court.getModulesGovernor()
 
     if (modulesGovernor === sender) {
       logger.info('Setting modules...')
-      const ids = [controller.disputes, controller.voting, controller.registry]
+      const ids = [DISPUTE_MANAGER_ID, VOTING_ID, JURORS_REGISTRY_ID]
       const implementations = [this.disputes, this.voting, this.registry].map(i => i.address)
       await this.court.setModules(ids, implementations)
       logger.success('Modules set successfully')
