@@ -1,15 +1,15 @@
 const fs = require('fs')
 const path = require('path')
 const Verifier = require('../models/Verifier')
-const CourtDeployer = require('../models/deployers/CourtDeployer.v1.1')
+const CourtUpgrader = require('../models/upgrades/CourtUpgrader.v1.1')
 const { command: tokenCommand } = require('../commands/minime')
 
-const command = 'court-upgrade'
+const command = 'upgrade-court'
 const describe = 'Upgrade Court core contracts to v1.1'
 
 const builder = {
   output: { alias: 'o', describe: 'Output dir', type: 'string', default: './data/output' },
-  config: { alias: 'c', describe: 'Court config JSON file', type: 'string', default: './data/config/court.js' },
+  config: { alias: 'c', describe: 'Court config JS file', type: 'string', default: './data/config/court.js' },
   verify: { describe: 'Verify deployed contracts on Etherscan, provide API key', type: 'string' },
 }
 
@@ -27,7 +27,7 @@ const handlerAsync = async (environment, { network, verify: apiKey, output: outp
     jurorToken.address = tokenDeploy[jurorToken.symbol].address
   }
 
-  const deployer = new CourtDeployer(config, environment, outputFilepath, verifyer)
+  const deployer = new CourtUpgrader(config, environment, outputFilepath, verifyer)
   await deployer.call()
 }
 

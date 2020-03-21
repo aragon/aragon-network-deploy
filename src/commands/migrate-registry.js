@@ -1,5 +1,5 @@
 const path = require('path')
-const JurorsRegistryMigrator = require('../models/deployers/JurorsRegistryMigrator')
+const JurorsRegistryMigrator = require('../models/upgrades/JurorsRegistryMigrator')
 
 const command = 'migrate-registry'
 const describe = 'Migrate JurorsRegistry'
