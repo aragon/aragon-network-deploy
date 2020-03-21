@@ -1,14 +1,7 @@
-const rpc = {
-  agent:            undefined,                                          // Set with the agent app of the AN DAO deployed to Aragen
-  voting:           undefined,                                          // Set with the voting app of the AN DAO deployed to Aragen
-  tokenManager:     undefined,                                          // Set with the token manager of the AN DAO deployed to Aragen
-}
+const rpc =         '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'        // Ganache first deterministic
+const aragen =      '0xb4124cEB3451635DAcedd11767f004d8a28c6eE7'        // Aragon first deterministic address
 
-const ropsten = {
-  agent:            undefined,
-  voting:           undefined,
-  tokenManager:     undefined,
-}
+const ropsten =     '0x0090aED150056316E37FE6DFa10Dc63E79D173B6'        // EOA
 
 const staging = {   // https://rinkeby.aragon.org/#/andaostaging
   agent:            '0xec5700f0774cc9e7f2d89bee4b14401124fc2d06',       // Agent of AN DAO Staging

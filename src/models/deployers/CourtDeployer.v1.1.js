@@ -2,7 +2,7 @@ const BaseDeployer = require('./BaseDeployer')
 const CallsEncoder = require('../CallsEncoder')
 const logger = require('../../helpers/logger')('CourtDeployer')
 const { MAX_UINT64, tokenToString } = require('../../helpers/numbers')
-const { DISPUTE_MANAGER_ID, VOTING_ID, SUBSCRIPTIONS_ID } = require('../../helpers/court-modules')
+const { DISPUTE_MANAGER_ID, VOTING_ID, JURORS_REGISTRY_ID } = require('../../helpers/court-modules')
 
 const VERSION = 'v1.2'
 
@@ -60,10 +60,7 @@ module.exports = class extends BaseDeployer {
   }
 
   async setModules() {
-    const sender = await this.environment.getSender()
-    const modulesGovernor = await this.court.getModulesGovernor()
-
-    if (modulesGovernor === sender) {
+    if (typeof this.config.governor.modules === 'string') {
       logger.info('Setting modules...')
       const ids = [DISPUTE_MANAGER_ID, VOTING_ID, JURORS_REGISTRY_ID]
       const implementations = [this.disputes, this.voting, this.registry].map(i => i.address)
@@ -71,10 +68,10 @@ module.exports = class extends BaseDeployer {
       logger.success('Modules set successfully')
     } else {
       logger.info('Submitting a vote to governor to set modules...')
-      await this._setModulesThroughVoting(modulesGovernor, [
-        { id: controller.disputes, address: this.disputes.address, name: 'DisputeManager' },
-        { id: controller.registry, address: this.registry.address, name: 'JurorsRegistry' },
-        { id: controller.voting, address: this.voting.address, name: 'Voting' },
+      await this._setModulesThroughVoting([
+        { id: VOTING_ID, address: this.voting.address, name: 'Voting' },
+        { id: DISPUTE_MANAGER_ID, address: this.disputes.address, name: 'DisputeManager' },
+        { id: JURORS_REGISTRY_ID, address: this.registry.address, name: 'JurorsRegistry' },
       ])
       logger.success(`Vote submitted successfully`)
     }
@@ -146,11 +143,8 @@ module.exports = class extends BaseDeployer {
 
   /** voting methods **/
 
-  async _setModulesThroughVoting(governor, modules) {
-    const { voting, tokenManager } = this.config.aragonNetworkDAO
-    if (!voting) throw Error('Missing governor DAO voting app address, please provide one')
-    if (!tokenManager) throw Error('Missing governor DAO voting app address, please provide one')
-
+  async _setModulesThroughVoting(modules) {
+    const { governor: { modules: dao } } = this.config
     const encoder = new CallsEncoder()
     const ids = modules.map(module => module.id)
     const addresses = modules.map(module => module.address)
@@ -158,13 +152,8 @@ module.exports = class extends BaseDeployer {
 
     const setModulesData = encoder.encodeSetModules(ids, addresses)
     const executeData = encoder.encodeExecute(this.court.address, 0, setModulesData)
-    const agentCallsScript = encoder.encodeCallsScript([{ to: governor, data: executeData }])
-    const votingCallScript = encoder.encodeNewVote(agentCallsScript, description)
-    const tokenManagerCallScript = encoder.encodeCallsScript([{ to: voting, data: votingCallScript }])
-
-    const TokenManager = await this.environment.getArtifact('TokenManager', '@aragon/apps-token-manager')
-    const manager = await TokenManager.at(tokenManager)
-    await manager.forward(tokenManagerCallScript)
+    const agentCallsScript = encoder.encodeCallsScript([{ to: dao.agent, data: executeData }])
+    await this._encodeAndSubmitEvmScript(dao, agentCallsScript, description)
   }
 
   /** verifying methods **/
