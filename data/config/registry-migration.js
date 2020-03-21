@@ -1,4 +1,4 @@
-const ANDAO = require('./ANDAO')
+const governor = require('./governor')
 
 const environments = {
   mainnet: {
@@ -37,7 +37,7 @@ Object.keys(environments).forEach(network => {
   environments[network].court = require(`../output/court.${network}`).court.address
   environments[network].bondedToken = require(`../output/minime.${network}`).ANJ.address
   environments[network].disputeManager = require(`../output/court.${network}`).disputeManager.address
-  environments[network].governor = ANDAO[network]
+  environments[network].governor = governor[network]
 })
 
 module.exports = environments

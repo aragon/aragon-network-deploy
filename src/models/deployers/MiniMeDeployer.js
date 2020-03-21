@@ -1,4 +1,4 @@
-const BaseDeployer = require('./BaseDeployer')
+const BaseDeployer = require('../shared/BaseDeployer')
 const logger = require('../../helpers/logger')('MiniMeDeployer')
 
 const SNAPSHOT_BLOCK = 0
@@ -13,7 +13,7 @@ const VERIFICATION_HEADERS = [
 
 module.exports = class extends BaseDeployer {
   constructor(config, environment, output, verifier = undefined) {
-    super(environment, output, verifier, logger)
+    super(environment, output, verifier)
     this.config = config
   }
 

@@ -4,7 +4,7 @@ const fs = require('fs')
 const path = require('path')
 const yargs = require('yargs')
 const Logger = require('../src/helpers/logger')
-const Environment = require('../src/models/Environment')
+const Environment = require('../src/models/shared/Environment')
 const errorHandler = require('../src/helpers/errorHandler')
 
 const DEFAULT_OPTIONS = {

@@ -1,4 +1,4 @@
-const { rpc: ANDAO } = require('./ANDAO')
+const { rpc: governor } = require('./governor')
 const { bn, bigExp } = require('../../src/helpers/numbers')
 
 const TERM_DURATION = 60 * 10                                        // 10 minutes
@@ -18,9 +18,9 @@ const DAI = {
 
 module.exports = {
   governor: {
-    funds:                        ANDAO,
-    config:                       ANDAO,
-    modules:                      ANDAO,
+    funds:                        governor,
+    config:                       governor,
+    modules:                      governor,
   },
   clock: {
     termDuration:                  bn(TERM_DURATION),            // terms lasts 10 minutes

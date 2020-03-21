@@ -1,4 +1,4 @@
-const ANDAO = require('./ANDAO')
+const governor = require('./governor')
 
 // 2020, Jan 7th 16.00 UTC
 const PRESALE_START_DATE = Math.floor(new Date('2020-01-07T16:00:00.000Z') / 1000).toString()
@@ -108,22 +108,17 @@ const environments = {
 }
 
 Object.keys(environments).forEach(network => {
-  environments[network].instance.owner = ANDAO[network].agent
+  environments[network].governor = governor[network]
 
   environments[network].instance.id = 'templates-externally-owned-presale-bonding-curve'
   environments[network].instance.bondedToken = require(`../output/minime.${network}`).ANJ.address
   environments[network].instance.collateralToken = require(`../output/minime.${network}`).ANT.address
 
   environments[network].wrapper = {
-    owner:    ANDAO[network].agent,
+    owner:    governor[network].agent,
     registry: require(`../output/court.${network}`).registry.address,
     presale:  require(`../output/presale.${network}`)['balance-redirect-presale'].address,
     uniswap:  require(`./uniswap-wrapper`)[network].uniswap
-  }
-
-  environments[network].aragonNetworkDAO = {
-    voting: ANDAO[network].voting,
-    tokenManager: ANDAO[network].tokenManager
   }
 })
 

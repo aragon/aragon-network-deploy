@@ -1,27 +1,31 @@
-const BaseDeployer = require('./BaseDeployer')
-const CallsEncoder = require('../CallsEncoder')
+const CallsEncoder = require('../shared/CallsEncoder')
+const BaseDeployer = require('../shared/BaseDeployer')
 const logger = require('../../helpers/logger')('JurorsRegistryMigrator')
 const { JURORS_REGISTRY_ID, DISPUTE_MANAGER_ID } = require('../../helpers/court-modules')
 
 module.exports = class extends BaseDeployer {
-  constructor(config, environment, output, close = false) {
-    super(environment, output, undefined, logger)
+  constructor(config, environment, close = false) {
+    super(environment)
     this.config = config
     this.close = close
     this.encoder = new CallsEncoder()
   }
 
   async call() {
-    if (!this.close) await this._setupMigrator()
-    else await this._closeMigrator()
+    const isGovernorDAO = typeof this.config.governor === 'string'
+
+    if (this.close) {
+      isGovernorDAO
+        ? await this.closeMigratorThroughDAO()
+        : await this.closeMigratorDirectly()
+    } else {
+      isGovernorDAO
+        ? await this.setupMigratorThroughDAO()
+        : await this.setupMigratorDirectly()
+    }
   }
 
-  async _setupMigrator() {
-    if (typeof this.config.governor === 'string') await this._setupMigratorDirectly()
-    else await this._setupMigratorThroughDAO()
-  }
-
-  async _setupMigratorDirectly() {
+  async setupMigratorDirectly() {
     const { bondedToken, court, oldRegistry, newRegistry, migrator } = this.config
 
     logger.info('Sending funds from old registry to migrator...')
@@ -38,13 +42,31 @@ module.exports = class extends BaseDeployer {
     logger.success('Migrator set up successfully')
   }
 
-  async _setupMigratorThroughDAO() {
+  async setupMigratorThroughDAO() {
     const { governor, bondedToken, court, oldRegistry, newRegistry, migrator } = this.config
     logger.info('Building EVM script to set up registry migrator...')
     const recoverFundsData = this._buildRecoverFundsData(oldRegistry, bondedToken, migrator)
     const setModulesData = this._buildSetModulesData(court, newRegistry, migrator)
     const agentCallsScript = [{ to: governor.agent, data: recoverFundsData }, { to: governor.agent, data: setModulesData }]
     await this._encodeAndSubmitEvmScript(governor, agentCallsScript, 'Set up registry migrator')
+  }
+
+  async closeMigratorDirectly() {
+    const { migrator } = this.config
+    logger.info('Closing migrator...')
+    const JurorsRegistryMigrator = await this.environment.getArtifact('JurorsRegistryMigrator', '@aragonone/court-registry-migrator')
+    const registryMigrator = await JurorsRegistryMigrator.at(migrator)
+    await registryMigrator.close()
+    logger.success('Migrator closed successfully')
+  }
+
+  async closeMigratorThroughDAO() {
+    const { governor, migrator } = this.config
+    logger.info('Building EVM script to close migrator...')
+    const closeData = this.encoder.encodeCloseMigrator()
+    const executeData = this.encoder.encodeExecute(migrator, 0, closeData)
+    const agentCallsScript = [{ to: governor.agent, data: executeData }]
+    await this._encodeAndSubmitEvmScript(governor, agentCallsScript, 'Close registry migrator')
   }
 
   _buildRecoverFundsData(oldJurorsRegistryAddress, anj, migrator) {
@@ -55,23 +77,5 @@ module.exports = class extends BaseDeployer {
   _buildSetModulesData(controller, newJurorsRegistry, migrator) {
     const data = this.encoder.encodeSetModules([JURORS_REGISTRY_ID, DISPUTE_MANAGER_ID], [newJurorsRegistry, migrator])
     return this.encoder.encodeExecute(controller, 0, data)
-  }
-
-  async _closeMigrator() {
-    const { governor, migrator } = this.config
-
-    if (typeof governor === 'string') {
-      logger.info('Closing migrator...')
-      const JurorsRegistryMigrator = await this.environment.getArtifact('JurorsRegistryMigrator', '@aragonone/court-registry-migrator')
-      const registryMigrator = await JurorsRegistryMigrator.at(migrator)
-      await registryMigrator.close()
-      logger.success('Migrator closed successfully')
-    } else {
-      logger.info('Building EVM script to close migrator...')
-      const closeData = this.encoder.encodeCloseMigrator()
-      const executeData = this.encoder.encodeExecute(migrator, 0, closeData)
-      const agentCallsScript = [{ to: governor.agent, data: executeData }]
-      await this._encodeAndSubmitEvmScript(governor, agentCallsScript, 'Close registry migrator')
-    }
   }
 }

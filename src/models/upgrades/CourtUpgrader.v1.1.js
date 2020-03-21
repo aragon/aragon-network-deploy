@@ -1,5 +1,5 @@
-const BaseDeployer = require('./BaseDeployer')
-const CallsEncoder = require('../CallsEncoder')
+const BaseDeployer = require('../shared/BaseDeployer')
+const CallsEncoder = require('../shared/CallsEncoder')
 const logger = require('../../helpers/logger')('CourtDeployer')
 const { MAX_UINT64, tokenToString } = require('../../helpers/numbers')
 const { DISPUTE_MANAGER_ID, VOTING_ID, JURORS_REGISTRY_ID } = require('../../helpers/court-modules')
@@ -14,8 +14,9 @@ const VERIFICATION_HEADERS = [
 
 module.exports = class extends BaseDeployer {
   constructor(config, environment, output, verifier = undefined) {
-    super(environment, output, verifier, logger)
+    super(environment, output, verifier)
     this.config = config
+    this.encoder = new CallsEncoder()
   }
 
   async call() {
@@ -60,21 +61,9 @@ module.exports = class extends BaseDeployer {
   }
 
   async setModules() {
-    if (typeof this.config.governor.modules === 'string') {
-      logger.info('Setting modules...')
-      const ids = [DISPUTE_MANAGER_ID, VOTING_ID, JURORS_REGISTRY_ID]
-      const implementations = [this.disputes, this.voting, this.registry].map(i => i.address)
-      await this.court.setModules(ids, implementations)
-      logger.success('Modules set successfully')
-    } else {
-      logger.info('Submitting a vote to governor to set modules...')
-      await this._setModulesThroughVoting([
-        { id: VOTING_ID, address: this.voting.address, name: 'Voting' },
-        { id: DISPUTE_MANAGER_ID, address: this.disputes.address, name: 'DisputeManager' },
-        { id: JURORS_REGISTRY_ID, address: this.registry.address, name: 'JurorsRegistry' },
-      ])
-      logger.success(`Vote submitted successfully`)
-    }
+    (typeof this.config.governor.modules === 'string')
+      ? await this._setModuelsDirectly()
+      : await this._setModulesThroughVoting()
   }
 
   async verifyContracts() {
@@ -141,19 +130,34 @@ module.exports = class extends BaseDeployer {
     this._saveDeploy({ voting: { address, transactionHash, version: VERSION }})
   }
 
-  /** voting methods **/
+  /** modules methods **/
 
-  async _setModulesThroughVoting(modules) {
-    const { governor: { modules: dao } } = this.config
-    const encoder = new CallsEncoder()
+  async _setModuelsDirectly() {
+    logger.info('Setting modules...')
+    const ids = [DISPUTE_MANAGER_ID, VOTING_ID, JURORS_REGISTRY_ID]
+    const implementations = [this.disputes, this.voting, this.registry].map(i => i.address)
+    await this.court.setModules(ids, implementations)
+    logger.success('Modules set successfully')
+  }
+
+  async _setModulesThroughVoting() {
+    const modules = [
+      { id: VOTING_ID, address: this.voting.address, name: 'Voting' },
+      { id: DISPUTE_MANAGER_ID, address: this.disputes.address, name: 'DisputeManager' },
+      { id: JURORS_REGISTRY_ID, address: this.registry.address, name: 'JurorsRegistry' },
+    ]
+
     const ids = modules.map(module => module.id)
     const addresses = modules.map(module => module.address)
     const description = modules.reduce((text, { id, address, name }) => `${text}\n${name} (ID ${id}) to ${address}`, 'Set modules:')
 
-    const setModulesData = encoder.encodeSetModules(ids, addresses)
-    const executeData = encoder.encodeExecute(this.court.address, 0, setModulesData)
-    const agentCallsScript = encoder.encodeCallsScript([{ to: dao.agent, data: executeData }])
+    const { governor: { modules: dao } } = this.config
+    logger.info('Building EVM script to set modules through DAO...')
+    const setModulesData = this.encoder.encodeSetModules(ids, addresses)
+    const executeData = this.encoder.encodeExecute(this.court.address, 0, setModulesData)
+    const agentCallsScript = this.encoder.encodeCallsScript([{ to: dao.agent, data: executeData }])
     await this._encodeAndSubmitEvmScript(dao, agentCallsScript, description)
+    logger.success(`Vote submitted successfully`)
   }
 
   /** verifying methods **/

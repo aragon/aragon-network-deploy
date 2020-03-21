@@ -1,10 +1,10 @@
-const BaseDeployer = require('./BaseDeployer')
-const CallsEncoder = require('../CallsEncoder')
+const CallsEncoder = require('../shared/CallsEncoder')
+const BaseDeployer = require('../shared/BaseDeployer')
 const logger = require('../../helpers/logger')('CourtStartDelayer')
 
 module.exports = class extends BaseDeployer {
-  constructor(config, environment, output) {
-    super(environment, output, undefined, logger)
+  constructor(config, environment) {
+    super(environment)
     this.config = config
     this.encoder = new CallsEncoder()
   }

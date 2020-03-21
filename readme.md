@@ -12,7 +12,7 @@ To deploy a new ANJ instance locally simply run a ganache instance and run the f
 
 ```
 npx ganache-cli -i 15 --gasLimit 7000000 --port 8545
-npm run deploy:anj:rpc
+npm run deploy:anj -- -n rpc
 ```
 
 ### Testnets and Mainnet
@@ -20,7 +20,7 @@ npm run deploy:anj:rpc
 To deploy a new ANJ instance make sure everything is set in order to use `truffle-hdwallet-provider` and run:
 
 ```
-npm run deploy:anj:[mainnet|ropsten|rinkeby]
+npm run deploy:anj -- -n [mainnet|ropsten|rinkeby]
 ```
 
 ## Aragon Court
@@ -33,7 +33,7 @@ To deploy a new Aragon Court instance locally simply run a ganache instance and 
 
 ```
 npx ganache-cli -i 15 --gasLimit 7000000 --port 8545
-npm run deploy:court:rpc
+npm run deploy:court -- -n rpc
 ```
 
 ### Testnets and Mainnet
@@ -41,7 +41,7 @@ npm run deploy:court:rpc
 To deploy a new Aragon Court instance make sure everything is set in order to use `truffle-hdwallet-provider` and run:
 
 ```
-npm run deploy:court:[mainnet|ropsten|rinkeby]
+npm run deploy:court -- -n [mainnet|ropsten|rinkeby]
 ```
 
 ## Options

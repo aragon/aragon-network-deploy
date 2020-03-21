@@ -1,14 +1,14 @@
 const fs = require('fs')
 const path = require('path')
 const Config = require('../../../../data/config/court').rpc
-const Environment = require('../../../../src/models/Environment')
+const Environment = require('../../../../src/models/shared/Environment')
 const CourtDeployerV10 = require('../../../../src/models/deployers/CourtDeployer.v1.0')
-const CourtDeployerV11 = require('../../../../src/models/deployers/CourtDeployer.v1.1')
+const CourtUpgraderV11 = require('../../../../src/models/upgrades/CourtUpgrader.v1.1')
 
 const SNAPSHOT_BLOCK = 0
 const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
-contract('CourtDeployer v1.1', ([_, governor, someone]) => {
+contract('CourtUpgrader v1.1', ([_, governor]) => {
   let environment, DAI, ANJ
   let court, disputes, treasury, voting, registry, subscriptions
   let newCourt, newDisputes, newTreasury, newVoting, newRegistry, newSubscriptions
@@ -50,7 +50,7 @@ contract('CourtDeployer v1.1', ([_, governor, someone]) => {
       subscriptions = await CourtSubscriptions.at(deployedContractsV0.subscriptions.address)
       voting = await CRVoting.at(deployedContractsV0.voting.address)
 
-      const deployerV1 = new CourtDeployerV11(Config, environment, outputFilepath)
+      const deployerV1 = new CourtUpgraderV11(Config, environment, outputFilepath)
       await deployerV1.call()
       delete require.cache[require.resolve(outputFilepath)]
       const deployedContractsV1 = require(outputFilepath)

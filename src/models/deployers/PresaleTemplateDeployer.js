@@ -1,8 +1,8 @@
-const { APP_IDS } = require('@aragon/templates-externally-owned-presale-bonding-curve/lib/helpers/constants.js')
-const BaseDeployer = require('./BaseDeployer')
-const CallsEncoder = require('../CallsEncoder')
+const CallsEncoder = require('../shared/CallsEncoder')
+const BaseDeployer = require('../shared/BaseDeployer')
 const logger = require('../../helpers/logger')('PresaleTemplateDeployer')
 const { getInstalledAppsById } = require('../../helpers/events')
+const { APP_IDS } = require('@aragon/templates-externally-owned-presale-bonding-curve/lib/helpers/constants.js')
 
 const VERIFICATION_HEADERS = [
   'Commit sha: 4e5e611272e5a1a124ec0e90e0d93b5f1470e783',
@@ -17,20 +17,9 @@ const VERIFICATION_HEADERS_OS = [
 ]
 
 module.exports = class extends BaseDeployer {
-  constructor(
-    config,
-    environment,
-    output,
-    verifier = undefined,
-    deployInstance = false,
-    generateEvmScript = false,
-    printFundraisingAddresses = undefined,
-    deployWrapper = false
-  ) {
-    super(environment, output, verifier, logger)
+  constructor(config, environment, output, verifier = undefined, printFundraisingAddresses = undefined, deployWrapper = false) {
+    super(environment, output, verifier)
     this.config = config
-    this.deployInstance = deployInstance
-    this.generateEvmScript = generateEvmScript
     this.printFundraisingAddresses = printFundraisingAddresses
     this.deployWrapper = deployWrapper
     this.encoder = new CallsEncoder()
@@ -38,7 +27,7 @@ module.exports = class extends BaseDeployer {
 
   async call() {
 
-    if (this.printFundraisingAddresses != undefined) {
+    if (this.printFundraisingAddresses !== undefined) {
       await this._printFundraisingAddresses()
       return
     }
@@ -49,21 +38,19 @@ module.exports = class extends BaseDeployer {
     }
 
     await this._loadOrDeployTemplate()
-
     await this._verifyPresaleTemplate()
 
-    if (this.deployInstance) {
+    const { governor } = this.config
+    if (typeof governor === 'string') {
       const installedApps = await this._deployPresaleInstance()
       await this._verifyFundraisingContracts(installedApps)
-    }
-
-    if (this.generateEvmScript) {
-      const callsScript = this._generateEvmScript()
-      logger.success(`Call script for AN DAO token manager generated`)
-      logger.info(`${callsScript}`)
-      const { tokenManager } = this.config.aragonNetworkDAO
-      const receipt = await this._runEvmScript(callsScript, tokenManager)
-      logger.success(`EVM Script run on tx: ${receipt.tx}. Gas used: ${receipt.receipt.gasUsed}`)
+    } else {
+      logger.info('Building EVM script to change ANJ controller and deploy new fundraising template...')
+      const changeControllerData = this._changeControllerScript()
+      const newInstanceData = this._newInstanceScript()
+      const agentCallsScript = [{ to: governor.agent, data: changeControllerData }, { to: governor.agent, data: newInstanceData }]
+      const voteDescription = 'Change ANJ controller to template and deploy new presale and bonding curve instance'
+      await this._encodeAndSubmitEvmScript(governor, agentCallsScript, voteDescription)
     }
   }
 
@@ -113,7 +100,6 @@ module.exports = class extends BaseDeployer {
     const sender = await this.environment.getSender()
 
     const {
-      owner,
       id,
       collateralToken,
       bondedToken,
@@ -126,7 +112,7 @@ module.exports = class extends BaseDeployer {
       slippage
     } = this.config.instance
 
-    const instanceOwner = owner || sender
+    const instanceOwner = sender
 
     this._printPresaleInstanceDeploy(instanceOwner)
 
@@ -150,9 +136,7 @@ module.exports = class extends BaseDeployer {
       ]
     )
 
-    const installedApps = this._getInstalledApps(instanceReceipt.tx, instanceReceipt.receipt.rawLogs)
-
-    return installedApps
+    return this._getInstalledApps(instanceReceipt.tx, instanceReceipt.receipt.rawLogs)
   }
 
   async _getInstalledApps(txHash, logs) {
@@ -160,7 +144,7 @@ module.exports = class extends BaseDeployer {
     const installedApps = getInstalledAppsById(logs, APP_IDS, Kernel)
     Object.keys(installedApps).map((name) => {
       const addresses = installedApps[name]
-      if (addresses.length == 0) {
+      if (addresses.length === 0) {
         delete installedApps[name]
         return
       }
@@ -172,9 +156,9 @@ module.exports = class extends BaseDeployer {
   }
 
   async _printFundraisingAddresses() {
-      const web3 = this.environment.getWeb3()
-      const txReceipt = await web3.eth.getTransactionReceipt(this.printFundraisingAddresses)
-      await this._getInstalledApps(txReceipt.transactionHash, txReceipt.logs)
+    const web3 = this.environment.getWeb3()
+    const txReceipt = await web3.eth.getTransactionReceipt(this.printFundraisingAddresses)
+    await this._getInstalledApps(txReceipt.transactionHash, txReceipt.logs)
   }
 
   async _verifyFundraisingContracts(installedApps) {
@@ -232,28 +216,6 @@ module.exports = class extends BaseDeployer {
     }
   }
 
-  _generateEvmScript() {
-    // owner of the instance is the agent of the external DAO
-    const { owner } = this.config.instance
-    const agentCallsScript = []
-    agentCallsScript.push({
-      to: owner,
-      data: this._changeControllerScript()
-    })
-    agentCallsScript.push({
-      to: owner,
-      data: this._newInstanceScript()
-    })
-
-    const { voting } = this.config.aragonNetworkDAO
-    const voteDescription = 'Change ANJ controller to template and deploy new presale and bonding curve instance'
-    const tokenManagerScript = [{
-      to: voting,
-      data: this.encoder.encodeNewVote(this.encoder.encodeCallsScript(agentCallsScript), voteDescription)
-    }]
-    return this.encoder.encodeCallsScript(tokenManagerScript)
-  }
-
   _changeControllerScript() {
     const { bondedToken } = this.config.instance
     const data = this.encoder.encodeChangeController(this.presaleTemplate.address)
@@ -269,7 +231,8 @@ module.exports = class extends BaseDeployer {
 
   async _deployWrapper() {
     const { bondedToken } = this.config.instance
-    const { owner, registry, presale, uniswap } = this.config.wrapper
+    const { registry, presale, uniswap } = this.config.wrapper
+    const owner = typeof this.config.governor === 'string' ? this.config.governor : this.config.governor.agent
 
     const CourtPresaleActivate = await this.environment.getArtifact('CourtPresaleActivate', '@aragon/court-presale-activate')
     const wrapper = await CourtPresaleActivate.new(owner, bondedToken, registry, presale, uniswap)

@@ -1,11 +1,11 @@
-const BaseDeployer = require('./BaseDeployer')
-const CallsEncoder = require('../CallsEncoder')
+const CallsEncoder = require('../shared/CallsEncoder')
+const BaseDeployer = require('../shared/BaseDeployer')
 const logger = require('../../helpers/logger')('ControllerModulesManager')
 const { DISPUTE_MANAGER_ID, JURORS_REGISTRY_ID, SUBSCRIPTIONS_ID, TREASURY_ID, VOTING_ID } = require('../../helpers/court-modules')
 
 module.exports = class extends BaseDeployer {
-  constructor(config, environment, output, modules = {}) {
-    super(environment, output, undefined, logger)
+  constructor(config, environment, modules = {}) {
+    super(environment)
     this.config = config
     this.modules = modules
     this.encoder = new CallsEncoder()
@@ -13,11 +13,11 @@ module.exports = class extends BaseDeployer {
 
   async call() {
     (typeof this.config.governor.modules === 'string')
-      ? (await this.setModules())
+      ? (await this.setModulesDirectly())
       : (await this.setModulesThroughDAO())
   }
 
-  async setModules() {
+  async setModulesDirectly() {
     logger.info('Setting modules...')
     const modules = this._getChangingModules()
     const ids = modules.map(module => module.id)

@@ -1,5 +1,4 @@
-const BaseDeployer = require('./BaseDeployer')
-const CallsEncoder = require('../CallsEncoder')
+const BaseDeployer = require('../shared/BaseDeployer')
 const logger = require('../../helpers/logger')('UniswapWrapperDeployer')
 
 const VERSION = 'v1.0'
@@ -11,13 +10,8 @@ const VERIFICATION_HEADERS = [
 ]
 
 module.exports = class extends BaseDeployer {
-  constructor(
-    config,
-    environment,
-    output,
-    verifier = undefined,
-  ) {
-    super(environment, output, verifier, logger)
+  constructor(config, environment, output, verifier = undefined) {
+    super(environment, output, verifier)
     this.config = config
   }
 
