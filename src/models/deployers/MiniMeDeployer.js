@@ -40,8 +40,9 @@ module.exports = class extends BaseDeployer {
     this.token = await MiniMeToken.new(factory.address, ZERO_ADDRESS, SNAPSHOT_BLOCK, name, decimals, symbol, transfersEnabled || TRANSFERS_ENABLED_DEFAULT)
 
     if (controller) {
-      logger.info(`Transferring ${symbol} controller to specified address ${controller} ...`)
-      await this.token.changeController(controller)
+      const controllerAddress = typeof controller === 'string' ? controller : controller.agent
+      logger.info(`Transferring ${symbol} controller to specified address ${controllerAddress} ...`)
+      await this.token.changeController(controllerAddress)
     }
 
     const { address, transactionHash } = this.token
