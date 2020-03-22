@@ -1,4 +1,5 @@
 const governor = require('./governor')
+const requireOutput = require('../../src/helpers/require-output')
 
 const environments = {
   mainnet: {
@@ -34,10 +35,13 @@ const environments = {
 }
 
 Object.keys(environments).forEach(network => {
-  environments[network].court = require(`../output/court.${network}`).court.address
-  environments[network].bondedToken = require(`../output/minime.${network}`).ANJ.address
-  environments[network].disputeManager = require(`../output/court.${network}`).disputeManager.address
-  environments[network].governor = governor[network]
+  environments[network] = {
+    ...environments[network],
+    governor:       governor[network],
+    court:          requireOutput(`court.${network}`, court => court.court.address),
+    disputeManager: requireOutput(`court.${network}`, court => court.disputeManager.address),
+    bondedToken:    requireOutput(`minime.${network}`, tokens => tokens.ANJ.address),
+  }
 })
 
 module.exports = environments

@@ -5,7 +5,7 @@ const path = require('path')
 const yargs = require('yargs')
 const Logger = require('../src/helpers/logger')
 const Environment = require('../src/models/shared/Environment')
-const errorHandler = require('../src/helpers/errorHandler')
+const errorHandler = require('../src/helpers/error-handler')
 
 const DEFAULT_OPTIONS = {
   from: { alias: 'f', describe: 'Sender address', type: 'string' },

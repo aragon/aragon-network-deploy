@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const Config = require('../../../../data/config/wrapper-presale').rpc
+const Config = require('../../../../data/input/wrapper-presale').rpc
 const Governor = require('../../../../src/models/shared/Governor')
 const Environment = require('../../../../src/models/shared/Environment')
 const WrapperPresaleDeployer = require('../../../../src/models/deployers/WrapperPresaleDeployer')

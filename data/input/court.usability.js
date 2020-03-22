@@ -1,3 +1,4 @@
+const requireOutput = require('../../src/helpers/require-output')
 const { bn, bigExp } = require('../../src/helpers/numbers')
 const { usability: governor } = require('./governor')
 
@@ -7,13 +8,13 @@ const START_DATE = Math.floor(new Date() / 1000 + TERM_DURATION + 120) // 2 minu
 const ANJ = {
   symbol: 'ANJ',
   decimals: 18,
-  address: require('../output/minime.usability').ANJ.address
+  address: requireOutput('minime.usability', tokens => tokens.ANJ.address)
 }
 
 const DAI = {
   symbol: 'DAI',
   decimals: 18,
-  address: require('../output/minime.usability').DAI.address
+  address: requireOutput('minime.usability', tokens => tokens.DAI.address)
 }
 
 module.exports = {

@@ -6,9 +6,9 @@
   "license": "GPL-3.0",
   "scripts": {
     "test": "./node_modules/@aragon/test-helpers/ganache-cli.sh",
-    "deploy:dai": "node ./bin/index.js deploy-minime -c ./test/data/config/dai.js --verbose",
-    "deploy:ant": "node ./bin/index.js deploy-minime -c ./test/data/config/ant.js --verbose",
-    "deploy:anj": "node ./bin/index.js deploy-minime -c ./data/config/anj.js --verbose",
+    "deploy:dai": "node ./bin/index.js deploy-minime -c ./test/data/input/dai.js --verbose",
+    "deploy:ant": "node ./bin/index.js deploy-minime -c ./test/data/input/ant.js --verbose",
+    "deploy:anj": "node ./bin/index.js deploy-minime -c ./data/input/anj.js --verbose",
     "deploy:court": "node ./bin/index.js deploy-court --verbose",
     "deploy:faucet": "node ./bin/index.js deploy-faucet --verbose",
     "deploy:template": "node ./bin/index.js deploy-template --verbose",

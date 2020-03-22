@@ -5,11 +5,11 @@ const command = 'delay-court'
 const describe = 'Delay Court start time'
 
 const builder = {
-  config: { alias: 'c', describe: 'Migration config JS file', type: 'string', default: './data/config/court-addresses' },
+  input: { alias: 'i', describe: 'Migration config JS file', type: 'string', default: './data/input/court-addresses' },
 }
 
-const handlerAsync = async (environment, { network, config: configFilename }) => {
-  const config = require(path.resolve(process.cwd(), configFilename))[network]
+const handlerAsync = async (environment, { network, input }) => {
+  const config = require(path.resolve(process.cwd(), input))[network]
   const deployer = new CourtStartDelayer(config, environment)
   await deployer.call()
 }

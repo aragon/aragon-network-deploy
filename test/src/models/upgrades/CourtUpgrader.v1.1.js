@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const Config = require('../../../../data/config/court').rpc
+const Config = require('../../../../data/input/court').rpc
 const Governor = require('../../../../src/models/shared/Governor')
 const Environment = require('../../../../src/models/shared/Environment')
 const CourtDeployerV10 = require('../../../../src/models/deployers/CourtDeployer.v1.0')
