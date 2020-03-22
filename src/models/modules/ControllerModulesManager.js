@@ -12,9 +12,9 @@ module.exports = class extends BaseDeployer {
   }
 
   async call() {
-    (typeof this.config.governor.modules === 'string')
-      ? (await this.setModulesDirectly())
-      : (await this.setModulesThroughDAO())
+    this.config.governor.modules.isDAO()
+      ? (await this.setModulesThroughDAO())
+      : (await this.setModulesDirectly())
   }
 
   async setModulesDirectly() {

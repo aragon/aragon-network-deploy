@@ -30,11 +30,10 @@ module.exports = class extends BaseDeployer {
   }
 
   async _deployWrapper(UniswapWrapper) {
-    const { owner, bondedToken, registry, uniswap } = this.config
-    const ownerAddress = typeof owner === 'string' ? owner : owner.agent
-    this._printWrapperDeploy(ownerAddress)
+    const { governor, bondedToken, registry, uniswap } = this.config
+    this._printWrapperDeploy()
 
-    this.wrapper = await UniswapWrapper.new(ownerAddress, bondedToken, registry, uniswap)
+    this.wrapper = await UniswapWrapper.new(governor.address, bondedToken, registry, uniswap)
     const { address, transactionHash } = this.wrapper
     logger.success(`Created UniswapWrapper instance at ${address}`)
     this._saveDeploy({ address, transactionHash, version: VERSION })
@@ -48,9 +47,9 @@ module.exports = class extends BaseDeployer {
     }
   }
 
-  _printWrapperDeploy(ownerAddress) {
+  _printWrapperDeploy() {
     logger.info('Deploying UniswapWrapper contract:')
-    logger.info(` - Owner:                                    ${ownerAddress}`)
+    logger.info(` - Governor:                                 ${this.config.governor.describe()}`)
     logger.info(` - Bonded Token:                             ${this.config.bondedToken}`)
     logger.info(` - Jurors Registry:                          ${this.config.registry}`)
     logger.info(` - Uniswap:                                  ${this.config.uniswap}`)

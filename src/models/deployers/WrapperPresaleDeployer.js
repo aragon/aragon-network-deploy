@@ -30,11 +30,10 @@ module.exports = class extends BaseDeployer {
   }
 
   async _deployWrapper(PresaleWrapper) {
-    const { owner, bondedToken, registry, presale, uniswap } = this.config
-    const ownerAddress = typeof owner === 'string' ? owner : owner.agent
-    this._printWrapperDeploy(ownerAddress)
+    const { governor, bondedToken, registry, presale, uniswap } = this.config
+    this._printWrapperDeploy()
 
-    this.wrapper = await PresaleWrapper.new(ownerAddress, bondedToken, registry, presale, uniswap)
+    this.wrapper = await PresaleWrapper.new(governor.address, bondedToken, registry, presale, uniswap)
     const { address, transactionHash } = this.wrapper
     logger.success(`Created PresaleWrapper instance at ${address}`)
     this._saveDeploy({ address, transactionHash, version: VERSION })
@@ -48,9 +47,9 @@ module.exports = class extends BaseDeployer {
     }
   }
 
-  _printWrapperDeploy(ownerAddress) {
+  _printWrapperDeploy() {
     logger.info('Deploying PresaleWrapper contract:')
-    logger.info(` - Owner:                                    ${ownerAddress}`)
+    logger.info(` - Governor:                                 ${this.config.governor.describe()}`)
     logger.info(` - Presale:                                  ${this.config.presale}`)
     logger.info(` - Bonded Token:                             ${this.config.bondedToken}`)
     logger.info(` - Jurors Registry:                          ${this.config.registry}`)

@@ -12,7 +12,7 @@ module.exports = class extends BaseDeployer {
   }
 
   async call() {
-    const isGovernorDAO = typeof this.config.governor === 'string'
+    const isGovernorDAO = this.config.governor.isDAO()
 
     if (this.close) {
       isGovernorDAO

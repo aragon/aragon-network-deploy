@@ -11,9 +11,9 @@ module.exports = class extends BaseDeployer {
   }
 
   async call() {
-    (typeof this.config.governor.config === 'string')
-      ? (await this.updateSubscriptionsConfigDirectly())
-      : (await this.updateSubscriptionsConfigThroughDAO())
+    this.config.governor.config.isDAO()
+      ? (await this.updateSubscriptionsConfigThroughDAO())
+      : (await this.updateSubscriptionsConfigDirectly())
   }
 
   async updateSubscriptionsConfigDirectly() {

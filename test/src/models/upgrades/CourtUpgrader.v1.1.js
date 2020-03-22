@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const Config = require('../../../../data/config/court').rpc
+const Governor = require('../../../../src/models/shared/Governor')
 const Environment = require('../../../../src/models/shared/Environment')
 const CourtDeployerV10 = require('../../../../src/models/deployers/CourtDeployer.v1.0')
 const CourtUpgraderV11 = require('../../../../src/models/upgrades/CourtUpgrader.v1.1')
@@ -28,7 +29,7 @@ contract('CourtUpgrader v1.1', ([_, governor]) => {
       ANJ = await MiniMeToken.new(ZERO_ADDRESS, ZERO_ADDRESS, SNAPSHOT_BLOCK, 'Aragon Network Juror Token', 18, 'ANJ', true)
       Config.jurors.token.address = ANJ.address
 
-      Config.governor.modules = governor
+      Config.governor.modules = Governor(governor)
     })
 
     before('deploy and upgrade', async () => {
