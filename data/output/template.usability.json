@@ -1,5 +1,5 @@
 {
-  "presaleTemplate": {
+  "template": {
     "address": "0x4D82E7c58D22BDa9286Ef9d6620c7ec7aBC7b9F9",
     "transactionHash": "0x0666a4aad0091e4db39f95e820e787e5fc7607d592170259d45743d719494d00"
   },
@@ -22,13 +22,5 @@
   "balance-redirect-presale": {
     "address": "0x51974a685c653aFECfB383017eAb65A501f35aD9",
     "transactionHash": "0x9da6495be349c9e221d16e5024b2722568654ae4e063b697871f218ffe7b7f69"
-  },
-  "wrapper": {
-    "address": "0xDAd9F5E6d092EafBe6f7e3907e2504fC0f858401",
-    "transactionHash": "0xef506d90eac15e2b486a55bce89ec9854695e2a3bd3cd271255296c76afb5768"
-  },
-  "wrapper-deprecated": {
-    "address": "0xE7C706BB93b87e0cA63D61Be96Ebd88806E35A55",
-    "transactionHash": "0xba381494804835c2c89949947c2224096630e1762426ee6c90cac6d41675785d"
   }
 }
