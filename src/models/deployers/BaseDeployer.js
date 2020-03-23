@@ -1,4 +1,5 @@
 const fs = require('fs')
+const logger = require('../../helpers/logger')('BaseDeployer')
 
 module.exports = class BaseDeployer {
   constructor(environment, output, verifier, logger) {
@@ -23,33 +24,20 @@ module.exports = class BaseDeployer {
     fs.writeFileSync(this.output, previousDeployJSON)
   }
 
-  async _generateAndRunEvmScript(logger) {
-    const callsScript = this._generateEvmScript()
-    logger.success(`Call script for AN DAO token manager generated`)
-    logger.info(`${callsScript}`)
-    const { tokenManager } = this.config.aragonNetworkDAO
-    const receipt = await this._runEvmScript(callsScript, tokenManager)
-    logger.success(`EVM Script run on tx: ${receipt.tx}. Gas used: ${receipt.receipt.gasUsed}`)
+  async _encodeAndSubmitEvmScript({ voting, tokenManager }, agentCallsScript, voteDescription = '') {
+    const agentScript = this.encoder.encodeCallsScript(agentCallsScript)
+    const votingScript = this.encoder.encodeNewVote(agentScript, voteDescription)
+    const tokenManagerScript = this.encoder.encodeCallsScript([{ to: voting, data: votingScript }])
+    logger.success(`Call script for AN DAO generated`)
+    logger.info(`${tokenManagerScript}`)
+    await this._runEvmScript(tokenManager, tokenManagerScript)
   }
 
-  _encodeAgentCallScript(agentCallsScript) {
-    const { voting } = this.config.aragonNetworkDAO
-    console.log('voting', voting)
-    const voteDescription = ''
-    console.log('agent cs', agentCallsScript)
-    const tokenManagerScript = [{
-      to: voting,
-      data: this.encoder.encodeNewVote(this.encoder.encodeCallsScript(agentCallsScript), voteDescription)
-    }]
-    console.log(tokenManagerScript)
-    return this.encoder.encodeCallsScript(tokenManagerScript)
-  }
-
-  async _runEvmScript(callsScript, tokenManagerAddress) {
+  async _runEvmScript(tokenManager, tokenManagerScript) {
     const TokenManager = await this.environment.getArtifact('TokenManager', '@aragon/apps-token-manager')
-    const tokenManager = await TokenManager.at(tokenManagerAddress)
-    const receipt = await tokenManager.forward(callsScript)
-
+    const forwarder = await TokenManager.at(tokenManager)
+    const { receipt, tx } = forwarder.forward(tokenManagerScript)
+    logger.success(`EVM Script run on tx: ${tx}. Gas used: ${receipt.gasUsed}`)
     return receipt
   }
 }

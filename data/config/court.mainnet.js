@@ -1,5 +1,5 @@
 const { bn, bigExp } = require('../../src/helpers/numbers')
-const { mainnet: { agent, tokenManager, voting } } = require('./ANDAO')
+const { mainnet: ANDAO } = require('./ANDAO')
 
 // 8 hours
 const TERM_DURATION = 60 * 60 * 8
@@ -20,14 +20,10 @@ const DAI = {
 }
 
 module.exports = {
-  aragonNetworkDAO: {
-    voting,
-    tokenManager,
-  },
   governor: {                      // Agent of AN DAO
-    funds:                         agent,
-    config:                        agent,
-    modules:                       agent,
+    funds:                         ANDAO,
+    config:                        ANDAO,
+    modules:                       ANDAO,
   },
   clock: {
     termDuration:                  bn(TERM_DURATION),            // terms lasts 8 hours
@@ -61,7 +57,7 @@ module.exports = {
   },
   subscriptions: {
     feeToken:                      DAI,                          // fee token for subscriptions is DAI
-    feeAmount:                     bigExp(10, DAI.decimals),     // 10 fee tokens per subscription period
+    feeAmount:                     bigExp(7500, DAI.decimals),   // 7500 fee tokens per subscription period
     periodDuration:                bn(90),                       // each subscription period lasts 90 terms (30 days)
     prePaymentPeriods:             bn(12),                       // cannot pre-pay more than 12 periods in advance (1 year)
     resumePrePaidPeriods:          bn(12),                       // 12 pre-paid periods when resuming activity (1 year)

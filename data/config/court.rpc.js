@@ -1,3 +1,4 @@
+const { rpc: ANDAO } = require('./ANDAO')
 const { bn, bigExp } = require('../../src/helpers/numbers')
 
 const TERM_DURATION = 60 * 10                                        // 10 minutes
@@ -17,9 +18,9 @@ const DAI = {
 
 module.exports = {
   governor: {
-    funds:                        '0xb4124cEB3451635DAcedd11767f004d8a28c6eE7', // aragon devchain initial deterministic address
-    config:                       '0xb4124cEB3451635DAcedd11767f004d8a28c6eE7', // aragon devchain initial deterministic address
-    modules:                      '0xb4124cEB3451635DAcedd11767f004d8a28c6eE7', // aragon devchain initial deterministic address
+    funds:                        ANDAO,
+    config:                       ANDAO,
+    modules:                      ANDAO,
   },
   clock: {
     termDuration:                  bn(TERM_DURATION),            // terms lasts 10 minutes
