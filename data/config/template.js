@@ -109,17 +109,9 @@ const environments = {
 
 Object.keys(environments).forEach(network => {
   environments[network].governor = governor[network]
-
   environments[network].instance.id = 'templates-externally-owned-presale-bonding-curve'
   environments[network].instance.bondedToken = require(`../output/minime.${network}`).ANJ.address
   environments[network].instance.collateralToken = require(`../output/minime.${network}`).ANT.address
-
-  environments[network].wrapper = {
-    owner:    governor[network].agent,
-    registry: require(`../output/court.${network}`).registry.address,
-    presale:  require(`../output/presale.${network}`)['balance-redirect-presale'].address,
-    uniswap:  require(`./uniswap-wrapper`)[network].uniswap
-  }
 })
 
 module.exports = environments

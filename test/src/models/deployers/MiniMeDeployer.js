@@ -14,6 +14,7 @@ contract('MiniMeDeployer', ([_, sender]) => {
   })
 
   beforeEach('deploy', async () => {
+    Config.controller = undefined // force setting sender as owner
     const deployer = new MiniMeDeployer(Config, environment, outputFilepath)
     await deployer.call()
     const deployedContracts = require(outputFilepath)

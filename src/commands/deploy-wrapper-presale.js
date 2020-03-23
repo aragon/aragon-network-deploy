@@ -1,13 +1,13 @@
 const path = require('path')
 const Verifier = require('../models/shared/Verifier')
-const UniswapWrapperDeployer = require('../models/deployers/UniswapWrapperDeployer')
+const WrapperPresaleDeployer = require('../models/deployers/WrapperPresaleDeployer')
 
-const command = 'deploy-uniswap-wrapper'
-const describe = 'Deploy Uniswap wrapper'
+const command = 'deploy-wrapper-presale'
+const describe = 'Deploy presale wrapper'
 
 const builder = {
-  output: { alias: 'o', describe: 'Output dir', type: 'string', default: './data/output/uniswap-wrapper' },
-  config: { alias: 'c', describe: 'Uniswap wrapper config JS file', type: 'string', default: './data/config/uniswap-wrapper' },
+  output: { alias: 'o', describe: 'Output dir', type: 'string', default: './data/output/wrapper-presale' },
+  config: { alias: 'c', describe: 'Presale wrapper config JS file', type: 'string', default: './data/config/wrapper-presale' },
   verify: { describe: 'Verify deployed contracts on Etherscan, provide API key', type: 'string' },
 }
 
@@ -16,7 +16,7 @@ const handlerAsync = async (environment, { network, output: outputDir, config: c
   const config = require(path.resolve(process.cwd(), configFilename))[network]
 
   const verifyer = apiKey ? new Verifier(environment, apiKey) : undefined
-  const deployer = new UniswapWrapperDeployer(config, environment, outputFilepath, verifyer)
+  const deployer = new WrapperPresaleDeployer(config, environment, outputFilepath, verifyer)
   await deployer.call()
 }
 

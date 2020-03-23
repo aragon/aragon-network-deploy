@@ -13,14 +13,15 @@ const decodeEvents = (logs, contractAbi, eventName) => {
 
 const getInstalledApps = (logs, appId, kernel) => {
   const events = decodeEvents(logs, kernel.abi, 'NewAppProxy')
-  const appEvents = events.filter(e => e.args.appId === appId)
-  const installedAddresses = appEvents.map(e => e.args.proxy)
+  const appEvents = events.filter(event => event.args.appId === appId)
+  const installedAddresses = appEvents.map(event => event.args.proxy)
   return installedAddresses
 }
 
 const getInstalledAppsById = (logs, appIds, kernel) => {
   return Object.keys(appIds).reduce((apps, appName) => {
-    apps[appName] = getInstalledApps(logs, appIds[appName], kernel)
+    const addresses = getInstalledApps(logs, appIds[appName], kernel)
+    if (addresses.length > 0) apps[appName] = addresses
     return apps
   }, {})
 }
