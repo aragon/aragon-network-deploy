@@ -1,38 +1,39 @@
+const requireOutput = require('../../src/helpers/require-output')
 const { bn, bigExp } = require('../../src/helpers/numbers')
-const { rinkeby: governor } = require('./governor')
+const { rpc: governor } = require('./governor')
 
-const TERM_DURATION = 60 * 60 * 8                                      // 8 hours
-const START_DATE = Math.floor(new Date() / 1000 + TERM_DURATION + 120) // 2 minutes from now
+const TERM_DURATION = 60 * 10                                        // 10 minutes
+const START_DATE = Math.floor(new Date() / 1000 + 2 * TERM_DURATION) // 20 minutes from now
 
 const ANJ = {
   symbol: 'ANJ',
   decimals: 18,
-  address: require('../output/minime.rinkeby').ANJ.address
+  address: requireOutput('minime.rpc', tokens => tokens.ANJ.address)
 }
 
 const DAI = {
   symbol: 'DAI',
   decimals: 18,
-  address: require('../output/minime.rinkeby').DAI.address
+  address: requireOutput('minime.rpc', tokens => tokens.DAI.address)
 }
 
 module.exports = {
-  governor: {                      // Agent of AN DAO
-    funds:                         governor,
-    config:                        governor,
-    modules:                       governor,
+  governor: {
+    funds:                        governor,
+    config:                       governor,
+    modules:                      governor,
   },
   clock: {
-    termDuration:                  bn(TERM_DURATION),            // terms lasts 8 hours
+    termDuration:                  bn(TERM_DURATION),            // terms lasts 10 minutes
     firstTermStartTime:            bn(START_DATE),               // first term start timestamp in seconds
   },
   court: {
     feeToken:                      DAI,                          // fee token for the court is DAI
     evidenceTerms:                 bn(21),                       // evidence period lasts 21 terms (7 days)
-    commitTerms:                   bn(6),                        // vote commits last 6 terms (2 days)
-    revealTerms:                   bn(6),                        // vote reveals last 6 terms (2 days)
-    appealTerms:                   bn(6),                        // appeals last 6 terms (2 days)
-    appealConfirmTerms:            bn(6),                        // appeal confirmations last 6 terms (2 days)
+    commitTerms:                   bn(6),                        // vote commits lasts 6 terms (2 days)
+    revealTerms:                   bn(6),                        // vote reveals lasts 6 terms (2 days)
+    appealTerms:                   bn(6),                        // appeals lasts 6 terms (2 days)
+    appealConfirmTerms:            bn(6),                        // appeal confirmations lasts 6 terms (2 days)
     maxJurorsPerDraftBatch:        bn(81),                       // max number of jurors drafted per batch
     jurorFee:                      bigExp(10, DAI.decimals),     // 10 fee tokens for juror fees
     draftFee:                      bigExp(18, DAI.decimals - 2), // 0.18 fee tokens for draft fees
@@ -46,7 +47,7 @@ module.exports = {
     appealCollateralFactor:        bn(30000),                    // appeal collateral is 3x of the corresponding juror fees
     appealConfirmCollateralFactor: bn(20000),                    // appeal-confirmation collateral is 2x of the corresponding juror fees
     finalRoundWeightPrecision:     bn(1000),                     // use to improve division rounding for final round maths
-    skippedDisputes:               2,                            // number of dispute to skip
+    skippedDisputes:               0,                            // number of dispute to skip
   },
   jurors: {
     token:                         ANJ,

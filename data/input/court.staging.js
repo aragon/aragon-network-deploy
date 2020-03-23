@@ -1,29 +1,30 @@
+const requireOutput = require('../../src/helpers/require-output')
 const { bn, bigExp } = require('../../src/helpers/numbers')
-const { ropsten: governor } = require('./governor')
+const { staging: governor } = require('./governor')
 
-const TERM_DURATION = 60 * 60 * 8                                      // 8 hours
-const START_DATE = Math.floor(new Date() / 1000 + TERM_DURATION + 120) // two minutes from now
+const TERM_DURATION = 60 * 10                                        // 10 minutes
+const START_DATE = Math.floor(new Date() / 1000 + 2 * TERM_DURATION) // 20 minutes from now
 
 const ANJ = {
   symbol: 'ANJ',
   decimals: 18,
-  address: require('../output/minime.ropsten').ANJ.address
+  address: requireOutput('minime.staging', tokens => tokens.ANJ.address)
 }
 
 const DAI = {
   symbol: 'DAI',
   decimals: 18,
-  address: require('../output/minime.ropsten').DAI.address
+  address: requireOutput('minime.staging', tokens => tokens.DAI.address)
 }
 
 module.exports = {
-  governor: {
+  governor: {                      // Agent of AN DAO
     funds:                         governor,
     config:                        governor,
     modules:                       governor,
   },
   clock: {
-    termDuration:                  bn(TERM_DURATION),            // terms lasts 8 hours
+    termDuration:                  bn(TERM_DURATION),            // terms lasts 10 minutes
     firstTermStartTime:            bn(START_DATE),               // first term start timestamp in seconds
   },
   court: {
@@ -46,7 +47,7 @@ module.exports = {
     appealCollateralFactor:        bn(30000),                    // appeal collateral is 3x of the corresponding juror fees
     appealConfirmCollateralFactor: bn(20000),                    // appeal-confirmation collateral is 2x of the corresponding juror fees
     finalRoundWeightPrecision:     bn(1000),                     // use to improve division rounding for final round maths
-    skippedDisputes:               2,                            // number of dispute to skip
+    skippedDisputes:               0,                            // number of dispute to skip
   },
   jurors: {
     token:                         ANJ,

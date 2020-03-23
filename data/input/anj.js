@@ -1,3 +1,5 @@
+const governor = require('./governor')
+
 const environments = {
   rpc: {
     factory:          undefined,                                      // will be deployed unless specified
@@ -26,7 +28,7 @@ Object.keys(environments).forEach(network => {
     symbol: 'ANJ',
     decimals: 18,
     transfersEnabled: true,
-    controller: require('./governor')[network],
+    controller: governor[network],
   }
 })
 

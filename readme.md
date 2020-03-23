@@ -4,7 +4,7 @@
 
 ## ANJ
 
-Make sure the related configuration is correctly set up in `./data/config/anj`
+Make sure the related configuration is correctly set up in `./data/input/anj`
 
 ### Local
 
@@ -25,7 +25,7 @@ npm run deploy:anj -- -n [mainnet|ropsten|rinkeby]
 
 ## Aragon Court
 
-Make sure the related configuration is correctly set up in `./data/config/court`
+Make sure the related configuration is correctly set up in `./data/input/court`
 
 ### Local
 

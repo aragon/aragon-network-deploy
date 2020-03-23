@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const Config = require('../../../../data/config/faucet').rpc
+const Config = require('../../../../data/input/faucet').rpc
 const Environment = require('../../../../src/models/shared/Environment')
 const FaucetDeployer = require('../../../../src/models/deployers/FaucetDeployer')
 

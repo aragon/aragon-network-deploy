@@ -5,12 +5,12 @@ const command = 'migrate-registry'
 const describe = 'Migrate JurorsRegistry'
 
 const builder = {
+  input: { alias: 'i', describe: 'Migration config JS file', type: 'string', default: './data/input/registry-migration' },
   close: { describe: 'Whether to set up a new migrator or request closing an existing one', type: 'boolean', default: false },
-  config: { alias: 'c', describe: 'Migration config JS file', type: 'string', default: './data/config/registry-migration' },
 }
 
-const handlerAsync = async (environment, { close, network, config: configFilename }) => {
-  const config = require(path.resolve(process.cwd(), configFilename))[network]
+const handlerAsync = async (environment, { network, input, close }) => {
+  const config = require(path.resolve(process.cwd(), input))[network]
   const deployer = new JurorsRegistryMigrator(config, environment, close)
   await deployer.call()
 }
