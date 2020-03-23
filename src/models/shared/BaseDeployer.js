@@ -2,9 +2,9 @@ const fs = require('fs')
 const logger = require('../../helpers/logger')('BaseDeployer')
 
 module.exports = class BaseDeployer {
-  constructor(environment, output, verifier, logger) {
-    this.output = output
+  constructor(environment, output = undefined, verifier = undefined) {
     this.environment = environment
+    this.output = output
     this.verifier = verifier
     this.previousDeploy = {}
 
@@ -15,10 +15,11 @@ module.exports = class BaseDeployer {
   }
 
   _existsPreviousDeploy() {
-    return fs.existsSync(this.output)
+    return !!this.output && fs.existsSync(this.output)
   }
 
   _saveDeploy(data) {
+    if (!this.output) logger.warn(`Couldn't save deploy, no output path given: ${data}`)
     this.previousDeploy = { ...this.previousDeploy, ...data }
     const previousDeployJSON = JSON.stringify(this.previousDeploy, null, 2)
     fs.writeFileSync(this.output, previousDeployJSON)

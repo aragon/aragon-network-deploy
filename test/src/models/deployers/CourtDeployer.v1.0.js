@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const Config = require('../../../../data/config/court').rpc
-const Environment = require('../../../../src/models/Environment')
+const Environment = require('../../../../src/models/shared/Environment')
 const CourtDeployer = require('../../../../src/models/deployers/CourtDeployer.v1.0')
 
 const { assertBn } = require('../../../helpers/assertBn')

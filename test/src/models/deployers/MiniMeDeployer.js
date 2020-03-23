@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const Config = require('../../../../data/config/anj').rpc
-const Environment = require('../../../../src/models/Environment')
+const Environment = require('../../../../src/models/shared/Environment')
 const MiniMeDeployer = require('../../../../src/models/deployers/MiniMeDeployer')
 
 contract('MiniMeDeployer', ([_, sender]) => {

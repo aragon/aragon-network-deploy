@@ -1,4 +1,4 @@
-const BaseDeployer = require('./BaseDeployer')
+const BaseDeployer = require('../shared/BaseDeployer')
 const logger = require('../../helpers/logger')('CourtDeployer')
 const { MAX_UINT64, tokenToString } = require('../../helpers/numbers')
 const { DISPUTE_MANAGER_ID, JURORS_REGISTRY_ID, SUBSCRIPTIONS_ID, TREASURY_ID, VOTING_ID } = require('../../helpers/court-modules')
@@ -13,7 +13,7 @@ const VERIFICATION_HEADERS = [
 
 module.exports = class extends BaseDeployer {
   constructor(config, environment, output, verifier = undefined) {
-    super(environment, output, verifier, logger)
+    super(environment, output, verifier)
     this.config = config
   }
 

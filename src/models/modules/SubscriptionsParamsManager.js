@@ -1,22 +1,22 @@
-const CallsEncoder = require('../CallsEncoder')
-const BaseDeployer = require('../deployers/BaseDeployer')
+const CallsEncoder = require('../shared/CallsEncoder')
+const BaseDeployer = require('../shared/BaseDeployer')
 const logger = require('../../helpers/logger')('SubscriptionsParamsManager')
 
 module.exports = class extends BaseDeployer {
-  constructor(config, environment, output, changes = {}) {
-    super(environment, output, undefined, logger)
+  constructor(config, environment, changes = {}) {
+    super(environment)
     this.config = config
-    this.encoder = new CallsEncoder()
     this.changes = changes
+    this.encoder = new CallsEncoder()
   }
 
   async call() {
     (typeof this.config.governor.config === 'string')
-      ? (await this.updateSubscriptionsConfig())
+      ? (await this.updateSubscriptionsConfigDirectly())
       : (await this.updateSubscriptionsConfigThroughDAO())
   }
 
-  async updateSubscriptionsConfig() {
+  async updateSubscriptionsConfigDirectly() {
     const { modules: { subscriptions: address } } = this.config
     const Subscriptions = await this.environment.getArtifact('CourtSubscriptions', '@aragon/court')
     const subscriptions = await Subscriptions.at(address)

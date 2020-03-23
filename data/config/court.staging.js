@@ -1,5 +1,5 @@
 const { bn, bigExp } = require('../../src/helpers/numbers')
-const { staging: ANDAO } = require('./ANDAO')
+const { staging: governor } = require('./governor')
 
 const TERM_DURATION = 60 * 10                                        // 10 minutes
 const START_DATE = Math.floor(new Date() / 1000 + 2 * TERM_DURATION) // 20 minutes from now
@@ -18,9 +18,9 @@ const DAI = {
 
 module.exports = {
   governor: {                      // Agent of AN DAO
-    funds:                         ANDAO,
-    config:                        ANDAO,
-    modules:                       ANDAO,
+    funds:                         governor,
+    config:                        governor,
+    modules:                       governor,
   },
   clock: {
     termDuration:                  bn(TERM_DURATION),            // terms lasts 10 minutes

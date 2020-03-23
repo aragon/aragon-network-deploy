@@ -2,8 +2,8 @@ const fs = require('fs')
 const path = require('path')
 const axios = require('axios')
 const query = require('querystring')
-const sleep = require('../helpers/sleep')
-const logger = require('../helpers/logger')('Verifier')
+const sleep = require('../../helpers/sleep')
+const logger = require('../../helpers/logger')('Verifier')
 const flattener = require('truffle-flattener')
 
 const SUBDOMAINS = {

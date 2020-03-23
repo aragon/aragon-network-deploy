@@ -6,15 +6,12 @@ const describe = 'Migrate JurorsRegistry'
 
 const builder = {
   close: { describe: 'Whether to set up a new migrator or request closing an existing one', type: 'boolean', default: false },
-  output: { alias: 'o', describe: 'Output dir', type: 'string', default: './data/output' },
-  config: { alias: 'c', describe: 'Migration config JS file', type: 'string', default: './data/config/registry-migration.js' },
+  config: { alias: 'c', describe: 'Migration config JS file', type: 'string', default: './data/config/registry-migration' },
 }
 
-const handlerAsync = async (environment, { close, network, output: outputDir, config: configFilename }) => {
-  const outputFilepath = path.resolve(process.cwd(), `${outputDir}/${command}.${network}.json`)
+const handlerAsync = async (environment, { close, network, config: configFilename }) => {
   const config = require(path.resolve(process.cwd(), configFilename))[network]
-
-  const deployer = new JurorsRegistryMigrator(config, environment, outputFilepath, close)
+  const deployer = new JurorsRegistryMigrator(config, environment, close)
   await deployer.call()
 }
 

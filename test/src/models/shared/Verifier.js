@@ -1,9 +1,9 @@
 const fs = require('fs')
 const path = require('path')
-const Config = require('../../data/config/court').rpc
-const Verifier = require('../../src/models/Verifier')
-const Environment = require('../../src/models/Environment')
-const CourtDeployer = require('../../src/models/deployers/CourtDeployer.v1.0')
+const Config = require('../../../../data/config/court').rpc
+const Verifier = require('../../../../src/models/shared/Verifier')
+const Environment = require('../../../../src/models/shared/Environment')
+const CourtDeployer = require('../../../../src/models/deployers/CourtDeployer.v1.0')
 
 const SNAPSHOT_BLOCK = 0
 const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'

@@ -1,20 +1,20 @@
 const fs = require('fs')
 const path = require('path')
-const Verifier = require('../models/Verifier')
+const Verifier = require('../models/shared/Verifier')
 const CourtDeployer = require('../models/deployers/CourtDeployer.v1.0')
-const { command: tokenCommand } = require('../commands/minime')
+const { command: tokenCommand } = require('./deploy-minime')
 
-const command = 'court'
+const command = 'deploy-court'
 const describe = 'Deploy Court core contracts v1'
 
 const builder = {
-  output: { alias: 'o', describe: 'Output dir', type: 'string', default: './data/output' },
-  config: { alias: 'c', describe: 'Court config JSON file', type: 'string', default: './data/config/court.js' },
+  output: { alias: 'o', describe: 'Output dir', type: 'string', default: './data/output/court' },
+  config: { alias: 'c', describe: 'Court config JS file', type: 'string', default: './data/config/court' },
   verify: { describe: 'Verify deployed contracts on Etherscan, provide API key', type: 'string' },
 }
 
 const handlerAsync = async (environment, { network, verify: apiKey, output: outputDir, config: configFilename }) => {
-  const outputFilepath = path.resolve(process.cwd(), `${outputDir}/${command}.${network}.json`)
+  const outputFilepath = path.resolve(process.cwd(), `${outputDir}.${network}.json`)
   const config = require(path.resolve(process.cwd(), configFilename))[network]
 
   const verifyer = apiKey ? new Verifier(environment, apiKey) : undefined

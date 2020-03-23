@@ -6,7 +6,7 @@ const describe = 'Change subscriptions parameters'
 
 const builder = {
   output: { alias: 'o', describe: 'Output dir', type: 'string', default: './data/output' },
-  config: { alias: 'c', describe: 'Subscriptions config JS file', type: 'string', default: './data/config/court-addresses.js' },
+  config: { alias: 'c', describe: 'Subscriptions config JS file', type: 'string', default: './data/config/court-addresses' },
   feeToken: { describe: 'Change fee token', type: 'boolean', default: false },
   feeAmount: { describe: 'Change fee amount', type: 'boolean', default: false },
   prePaymentPeriods: { describe: 'Change pre payment periods', type: 'boolean', default: false },
@@ -17,7 +17,6 @@ const builder = {
 
 const handlerAsync = async (environment, {
   network,
-  output: outputDir,
   config: configFilename,
   feeToken,
   feeAmount,
@@ -29,18 +28,9 @@ const handlerAsync = async (environment, {
   const requestedChanges = feeToken || feeAmount || prePaymentPeriods || latePaymentPenaltyPct || governorSharePct || resumePrePaidPeriods
   if (!requestedChanges) throw Error('Please indicate at least one parameter to change')
 
-  const outputFilepath = path.resolve(process.cwd(), `${outputDir}/${command}.${network}.json`)
   const config = require(path.resolve(process.cwd(), configFilename))[network]
-
-  const manager = new SubscriptionsParamsManager(config, environment, outputFilepath, {
-    feeToken,
-    feeAmount,
-    prePaymentPeriods,
-    latePaymentPenaltyPct,
-    governorSharePct,
-    resumePrePaidPeriods,
-  })
-
+  const params = { feeToken, feeAmount, prePaymentPeriods, latePaymentPenaltyPct, governorSharePct, resumePrePaidPeriods }
+  const manager = new SubscriptionsParamsManager(config, environment, params)
   await manager.call()
 }
 
