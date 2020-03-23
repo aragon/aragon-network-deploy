@@ -5,11 +5,11 @@ const networks = ['rpc', 'usability', 'rinkeby', 'staging', 'mainnet']
 
 networks.forEach(network => {
   environments[network] = {
-    owner:    governor[network],
-    presale:  require(`../output/presale.${network}`)['balance-redirect-presale'].address,
-    registry: require(`../output/court.${network}`).registry.address,
+    governor:    governor[network],
     bondedToken: require(`../output/minime.${network}`).ANJ.address,
-    uniswap:  require(`./wrapper-bonding`)[network].uniswap,
+    registry:    require(`../output/court.${network}`).registry.address,
+    presale:     require(`../output/template.${network}`)['balance-redirect-presale'].address,
+    uniswap:     require(`./wrapper-bonding`)[network].uniswap,
   }
 })
 

@@ -20,9 +20,9 @@ const environments = {
 }
 
 Object.keys(environments).forEach(network => {
-  environments[network].owner = require('./governor')[network].agent
+  environments[network].governor =    require('./governor')[network]
+  environments[network].registry =    require(`../output/court.${network}`).registry.address
   environments[network].bondedToken = require(`../output/minime.${network}`).ANJ.address
-  environments[network].registry = require(`../output/court.${network}`).registry.address
 })
 
 module.exports = environments

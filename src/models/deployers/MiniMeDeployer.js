@@ -40,9 +40,8 @@ module.exports = class extends BaseDeployer {
     this.token = await MiniMeToken.new(factory.address, ZERO_ADDRESS, SNAPSHOT_BLOCK, name, decimals, symbol, transfersEnabled || TRANSFERS_ENABLED_DEFAULT)
 
     if (controller) {
-      const controllerAddress = typeof controller === 'string' ? controller : controller.agent
-      logger.info(`Transferring ${symbol} controller to specified address ${controllerAddress} ...`)
-      await this.token.changeController(controllerAddress)
+      logger.info(`Transferring ${symbol} controller to specified address ${controller} ...`)
+      await this.token.changeController(controller.address)
     }
 
     const { address, transactionHash } = this.token
@@ -71,7 +70,7 @@ module.exports = class extends BaseDeployer {
     logger.info(` - Name:                                    ${this.config.name}`)
     logger.info(` - Symbol:                                  ${this.config.symbol}`)
     logger.info(` - Decimals:                                ${this.config.decimals.toString()}`)
-    logger.info(` - Controller:                              ${this.config.controller || sender}`)
+    logger.info(` - Controller:                              ${this.config.controller ? this.config.controller.describe() : sender}`)
     logger.info(` - Transfers enabled:                       ${this.config.transfersEnabled ? 'Yes' : 'No'}`)
     logger.info(` - Factory:                                 ${this.config.factory || 'custom deployed one'}`)
   }

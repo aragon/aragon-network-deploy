@@ -119,9 +119,9 @@ contract('CourtDeployer v1.0', ([_, sender]) => {
     })
 
     it('sets the governor correctly', async () => {
-      assert.equal(await court.getFundsGovernor(), Config.governor.funds, 'funds governor does not match')
-      assert.equal(await court.getConfigGovernor(), Config.governor.config, 'config governor does not match')
-      assert.equal(await court.getModulesGovernor(), Config.governor.modules, 'modules governor does not match')
+      assert.equal(await court.getFundsGovernor(), Config.governor.funds.address, 'funds governor does not match')
+      assert.equal(await court.getConfigGovernor(), Config.governor.config.address, 'config governor does not match')
+      assert.equal(await court.getModulesGovernor(), Config.governor.modules.address, 'modules governor does not match')
     })
   })
 

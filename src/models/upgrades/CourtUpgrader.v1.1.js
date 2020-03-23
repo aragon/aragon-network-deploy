@@ -61,9 +61,9 @@ module.exports = class extends BaseDeployer {
   }
 
   async setModules() {
-    (typeof this.config.governor.modules === 'string')
-      ? await this._setModuelsDirectly()
-      : await this._setModulesThroughVoting()
+    this.config.governor.modules.isDAO()
+      ? await this._setModulesThroughVoting()
+      : await this._setModuelsDirectly()
   }
 
   async verifyContracts() {

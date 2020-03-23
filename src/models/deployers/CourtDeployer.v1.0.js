@@ -94,15 +94,15 @@ module.exports = class extends BaseDeployer {
 
   async transferGovernor() {
     const sender = await this.environment.getSender()
-    const modulesGovernor = await this.court.getModulesGovernor()
-    const { governor: { modules } } = this.config
+    const currentGovernor = await this.court.getModulesGovernor()
+    const { governor: { modules: governor } } = this.config
 
-    if (modulesGovernor === sender) {
-      logger.info(`Transferring modules governor to ${modules} ...`)
-      await this.court.changeModulesGovernor(modules)
-      logger.success(`Modules governor transferred successfully to ${modules}`)
-    } else if (modulesGovernor === modules) {
-      logger.success(`Modules governor is already set to ${modules}`)
+    if (currentGovernor === sender) {
+      logger.info(`Transferring modules governor to ${governor} ...`)
+      await this.court.changeModulesGovernor(governor.address)
+      logger.success(`Modules governor transferred successfully to ${governor}`)
+    } else if (currentGovernor === governor.address) {
+      logger.success(`Modules governor is already set to ${governor}`)
     } else {
       logger.warn('Modules governor is already set to another address')
     }
@@ -165,7 +165,7 @@ module.exports = class extends BaseDeployer {
 
     this.court = await AragonCourt.new(
       [clock.termDuration, clock.firstTermStartTime],
-      [governor.funds, governor.config, sender],
+      [governor.funds.address, governor.config.address, sender],
       court.feeToken.address,
       [court.jurorFee, court.draftFee, court.settleFee],
       [court.evidenceTerms, court.commitTerms, court.revealTerms, court.appealTerms, court.appealConfirmTerms],
@@ -308,9 +308,9 @@ module.exports = class extends BaseDeployer {
   _printAragonCourtDeploy() {
     const { clock, governor, court, jurors } = this.config
     logger.info(`Deploying AragonCourt contract ${VERSION} with config:`)
-    logger.info(` - Funds governor:                          ${governor.funds}`)
-    logger.info(` - Config governor:                         ${governor.config}`)
-    logger.info(` - Modules governor:                        ${governor.modules} (initially sender)`)
+    logger.info(` - Funds governor:                          ${governor.funds.describe()}`)
+    logger.info(` - Config governor:                         ${governor.config.describe()}`)
+    logger.info(` - Modules governor:                        ${governor.modules.describe()} (initially sender)`)
     logger.info(` - Term duration:                           ${clock.termDuration.toString()} seconds`)
     logger.info(` - First term start time:                   ${new Date(clock.firstTermStartTime.toNumber() * 1000)}`)
     logger.info(` - Fee token:                               ${court.feeToken.symbol} at ${court.feeToken.address}`)

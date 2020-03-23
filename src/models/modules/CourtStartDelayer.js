@@ -10,12 +10,12 @@ module.exports = class extends BaseDeployer {
   }
 
   async call() {
-    (typeof this.config.governor.modules === 'string')
-      ? (await this.delayCourtStart())
-      : (await this.delayCourtStartThroughDAO())
+    this.config.governor.modules.isDAO()
+      ? (await this.delayCourtStartThroughDAO())
+      : (await this.delayCourtStartDirectly())
   }
 
-  async delayCourtStart() {
+  async delayCourtStartDirectly() {
     const { modules: { court }, clock: { firstTermStartTime } } = this.config
     logger.info('Delaying Court start time...')
     const AragonCourt = await this.environment.getArtifact('AragonCourt', '@aragon/court')

@@ -27,9 +27,9 @@ module.exports = class extends BaseDeployer {
   async call() {
     await this._loadOrDeployTemplate()
 
-    (typeof this.config.governor === 'string')
-      ? await this._instanceTemplateDirectly()
-      : await this._instanceTemplateThroughDAO()
+    this.config.governor.isDAO()
+      ? await this._instanceTemplateThroughDAO()
+      : await this._instanceTemplateDirectly()
   }
 
   /** template methods **/

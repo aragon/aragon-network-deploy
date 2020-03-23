@@ -1,12 +1,13 @@
 const fs = require('fs')
 const path = require('path')
 const Config = require('../../../../data/config/wrapper-presale').rpc
+const Governor = require('../../../../src/models/shared/Governor')
 const Environment = require('../../../../src/models/shared/Environment')
 const WrapperPresaleDeployer = require('../../../../src/models/deployers/WrapperPresaleDeployer')
 
 const { bigExp } = require('../../../../src/helpers/numbers')
 
-contract('WrapperPresaleDeployer', ([_, sender, agent, voting, tokenWrapper]) => {
+contract('WrapperPresaleDeployer', ([_, sender, agent, voting, tokenManager]) => {
   let environment, wrapper, courtPresale, uniswapFactory, ANJ, jurorsRegistry
 
   const outputFilepath = path.resolve(process.cwd(), `./data/output/wrapper-presale.test.json`)
@@ -38,7 +39,7 @@ contract('WrapperPresaleDeployer', ([_, sender, agent, voting, tokenWrapper]) =>
 
   const deployPresaleWrapper = owner => {
     beforeEach('deploy', async () => {
-      Config.owner = owner
+      Config.governor = Governor(owner)
       const deployer = new WrapperPresaleDeployer(Config, environment, outputFilepath)
       await deployer.call()
       const deployedWrapper = JSON.parse(fs.readFileSync(outputFilepath))
@@ -68,14 +69,14 @@ contract('WrapperPresaleDeployer', ([_, sender, agent, voting, tokenWrapper]) =>
   }
 
   context('when the governor is an EOA', () => {
-    const owner = sender
+    const governor = sender
 
-    deployPresaleWrapper(owner)
-    itDeploysPresaleWrapperSuccessfully(owner)
+    deployPresaleWrapper(governor)
+    itDeploysPresaleWrapperSuccessfully(governor)
   })
 
   context('when the governor is a DAO', () => {
-    const dao = { agent, voting, tokenWrapper }
+    const dao = { agent, voting, tokenManager }
 
     deployPresaleWrapper(dao)
     itDeploysPresaleWrapperSuccessfully(dao.agent)
