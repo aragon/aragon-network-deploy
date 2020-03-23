@@ -40,14 +40,10 @@ const environments = {
 }
 
 Object.keys(environments).forEach(network => {
-  environments[network].owner = ANDAO[network].agent
   environments[network].court = require(`../output/court.${network}`).court.address
   environments[network].bondedToken = require(`../output/minime.${network}`).ANJ.address
   environments[network].disputeManager = require(`../output/court.${network}`).disputeManager.address
-  environments[network].aragonNetworkDAO = {
-    voting: ANDAO[network].voting,
-    tokenManager: ANDAO[network].tokenManager
-  }
+  environments[network].governor = ANDAO[network]
 })
 
 module.exports = environments
