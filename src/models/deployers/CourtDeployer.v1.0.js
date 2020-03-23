@@ -1,6 +1,7 @@
 const BaseDeployer = require('./BaseDeployer')
 const logger = require('../../helpers/logger')('CourtDeployer')
 const { MAX_UINT64, tokenToString } = require('../../helpers/numbers')
+const { DISPUTE_MANAGER_ID, JURORS_REGISTRY_ID, SUBSCRIPTIONS_ID, TREASURY_ID, VOTING_ID } = require('../../helpers/court-modules')
 
 const VERSION = 'v1.0'
 
@@ -82,8 +83,7 @@ module.exports = class extends BaseDeployer {
 
     if (modulesGovernor === sender) {
       logger.info('Setting modules...')
-      const { controller } = this.config
-      const ids = [controller.disputes, controller.treasury, controller.voting, controller.registry, controller.subscriptions]
+      const ids = [DISPUTE_MANAGER_ID, TREASURY_ID, VOTING_ID, JURORS_REGISTRY_ID, SUBSCRIPTIONS_ID]
       const implementations = [this.disputes, this.treasury, this.voting, this.registry, this.subscriptions].map(i => i.address)
       await this.court.setModules(ids, implementations)
       logger.success('Modules set successfully')
