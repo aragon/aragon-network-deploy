@@ -11,4 +11,5 @@ module.exports = {
   staging: config,
   ropsten: config,
   rinkeby: config,
+  usability: config,
 }

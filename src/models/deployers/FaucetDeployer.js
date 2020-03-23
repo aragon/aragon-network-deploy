@@ -15,10 +15,10 @@ module.exports = class extends BaseDeployer {
   }
 
   async call() {
-    const faucet = this.previousDeploy
+    const address = this.previousDeploy.address
     const ERC20Faucet = await this.environment.getArtifact('ERC20Faucet', '@aragon/erc20-faucet')
 
-    if (faucet && faucet.address) await this._loadFaucet(ERC20Faucet, faucet.address)
+    if (address) await this._loadFaucet(ERC20Faucet, address)
     else await this._deployFaucet(ERC20Faucet)
     await this._verifyFaucet()
   }
