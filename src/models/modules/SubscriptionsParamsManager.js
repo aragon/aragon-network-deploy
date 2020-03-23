@@ -17,7 +17,7 @@ module.exports = class extends BaseDeployer {
   }
 
   async updateSubscriptionsConfig() {
-    const { subscriptions: { address } } = this.config
+    const { modules: { subscriptions: address } } = this.config
     const Subscriptions = await this.environment.getArtifact('CourtSubscriptions', '@aragon/court')
     const subscriptions = await Subscriptions.at(address)
 
@@ -72,16 +72,16 @@ module.exports = class extends BaseDeployer {
   }
 
   _addSetterAction(functionName, param) {
-    const { subscriptions: address } = this.config
+    const { modules: { subscriptions } } = this.config
     const setterData = this.encoder.encodeSubscriptionsOneParamSetter(functionName, param)
-    const executeData = this.encoder.encodeExecute(address, 0, setterData)
+    const executeData = this.encoder.encodeExecute(subscriptions, 0, setterData)
     this._addActionToAgentCallsScript(executeData)
   }
 
   _addSetFeeTokenAction(feeToken, feeAmount) {
-    const { subscriptions: address } = this.config
+    const { modules: { subscriptions } } = this.config
     const setterData = this.encoder.encodeSubscriptionsSetFeeToken(feeToken, feeAmount)
-    const executeData = this.encoder.encodeExecute(address, 0, setterData)
+    const executeData = this.encoder.encodeExecute(subscriptions, 0, setterData)
     this._addActionToAgentCallsScript(executeData)
   }
 

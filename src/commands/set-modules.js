@@ -6,7 +6,7 @@ const describe = 'Change controller modules'
 
 const builder = {
   output: { alias: 'o', describe: 'Output dir', type: 'string', default: './data/output' },
-  config: { alias: 'c', describe: 'Controller modules config JS file', type: 'string', default: './data/config/controller-modules-setter.js' },
+  config: { alias: 'c', describe: 'Controller modules config JS file', type: 'string', default: './data/config/court-addresses.js' },
   voting: { describe: 'Set voting module', type: 'string' },
   treasury: { describe: 'Set treasury module', type: 'string' },
   subscriptions: { describe: 'Set subscriptions module', type: 'string' },

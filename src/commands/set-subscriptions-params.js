@@ -6,7 +6,7 @@ const describe = 'Change subscriptions parameters'
 
 const builder = {
   output: { alias: 'o', describe: 'Output dir', type: 'string', default: './data/output' },
-  config: { alias: 'c', describe: 'Subscriptions config JS file', type: 'string', default: './data/config/subscriptions-params-setter.js' },
+  config: { alias: 'c', describe: 'Subscriptions config JS file', type: 'string', default: './data/config/court-addresses.js' },
   feeToken: { describe: 'Change fee token', type: 'boolean', default: false },
   feeAmount: { describe: 'Change fee amount', type: 'boolean', default: false },
   prePaymentPeriods: { describe: 'Change pre payment periods', type: 'boolean', default: false },
