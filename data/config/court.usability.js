@@ -1,19 +1,19 @@
 const { bn, bigExp } = require('../../src/helpers/numbers')
 const { usability: { agent, tokenManager, voting } } = require('./ANDAO')
 
-const TERM_DURATION = 60 * 30 // 30 minutes
+const TERM_DURATION = 60 * 30                                          // 30 minutes
 const START_DATE = Math.floor(new Date() / 1000 + TERM_DURATION + 120) // 2 minutes from now
 
 const ANJ = {
   symbol: 'ANJ',
   decimals: 18,
-  address: '0xE9EFff723800bb86f31dB9A369E47C2Bf336008E'
+  address: require('../output/minime.usability').ANJ.address
 }
 
 const DAI = {
   symbol: 'DAI',
   decimals: 18,
-  address: '0x55Ab9B236CDC9e2CecBD41ADa45D8261f8A6049b'
+  address: require('../output/minime.usability').DAI.address
 }
 
 module.exports = {

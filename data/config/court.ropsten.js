@@ -6,13 +6,13 @@ const START_DATE = Math.floor(new Date() / 1000 + TERM_DURATION + 120) // two mi
 const ANJ = {
   symbol: 'ANJ',
   decimals: 18,
-  address: '0xc863E1CcC047befF17022F4229DBE6321A6BCe65'
+  address: require('../output/minime.ropsten').ANJ.address
 }
 
 const DAI = {
   symbol: 'DAI',
   decimals: 18,
-  address: '0x4E1F48Db14D7E1ada090c42ffE15FF3024EEc8Bf'
+  address: require('../output/minime.ropsten').DAI.address
 }
 
 module.exports = {

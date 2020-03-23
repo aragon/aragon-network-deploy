@@ -12,10 +12,10 @@
     "verification": "https://ropsten.etherscan.io/address/0xD1f2Cd944456D7d8A6f58d78bA12dF13051E5591#code"
   },
   "registry": {
-    "address": "0x9099eFf2830D6E4A11d60064DD67A3f51409043e",
-    "transactionHash": "0x184a97ceb0e897fe77335a449632b7286be8ac0145d9f535df2352e7f09a1986",
+    "address": "0x38398c6a6f2fcb0cae0cfef7395162bb9938f720",
+    "transactionHash": "0xd94804addd61b7bccc6bef014ce08ab0ff9a72d24c7e6676cbc43b5202e3bc32",
     "version": "v1.1",
-    "verification": "https://ropsten.etherscan.io/address/0x9099eFf2830D6E4A11d60064DD67A3f51409043e#code"
+    "verification": "https://ropsten.etherscan.io/address/0x38398c6a6f2fcb0cae0cfef7395162bb9938f720#code"
   },
   "voting": {
     "address": "0x8253D4F46BAA8b0eD31D56C11b0C6d52ACDD25ad",

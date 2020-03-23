@@ -7,13 +7,13 @@ const START_DATE = Math.floor(new Date() / 1000 + 2 * TERM_DURATION) // 20 minut
 const ANJ = {
   symbol: 'ANJ',
   decimals: 18,
-  address: '0xae83b8A9983b934Ebed4167BfDC4170d2A1E3D76'
+  address: require('../output/minime.staging').ANJ.address
 }
 
 const DAI = {
   symbol: 'DAI',
   decimals: 18,
-  address: '0xB88D8CBD8df85fb31b7cD17Fbc6fCC0FE110F5d0'
+  address: require('../output/minime.staging').DAI.address
 }
 
 module.exports = {

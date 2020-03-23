@@ -7,13 +7,13 @@ const START_DATE = Math.floor(new Date() / 1000 + TERM_DURATION + 120) // 2 minu
 const ANJ = {
   symbol: 'ANJ',
   decimals: 18,
-  address: '0x975Ef6B5fde81C24C4Ec605091f2e945872b6036'
+  address: require('../output/minime.rinkeby').ANJ.address
 }
 
 const DAI = {
   symbol: 'DAI',
   decimals: 18,
-  address: '0xe9A083D88Eed757B1d633321Ce0519F432c6284d'
+  address: require('../output/minime.rinkeby').DAI.address
 }
 
 module.exports = {

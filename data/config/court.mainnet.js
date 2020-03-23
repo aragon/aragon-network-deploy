@@ -10,13 +10,13 @@ const START_DATE = Math.floor(new Date('2020-02-10T00:00:00.000Z') / 1000)
 const ANJ = {
   symbol: 'ANJ',
   decimals: 18,
-  address: '0xcD62b1C403fa761BAadFC74C525ce2B51780b184'          // AGP-126
+  address: require('../output/minime.mainnet').ANJ.address
 }
 
 const DAI = {
   symbol: 'DAI',
   decimals: 18,
-  address: '0x6b175474e89094c44da98b954eedeac495271d0f'          // MCD
+  address: require('../output/minime.mainnet').DAI.address
 }
 
 module.exports = {
