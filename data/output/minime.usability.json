@@ -6,5 +6,9 @@
   "ANJ": {
     "address": "0xE9EFff723800bb86f31dB9A369E47C2Bf336008E",
     "transactionHash": "0x59c860a8433efede5c352d3c73067b5e54b185312a2c4bae34dad641471a9983"
+  },
+  "ANT": {
+    "address": "0xbF932fdf8D600398d64614eF9A10401fF046f449",
+    "transactionHash": "0x59c860a8433efede5c352d3c73067b5e54b185312a2c4bae34dad641471a9983"
   }
 }
