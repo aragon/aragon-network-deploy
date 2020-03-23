@@ -1,3 +1,5 @@
+const { staging: { agent, tokenManager, voting } } = require('./ANDAO')
+
 const START_DATE = Math.floor(new Date() / 1000 + 600).toString()         // 10 minutes from now
 
 module.exports = {
@@ -7,7 +9,7 @@ module.exports = {
     registrar:        '0xa2e76aa249e3f52ea94c175662adadf27185484a'        // Staging aragonID
   },
   instance: {
-    owner:            '0xde8bf81d4a8b67f51dc909035cca5b4e14e92d88',       // Agent of AN DAO Staging (short)
+    owner:            agent,                                              // Agent of AN DAO Staging
     id:               'templates-externally-owned-presale-bonding-curve', // ID of the template to be registered in aragon ID
     collateralToken:  '0xd6257606740DE4A457B97D5DD469021ED72b6Ae7',       // ANT
     bondedToken:      '0xae83b8A9983b934Ebed4167BfDC4170d2A1E3D76',       // ANJ
@@ -20,11 +22,11 @@ module.exports = {
     slippage:         '100000000000000000'                                // TODO
   },
   aragonNetworkDAO: {
-    votingApp:        '0xaad2ccf51b42ea7f27948c38b4f7afd8174ef217',       // Voting of AN DAO Staging (short)
-    tokenManager:     '0x08d25ce71579c2b97b688bc8a7d0b35b92504ec3',       // Token Manager of AN DAO Staging (short)
+    voting,
+    tokenManager,
   },
   wrapper: {
-    owner:            '0xde8bf81d4a8b67f51dc909035cca5b4e14e92d88',       // Agent of AN DAO Staging (short)
+    owner:            agent,                                              // Agent of AN DAO Staging (short)
     registry:         '0x3497b2F7eEB7f1BeEFb044c6DA90110C4D6d5C4E',       // Court's Jurors Registry instance on Staging
     presale:          '0x373e5c71B567Ae033C4d9912eFE771bE340369A1',       // Fundraising presale instance on Staging
     uniswap:          '0xf5D915570BC477f9B8D6C0E980aA81757A3AaC36',       // Uniswap Factory address on Rinkeby

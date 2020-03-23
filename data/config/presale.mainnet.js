@@ -1,3 +1,5 @@
+const { mainnet: { agent, tokenManager, voting } } = require('./ANDAO')
+
 // 2020, Jan 7th 16.00 UTC
 const PRESALE_START_DATE = Math.floor(new Date('2020-01-07T16:00:00.000Z') / 1000).toString()
 
@@ -12,7 +14,7 @@ module.exports = {
     registrar:        '0x546aa2eae2514494eeadb7bbb35243348983c59d'        // Mainnet aragonID
   },
   instance: {
-    owner:            '0x5e8c17a6065c35b172b10e80493d2266e2947df4',       // Agent of AN DAO
+    owner:            agent,                                              // Agent of AN DAO
     id:               'templates-externally-owned-presale-bonding-curve', // ID of the template to be registered in aragon ID
     collateralToken:  '0x960b236A07cf122663c4303350609A66A7B288C0',       // ANT
     bondedToken:      '0xcD62b1C403fa761BAadFC74C525ce2B51780b184',       // ANJ
@@ -25,11 +27,11 @@ module.exports = {
     slippage:         '100000000000000000'                                // 10% (PPM)
   },
   aragonNetworkDAO: {
-    votingApp:        '0x240b4de6000b4ad52ceaa1057c2647bfc24ce697',       // Voting of AN DAO
-    tokenManager:     '0xda15e525b09266488c95c2742e849ca71683a0f5',       // Token Manager of AN DAO
+    voting,
+    tokenManager,
   },
   wrapper: {
-    owner:            '0x5e8c17a6065c35b172b10e80493d2266e2947df4',       // Agent of AN DAO
+    owner:            agent,                                              // Agent of AN DAO
     // WARNING: this is the old registry, it's deprecated, don't use it. We leave it here for historic and consistency reasons (presale was deployed with it)
     registry:         '0xF9dDa954adf5E54b89f988C1560553A0a387CCE1',       // Court's old Jurors Registry instance on Mainnet
     presale:          '0xf89c8752d82972f94a4D1331e010eD6593e8EC49',       // Fundraising presale instance on Mainnet

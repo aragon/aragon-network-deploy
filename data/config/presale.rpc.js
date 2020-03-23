@@ -20,7 +20,7 @@ module.exports = {
     slippage:         '100000000000000000'                                // 10%
   },
   aragonNetworkDAO: {
-    votingApp:        undefined,                                          // Set with the voting app of the AN DAO deployed to Aragen
+    voting:           undefined,                                          // Set with the voting app of the AN DAO deployed to Aragen
     tokenManager:     undefined,                                          // Set with the token manager of the AN DAO deployed to Aragen
   },
   wrapper: {

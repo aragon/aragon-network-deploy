@@ -1,9 +1,12 @@
+const { court: { address: court } } = require('../output/court.rpc')
+const { rpc: { agent: owner, tokenManager, voting } } = require('./ANDAO')
+
 module.exports = {
-  owner:               undefined,       // Set with an AN DAO deployed to Aragen
+  court,
+  owner,
   aragonNetworkDAO: {
-    votingApp:         undefined,       // Set with the voting app of the AN DAO deployed to Aragen
-    tokenManager:      undefined,       // Set with the token manager of the AN DAO deployed to Aragen
+    voting,
+    tokenManager,
   },
-  court:               undefined,       // Set with Court's controller instance on rpc
-  newDisputeManager:   undefined,       // New Dispute Manager
+  newDisputeManager: undefined
 }

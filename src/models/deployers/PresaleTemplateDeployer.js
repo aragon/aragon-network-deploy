@@ -245,10 +245,10 @@ module.exports = class extends BaseDeployer {
       data: this._newInstanceScript()
     })
 
-    const { votingApp } = this.config.aragonNetworkDAO
+    const { voting } = this.config.aragonNetworkDAO
     const voteDescription = 'Change ANJ controller to template and deploy new presale and bonding curve instance'
     const tokenManagerScript = [{
-      to: votingApp,
+      to: voting,
       data: this.encoder.encodeNewVote(this.encoder.encodeCallsScript(agentCallsScript), voteDescription)
     }]
     return this.encoder.encodeCallsScript(tokenManagerScript)

@@ -1,4 +1,5 @@
 const { bn, bigExp } = require('../../src/helpers/numbers')
+const { mainnet: { agent, tokenManager, voting } } = require('./ANDAO')
 
 // 8 hours
 const TERM_DURATION = 60 * 60 * 8
@@ -19,14 +20,14 @@ const DAI = {
 }
 
 module.exports = {
-  aragonNetworkDAO: {              // https://mainnet.aragon.org/#/network
-    voting:                        '0x240b4de6000b4ad52ceaa1057c2647bfc24ce697', // Voting of AN DAO
-    tokenManager:                  '0xda15e525b09266488c95c2742e849ca71683a0f5', // Token Manager of AN DAO
+  aragonNetworkDAO: {
+    voting,
+    tokenManager,
   },
   governor: {                      // Agent of AN DAO
-    funds:                         '0x5e8c17a6065c35b172b10e80493d2266e2947df4',
-    config:                        '0x5e8c17a6065c35b172b10e80493d2266e2947df4',
-    modules:                       '0x5e8c17a6065c35b172b10e80493d2266e2947df4',
+    funds:                         agent,
+    config:                        agent,
+    modules:                       agent,
   },
   clock: {
     termDuration:                  bn(TERM_DURATION),            // terms lasts 8 hours
