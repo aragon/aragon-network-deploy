@@ -10,16 +10,16 @@ module.exports = {
     owner:        undefined,                                          // Ownership will remain to the sender
     tokens: [
       {
-        symbol:   'ANT',
-        address:  '0xd6257606740DE4A457B97D5DD469021ED72b6Ae7',       // ANT address in Staging
-        period:   ONE_WEEK,                                           // The ANT quota period lasts 1 week
-        amount:   bigExp(1000, 18)                                    // Accounts will be allowed to withdraw 1000 ANT per week maximum
+        symbol:   'ANJ',
+        address:  '0x5bC9BE34f98eB072696d63b5BE5D4d2F2C03d0AD',       // ANJ address in Staging
+        period:   ONE_WEEK,                                           // The ANJ quota period lasts 1 week
+        amount:   bigExp(200000, 18)                                  // Accounts will be allowed to withdraw 200000 ANJ per week maximum
       },
       {
         symbol:   'DAI',
-        address:  '0xB88D8CBD8df85fb31b7cD17Fbc6fCC0FE110F5d0',       // Fee token (DAI) address in Staging
+        address:  '0x3AF6b2f907F0c55F279e0ED65751984E6cdC4a42',       // Fee token (DAI) address in Staging
         period:   ONE_WEEK,                                           // The fee token quota period lasts 1 week
-        amount:   bigExp(10000, 18)                                   // Accounts will be allowed to withdraw 1000 ANT per week maximum
+        amount:   bigExp(10000, 18)                                   // Accounts will be allowed to withdraw 10000 DAI per week maximum
       }
     ]
   },
@@ -64,19 +64,19 @@ module.exports = {
         symbol:   'ANT',
         address:  '0xbF932fdf8D600398d64614eF9A10401fF046f449',       // ANT address in Rinkeby for usability testing
         period:   ONE_WEEK,                                           // The ANT quota period lasts 1 week
-        amount:   bigExp(1000, 18)                                    // Accounts will be allowed to withdraw 1000 DAI per week maximum
+        amount:   bigExp(1000, 18)                                    // Accounts will be allowed to withdraw 1000 ANT per week maximum
       },
       {
         symbol:   'ANJ',
-        address:  '0xE9EFff723800bb86f31dB9A369E47C2Bf336008E',       // ANT address in Rinkeby for usability testing
-        period:   ONE_WEEK,                                           // The ANT quota period lasts 1 week
+        address:  '0xE9EFff723800bb86f31dB9A369E47C2Bf336008E',       // ANJ address in Rinkeby for usability testing
+        period:   ONE_WEEK,                                           // The ANJ quota period lasts 1 week
         amount:   bigExp(10000, 18)                                   // Accounts will be allowed to withdraw 10000 ANJ per week maximum
       },
       {
         symbol:   'DAI',
         address:  '0x55Ab9B236CDC9e2CecBD41ADa45D8261f8A6049b',       // Fee token (DAI) address in Rinkeby for usability testing
         period:   ONE_WEEK,                                           // The fee token quota period lasts 1 week
-        amount:   bigExp(10000, 18)                                   // Accounts will be allowed to withdraw 10000 ANT per week maximum
+        amount:   bigExp(10000, 18)                                   // Accounts will be allowed to withdraw 10000 DAI per week maximum
       }
     ]
   },

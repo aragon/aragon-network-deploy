@@ -56,7 +56,7 @@ module.exports = {
   subscriptions: {
     feeToken:                      DAI,                          // fee token for subscriptions is DAI
     feeAmount:                     bigExp(10, DAI.decimals),     // 10 fee tokens per subscription period
-    periodDuration:                bn(90),                       // each subscription period lasts 90 terms (30 days)
+    periodDuration:                bn(3),                        // each subscription period lasts 3 terms (30 minutes)
     prePaymentPeriods:             bn(12),                       // cannot pre-pay more than 12 periods in advance (1 year)
     resumePrePaidPeriods:          bn(12),                       // 12 pre-paid periods when resuming activity (1 year)
     latePaymentPenaltyPct:         bn(1000),                     // late payment subscriptions are charged 20%
