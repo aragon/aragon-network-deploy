@@ -37,7 +37,7 @@ module.exports = class BaseDeployer {
   async _runEvmScript(tokenManager, tokenManagerScript) {
     const TokenManager = await this.environment.getArtifact('TokenManager', '@aragon/apps-token-manager')
     const forwarder = await TokenManager.at(tokenManager)
-    const { receipt, tx } = forwarder.forward(tokenManagerScript)
+    const { receipt, tx } = await forwarder.forward(tokenManagerScript)
     logger.success(`EVM Script run on tx: ${tx}. Gas used: ${receipt.gasUsed}`)
     return receipt
   }

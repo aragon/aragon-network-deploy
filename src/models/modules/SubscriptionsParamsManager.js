@@ -17,7 +17,7 @@ module.exports = class extends BaseDeployer {
   }
 
   async updateSubscriptionsConfigDirectly() {
-    const { modules: { subscriptions: address } } = this.config
+    const { subscriptions: config, modules: { subscriptions: address } } = this.config
     const Subscriptions = await this.environment.getArtifact('CourtSubscriptions', '@aragon/court')
     const subscriptions = await Subscriptions.at(address)
 
@@ -60,13 +60,13 @@ module.exports = class extends BaseDeployer {
     logger.info('Building EVM script to configure subscriptions params through DAO...')
     const { subscriptions: config, governor: { config: dao } } = this.config
 
-    if (this.feeToken) this._addSetFeeTokenAction(config.feeToken.address, config.feeAmount)
-    else if (this.feeAmount) this._addSetterAction('setFeeAmount', config.feeAmount)
+    if (this.changes.feeToken) this._addSetFeeTokenAction(config.feeToken.address, config.feeAmount)
+    else if (this.changes.feeAmount) this._addSetterAction('setFeeAmount', config.feeAmount)
 
-    if (this.prePaymentPeriods) this._addSetterAction('setPrePaymentPeriods', config.prePaymentPeriods)
-    if (this.latePaymentPenaltyPct) this._addSetterAction('setLatePaymentPenaltyPct', config.latePaymentPenaltyPct)
-    if (this.governorSharePct) this._addSetterAction('setGovernorSharePct', config.governorSharePct)
-    if (this.resumePrePaidPeriods) this._addSetterAction('setResumePrePaidPeriods', config.resumePrePaidPeriods)
+    if (this.changes.prePaymentPeriods) this._addSetterAction('setPrePaymentPeriods', config.prePaymentPeriods)
+    if (this.changes.latePaymentPenaltyPct) this._addSetterAction('setLatePaymentPenaltyPct', config.latePaymentPenaltyPct)
+    if (this.changes.governorSharePct) this._addSetterAction('setGovernorSharePct', config.governorSharePct)
+    if (this.changes.resumePrePaidPeriods) this._addSetterAction('setResumePrePaidPeriods', config.resumePrePaidPeriods)
 
     await this._encodeAndSubmitEvmScript(dao, this.agentCallsScript, 'Update court subscriptions params')
   }
@@ -86,7 +86,7 @@ module.exports = class extends BaseDeployer {
   }
 
   _addActionToAgentCallsScript(data) {
-    const { governor: { config: agent } } = this.config
+    const { governor: { config: { agent } } } = this.config
     if (!this.agentCallsScript) this.agentCallsScript = []
     this.agentCallsScript.push({ to: agent, data: data })
   }
