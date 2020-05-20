@@ -6,7 +6,7 @@
   "license": "GPL-3.0",
   "scripts": {
     "test": "./node_modules/@aragon/test-helpers/ganache-cli.sh",
-    "deploy:court:rpc": "rm -f data/output/{minime,court}.rpc.json && npm run deploy:dai -- -n rpc && npm run deploy:anj -- -n rpc && npm run deploy:court -- -n rpc",
+    "deploy:court:rpc": "rm -f data/output/minime.rpc.json && rm -f data/output/court.rpc.json && npm run deploy:dai -- -n rpc && npm run deploy:anj -- -n rpc && npm run deploy:court -- -n rpc",
     "deploy:court": "node ./bin/index.js deploy-court --verbose",
     "deploy:dai": "node ./bin/index.js deploy-minime -i ./test/data/input/dai.js --verbose",
     "deploy:ant": "node ./bin/index.js deploy-minime -i ./test/data/input/ant.js --verbose",
