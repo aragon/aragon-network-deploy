@@ -11,7 +11,7 @@ Make sure the related configuration is correctly set up in `./data/input/anj`
 To deploy a new ANJ instance locally simply run a ganache instance and run the following deployment script:
 
 ```
-npx ganache-cli -i 15 --gasLimit 7000000 --port 8545
+npx ganache-cli -i 15 --gasLimit 8000000 --port 8545
 npm run deploy:anj -- -n rpc
 ```
 
@@ -32,8 +32,8 @@ Make sure the related configuration is correctly set up in `./data/input/court`
 To deploy a new Aragon Court instance locally simply run a ganache instance and run the following deployment script:
 
 ```
-npx ganache-cli -i 15 --gasLimit 7000000 --port 8545
-npm run deploy:court -- -n rpc
+npx ganache-cli -i 15 --gasLimit 8000000 --port 8545
+npm run deploy:court:rpc
 ```
 
 ### Testnets and Mainnet
