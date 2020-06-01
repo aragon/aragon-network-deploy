@@ -1,5 +1,5 @@
 const path = require('path')
-const ControllerModulesManager = require('../models/modules/ControllerModulesManager.js')
+const ControllerModulesManager = require('../models/modules/ControllerModulesManager')
 
 const command = 'set-modules'
 const describe = 'Change controller modules'

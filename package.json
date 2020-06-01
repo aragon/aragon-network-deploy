@@ -18,6 +18,7 @@
     "upgrade:court": "node ./bin/index.js upgrade-court --verbose",
     "delay:court": "node ./bin/index.js delay-court --verbose",
     "migrate:registry": "node ./bin/index.js migrate-registry --verbose",
+    "set:config": "node ./bin/index.js set-config --verbose",
     "set:modules": "node ./bin/index.js set-modules --verbose",
     "set:subscriptions-params": "node ./bin/index.js set-subscriptions-params --verbose"
   },

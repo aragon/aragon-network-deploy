@@ -69,6 +69,41 @@ module.exports = class CallsEncoder {
     return abi.encodeFunctionCall(functionABI, [firstTermStartTime.toString()])
   }
 
+  encodeSetConfig(fromTermId, config) {
+    const functionABI = this._getFunctionABI(CONTROLLER_ABI, 'setConfig')
+    return abi.encodeFunctionCall(functionABI, [
+      fromTermId.toString(),                                    // fromTermId Identification number of the term in which the config will be effective at
+      config.court.feeToken.address,                            // feeToken Address of the token contract that is used to pay for fees
+      [
+        config.court.jurorFee.toString(),                       // jurorFee Amount of fee tokens that is paid per juror per dispute
+        config.court.draftFee.toString(),                       // draftFee Amount of fee tokens per juror to cover the drafting cost
+        config.court.settleFee.toString()                       // settleFee Amount of fee tokens per juror to cover round settlement cost
+      ],
+      [
+        config.court.evidenceTerms.toString(),                  // evidenceTerms Max submitting evidence period duration in terms
+        config.court.commitTerms.toString(),                    // commitTerms Commit period duration in terms
+        config.court.revealTerms.toString(),                    // revealTerms Reveal period duration in terms
+        config.court.appealTerms.toString(),                    // appealTerms Appeal period duration in terms
+        config.court.appealConfirmTerms.toString()              // appealConfirmationTerms Appeal confirmation period duration in terms
+      ],
+      [
+        config.court.penaltyPct.toString(),                     // penaltyPct Permyriad of min active tokens balance to be locked for each drafted juror (‱ - 1/10,000)
+        config.court.finalRoundReduction.toString()             // finalRoundReduction Permyriad of fee reduction for the last appeal round (‱ - 1/10,000)
+      ],
+      [
+        config.court.firstRoundJurorsNumber.toString(),         // firstRoundJurorsNumber Number of jurors to be drafted for the first round of disputes
+        config.court.appealStepFactor.toString(),               // appealStepFactor Increasing factor for the number of jurors of each round of a dispute
+        config.court.maxRegularAppealRounds.toString(),         // maxRegularAppealRounds Number of regular appeal rounds before the final round is triggered
+        config.court.finalRoundLockTerms.toString()             // finalRoundLockTerms Number of terms that a coherent juror in a final round is disallowed to withdraw (to prevent 51% attacks)
+      ],
+      [
+        config.court.appealCollateralFactor.toString(),         // appealCollateralFactor Multiple of dispute fees required to appeal a preliminary ruling
+        config.court.appealConfirmCollateralFactor.toString()   // appealConfirmCollateralFactor Multiple of dispute fees required to confirm appeal
+      ],
+      config.jurors.minActiveBalance.toString()
+    ])
+  }
+
   encodeChangeController(controllerAddress) {
     const changeControllerABI = this._getFunctionABI(MINIME_ABI, 'changeController', 1)
     return abi.encodeFunctionCall(changeControllerABI, [controllerAddress])
