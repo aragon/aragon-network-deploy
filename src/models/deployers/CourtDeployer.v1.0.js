@@ -158,11 +158,6 @@ module.exports = class extends BaseDeployer {
     const sender = await this.environment.getSender()
     const { clock, governor, court, jurors } = this.config
 
-    if (!court.feeToken.address) {
-      const erc20 = await this._deployERC20Mock(court.feeToken)
-      court.feeToken.address = erc20.address
-    }
-
     this.court = await AragonCourt.new(
       [clock.termDuration, clock.firstTermStartTime],
       [governor.funds.address, governor.config.address, sender],
@@ -225,11 +220,6 @@ module.exports = class extends BaseDeployer {
     if (!this.court.address) throw Error('AragonCourt has not been deployed yet')
     this._printSubscriptionsDeploy()
     const { subscriptions } = this.config
-
-    if (!subscriptions.feeToken.address) {
-      const erc20 = await this._deployERC20Mock(subscriptions.feeToken)
-      subscriptions.feeToken.address = erc20.address
-    }
 
     this.subscriptions = await Subscriptions.new(
       this.court.address,
