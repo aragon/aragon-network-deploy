@@ -16,7 +16,7 @@ module.exports = class extends BaseDeployer {
 
   async call() {
     const address = this.previousDeploy.address
-    const ERC20Faucet = await this.environment.getArtifact('ERC20Faucet', '@aragon/erc20-faucet')
+    const ERC20Faucet = await this.environment.getArtifact('ERC20Faucet', '@aragonone/erc20-faucet')
 
     if (address) await this._loadFaucet(ERC20Faucet, address)
     else await this._deployFaucet(ERC20Faucet)
@@ -58,7 +58,7 @@ module.exports = class extends BaseDeployer {
 
   _printFaucetDeploy() {
     logger.info('Deploying ERC20Faucet contract with tokens:')
-    logger.info(` - Owner:                                    ${this.config.owner}`)
+    logger.info(` - Owner:                                   ${this.config.owner || 'sender address'}`)
     this.config.tokens.forEach(token => {
       logger.info(' - Token:')
       logger.info(`   - Symbol:                                ${token.symbol}`)
