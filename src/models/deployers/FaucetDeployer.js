@@ -50,7 +50,7 @@ module.exports = class extends BaseDeployer {
 
   async _verifyFaucet() {
     if (this.verifier && this.previousDeploy && !this.previousDeploy.verification) {
-      const url = await this.verifier.call(this.faucet, '@aragon/erc20-faucet', VERIFICATION_HEADERS)
+      const url = await this.verifier.call(this.faucet, '@aragonone/erc20-faucet', VERIFICATION_HEADERS)
       const { address, transactionHash } = this.previousDeploy
       this._saveDeploy({ address, transactionHash, verification: url })
     }

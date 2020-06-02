@@ -44,7 +44,7 @@ contract('FaucetDeployer', ([_, sender]) => {
     await deployer.call()
     const deployedFaucet = require(outputFilepath)
 
-    const ERC20Faucet = await environment.getArtifact('ERC20Faucet', '@aragon/erc20-faucet')
+    const ERC20Faucet = await environment.getArtifact('ERC20Faucet', '@aragonone/erc20-faucet')
     faucet = await ERC20Faucet.at(deployedFaucet.address)
   })
 
