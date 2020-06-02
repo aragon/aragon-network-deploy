@@ -1,5 +1,5 @@
 const governor = require('./governor')
-const requireOutput = require('../../src/helpers/require-output')
+const { requireOutput, getAddressIfDefined } = require('../../src/helpers/require-output')
 
 // 2020, Jan 7th 16.00 UTC
 const PRESALE_START_DATE = Math.floor(new Date('2020-01-07T16:00:00.000Z') / 1000).toString()
@@ -111,8 +111,8 @@ const environments = {
 Object.keys(environments).forEach(network => {
   environments[network].governor = governor[network]
   environments[network].instance.id = 'templates-externally-owned-presale-bonding-curve'
-  environments[network].instance.bondedToken = requireOutput(`minime.${network}`, tokens => tokens.ANJ.address)
-  environments[network].instance.collateralToken = requireOutput(`minime.${network}`, tokens => tokens.ANT.address)
+  environments[network].instance.bondedToken = requireOutput(`minime.${network}`, getAddressIfDefined('ANJ'))
+  environments[network].instance.collateralToken = requireOutput(`minime.${network}`, getAddressIfDefined('ANT'))
 })
 
 module.exports = environments

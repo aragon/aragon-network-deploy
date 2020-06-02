@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const logger = require('./logger')('require-output')
 
-module.exports = (fileName, callback = undefined, ifUndefined = undefined) => {
+const requireOutput = (fileName, callback = undefined, ifUndefined = undefined) => {
   const file = `./data/output/${fileName}.json`
   const filePath = path.resolve(process.cwd(), file)
 
@@ -13,4 +13,11 @@ module.exports = (fileName, callback = undefined, ifUndefined = undefined) => {
 
   const output = require(filePath)
   return callback ? callback(output) : output
+}
+
+const getAddressIfDefined = (contract) => (object) => object[contract] ? object[contract].address : undefined
+
+module.exports = {
+  requireOutput,
+  getAddressIfDefined
 }

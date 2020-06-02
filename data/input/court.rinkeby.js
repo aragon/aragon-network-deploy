@@ -1,4 +1,4 @@
-const requireOutput = require('../../src/helpers/require-output')
+const { requireOutput } = require('../../src/helpers/require-output')
 const { bn, bigExp } = require('../../src/helpers/numbers')
 const { rinkeby: governor } = require('./governor')
 
