@@ -56,14 +56,9 @@ module.exports = class extends BaseDeployer {
     const { address, transactionHash } = this.template
     logger.success(`Created EOPBC Template instance at ${address}`)
     this._saveDeploy({ template: { address, transactionHash }})
-    await this._saveFundraisingAddresses(transactionHash)
   }
 
-  async _saveFundraisingAddresses(txHash) {
-    const web3 = this.environment.getWeb3()
-    const { transactionHash, logs } = await web3.eth.getTransactionReceipt(txHash)
-    const installedApps = await this._getInstalledApps(logs)
-
+  async _saveFundraisingAddresses(installedApps, transactionHash) {
     Object.keys(installedApps).forEach(name => {
       const address = installedApps[name][0]
       logger.success(`Created ${name} instance at ${address}`)
@@ -93,8 +88,9 @@ module.exports = class extends BaseDeployer {
     await this._changeBondedTokenController(bondedToken)
 
     const bondingParams = [exchangeRate, beneficiaryPct, reserveRatio, batchBlocks, slippage]
-    const { receipt } = await this.template.newInstance(sender, id, collateralToken, bondedToken, period, openDate, bondingParams)
+    const { receipt, tx } = await this.template.newInstance(sender, id, collateralToken, bondedToken, period, openDate, bondingParams)
     const installedApps = await this._getInstalledApps(receipt.rawLogs)
+    await this._saveFundraisingAddresses(installedApps, tx)
     await this._verifyFundraisingContracts(installedApps)
   }
 

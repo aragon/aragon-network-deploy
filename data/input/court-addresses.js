@@ -1,5 +1,5 @@
 const environments = require('./court')
-const requireOutput = require('../../src/helpers/require-output')
+const { requireOutput } = require('../../src/helpers/require-output')
 
 Object.keys(environments).map(network => {
   const courtAddresses = requireOutput(`court.${network}`, addresses =>
