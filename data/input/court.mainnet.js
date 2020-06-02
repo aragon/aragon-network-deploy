@@ -1,6 +1,6 @@
-const { requireOutput } = require('../../src/helpers/require-output')
 const { bn, bigExp } = require('../../src/helpers/numbers')
 const { mainnet: governor } = require('./governor')
+const { requireOutput, getAddressIfDefined } = require('../../src/helpers/require-output')
 
 // 8 hours
 const TERM_DURATION = 60 * 60 * 8
@@ -11,13 +11,13 @@ const START_DATE = Math.floor(new Date('2020-02-10T16:00:00.000Z') / 1000)
 const ANJ = {
   symbol: 'ANJ',
   decimals: 18,
-  address: requireOutput('minime.mainnet', tokens => tokens.ANJ.address)
+  address: requireOutput('minime.mainnet', getAddressIfDefined('ANJ'))
 }
 
 const DAI = {
   symbol: 'DAI',
   decimals: 18,
-  address: requireOutput('minime.mainnet', tokens => tokens.DAI.address)
+  address: requireOutput('minime.mainnet', getAddressIfDefined('DAI'))
 }
 
 module.exports = {
