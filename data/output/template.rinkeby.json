@@ -1,26 +1,26 @@
 {
   "template": {
-    "address": "0x9C7D1474BB4FE6A8503b24bB36F4972804C1B606",
-    "transactionHash": "0x69317100b0a43d99c4000caeeada08f5b8492d9ef5ca55c2b363032fd54104d5"
+    "address": "0x9D2ffCaf1E8C9745EA688b60AbDA13b132097B0A",
+    "transactionHash": "0x13007537f25feef9dc70471d2ee4b5cf3860ae94db10d63b1e41bf52b5e12ebd"
   },
   "agent": {
-    "address": "0x628d8c3475dceca1f8c1b84bEEe4DB08Ea19e031",
-    "transactionHash": "0x00ed03f2dcdae1acfdf12e183ee5521cfa4dadedf4f53d4af8569da3e9340f23"
+    "address": "0xEdf4C05D31ea053C69E065b2F6744DA8B76258b3",
+    "transactionHash": "0xacc1f47aed7b750012c42c0f6eb54e41d3c8c792ad84e3959bc164d2a6bed8a1"
   },
   "token-manager": {
-    "address": "0x29a8277A08FEB0C3Cce6d08fbb31A887E06a96AB",
-    "transactionHash": "0x00ed03f2dcdae1acfdf12e183ee5521cfa4dadedf4f53d4af8569da3e9340f23"
+    "address": "0x52B7852D1C4c78D76b5B52f05A309A50A1a22847",
+    "transactionHash": "0xacc1f47aed7b750012c42c0f6eb54e41d3c8c792ad84e3959bc164d2a6bed8a1"
   },
   "batched-bancor-market-maker": {
-    "address": "0x160e221B887D737b6defB5E29a8e7BAD2c99e766",
-    "transactionHash": "0x00ed03f2dcdae1acfdf12e183ee5521cfa4dadedf4f53d4af8569da3e9340f23"
+    "address": "0xb9aB1Cc6AdC7c3bacc4ea26235838497abe865e0",
+    "transactionHash": "0xacc1f47aed7b750012c42c0f6eb54e41d3c8c792ad84e3959bc164d2a6bed8a1"
   },
   "aragon-fundraising": {
-    "address": "0x99f8ed6EB58b25295632dd0556275e248EDD495C",
-    "transactionHash": "0x00ed03f2dcdae1acfdf12e183ee5521cfa4dadedf4f53d4af8569da3e9340f23"
+    "address": "0x8Ab84819C08355B029CDa21457192d0d249bCC0d",
+    "transactionHash": "0xacc1f47aed7b750012c42c0f6eb54e41d3c8c792ad84e3959bc164d2a6bed8a1"
   },
   "balance-redirect-presale": {
-    "address": "0x2Bc798C4d5EB1F4E7C7c1B0770E2b34dBC79a967",
-    "transactionHash": "0x00ed03f2dcdae1acfdf12e183ee5521cfa4dadedf4f53d4af8569da3e9340f23"
+    "address": "0xf8A15b0DE7D96ecdAdBa1C1Bd1eD199CA66769a5",
+    "transactionHash": "0xacc1f47aed7b750012c42c0f6eb54e41d3c8c792ad84e3959bc164d2a6bed8a1"
   }
 }
