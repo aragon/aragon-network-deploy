@@ -58,22 +58,6 @@ const environments = {
       slippage:         '100000000000000000'                                // TODO
     }
   },
-  usability: {
-    infra: {
-      ens:              '0x98df287b6c145399aaa709692c8d308357bc085d',       // Rinkeby ENS instance
-      daoFactory:       '0xad4d106b43b480faa3ef7f98464ffc27fc1faa96',       // DAO factory used for the templates in Rinkeby
-      registrar:        '0x3665e7bfd4d3254ae7796779800f5b603c43c60d'        // Rinkeby aragonID
-    },
-    instance: {
-      openDate:         Math.floor(new Date() / 1000 + 600).toString(),     // Presale will start in 10 minutes from now
-      period:           '864000',                                           // Presale period will last 10 days, bonding curve will start right after that
-      exchangeRate:     '100000000',                                        // Presale exchange rate 1 ANT = 100 ANJ
-      beneficiaryPct:   '200000',                                           // 20% of the generated ANJ will be minted for the owner
-      reserveRatio:     '33333',                                            // Bonding curve reserve ratio of 33%, also used to compute the virtual balance
-      batchBlocks:      '1',                                                // Market maker batch size
-      slippage:         '100000000000000000'                                // TODO
-    }
-  },
   ropsten: {
     infra: {
       ens:              undefined,                                          // Ropsten ENS instance

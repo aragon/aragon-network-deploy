@@ -20,7 +20,7 @@ npm run deploy:anj -- -n rpc
 To deploy a new ANJ instance make sure everything is set in order to use `truffle-hdwallet-provider` and run:
 
 ```
-npm run deploy:anj -- -n [mainnet|ropsten|rinkeby]
+npm run deploy:anj -- -n [mainnet|ropsten|rinkeby|staging]
 ```
 
 ## Aragon Court
@@ -41,7 +41,7 @@ npm run deploy:court:rpc
 To deploy a new Aragon Court instance make sure everything is set in order to use `truffle-hdwallet-provider` and run:
 
 ```
-npm run deploy:court -- -n [mainnet|ropsten|rinkeby]
+npm run deploy:court -- -n [mainnet|ropsten|rinkeby|staging]
 ```
 
 ## Options
@@ -53,7 +53,4 @@ npm run deploy:court -- -n [mainnet|ropsten|rinkeby]
 
 ## Deployments
 
-All `config` and `output` files under `data` directory have a suffix for the environment they belong to. Besides the common `mainnet`, `rinkeby`, `ropsten` or `rpc` ones, there are some special ones:
-
-- `rinkeby.usability`: Environment deployed on Rinkeby to do some UX research sessions with some voluntary participants. It had a really short term to be able to conduct those sessions within an hour, being able to do thorough tests
-- `rinkeby.usability-open`: Environment deployed on Rinkeby for UX feedback too but open to all jurors activated on mainnet. Parameters are close to mainnet ones but with shorter periods for more agile testing.
+All `config` and `output` files under `data` directory have a suffix for the environment they belong to.
