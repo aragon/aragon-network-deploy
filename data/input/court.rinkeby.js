@@ -1,6 +1,6 @@
-const { requireOutput } = require('../../src/helpers/require-output')
 const { bn, bigExp } = require('../../src/helpers/numbers')
 const { rinkeby: governor } = require('./governor')
+const { requireOutput, getAddressIfDefined } = require('../../src/helpers/require-output')
 
 const TERM_DURATION = 60 * 60 * 8                                      // 8 hours
 const START_DATE = Math.floor(new Date() / 1000 + TERM_DURATION + 120) // 2 minutes from now
@@ -8,13 +8,13 @@ const START_DATE = Math.floor(new Date() / 1000 + TERM_DURATION + 120) // 2 minu
 const ANJ = {
   symbol: 'ANJ',
   decimals: 18,
-  address: requireOutput('minime.rinkeby', tokens => tokens.ANJ.address)
+  address: requireOutput('minime.rinkeby', getAddressIfDefined('ANJ'))
 }
 
 const DAI = {
   symbol: 'DAI',
   decimals: 18,
-  address: requireOutput('minime.rinkeby', tokens => tokens.DAI.address)
+  address: requireOutput('minime.rinkeby', getAddressIfDefined('DAI'))
 }
 
 module.exports = {
