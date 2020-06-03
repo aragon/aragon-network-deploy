@@ -4,7 +4,7 @@ const rpc =     governor('0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1')    // Gan
 const aragen =  governor('0xb4124cEB3451635DAcedd11767f004d8a28c6eE7')    // Aragon first deterministic address
 const ropsten = governor('0x0090aED150056316E37FE6DFa10Dc63E79D173B6')    // EOA
 
-const staging = governor({ // https://rinkeby.aragon.org/#/andaostaging
+const staging = governor({ // https://aragon.staging.aragonpm.com/#/andaostaging
   agent:        '0xec5700f0774cc9e7f2d89bee4b14401124fc2d06',             // Agent of AN DAO Staging
   voting:       '0x5505f0db0ff6990459e812e19bf7895148c6a8b3',             // Voting of AN DAO Staging
   tokenManager: '0x2cedb6250da2e4798f742eb60b075c8f4ef5ef6a',             // Token Manager of AN DAO Staging
