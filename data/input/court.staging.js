@@ -35,9 +35,9 @@ module.exports = {
     appealTerms:                   bn(2),                        // appeals last 2 terms (20 minutes)
     appealConfirmTerms:            bn(2),                        // appeal confirmations last 2 terms (20 minutes)
     maxJurorsPerDraftBatch:        bn(81),                       // max number of jurors drafted per batch
-    jurorFee:                      bigExp(10, DAI.decimals),     // 10 fee tokens for juror fees
-    draftFee:                      bigExp(18, DAI.decimals - 2), // 0.18 fee tokens for draft fees
-    settleFee:                     bigExp(1, DAI.decimals - 1),  // 0.1 fee tokens for settle fees
+    jurorFee:                      bigExp(40, DAI.decimals),     // 40 fee tokens for juror fees
+    draftFee:                      bigExp(6, DAI.decimals),      // 6 fee tokens for draft fees
+    settleFee:                     bigExp(4, DAI.decimals),      // 4 fee tokens for settle fees
     penaltyPct:                    bn(1000),                     // 10% of the min active balance will be locked to each drafted juror
     finalRoundReduction:           bn(5000),                     // 50% of discount for final rounds
     firstRoundJurorsNumber:        bn(3),                        // disputes will start with 3 jurors
@@ -55,7 +55,7 @@ module.exports = {
   },
   subscriptions: {
     feeToken:                      DAI,                          // fee token for subscriptions is DAI
-    feeAmount:                     bigExp(10, DAI.decimals),     // 10 fee tokens per subscription period
+    feeAmount:                     bigExp(1, DAI.decimals),      // 1 fee tokens per subscription period
     periodDuration:                bn(3),                        // each subscription period lasts 3 terms (30 minutes)
     prePaymentPeriods:             bn(12),                       // cannot pre-pay more than 12 periods in advance (1 year)
     resumePrePaidPeriods:          bn(12),                       // 12 pre-paid periods when resuming activity (1 year)

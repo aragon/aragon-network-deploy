@@ -18,11 +18,11 @@ module.exports = class extends BaseDeployer {
   }
 
   async setConfigDirectly() {
-    const { court, jurors } = this.config
+    const { modules: { court: courtAddress }, court, jurors } = this.config
     logger.info('Setting Court config...')
-    const fromTermId = (await this._getCurrentTerm()).add(1)
+    const fromTermId = (await this._getCurrentTerm()).add(bn(1))
     const AragonCourt = await this.environment.getArtifact('AragonCourt', '@aragon/court')
-    const controller = await AragonCourt.at(court)
+    const controller = await AragonCourt.at(courtAddress)
     await controller.setConfig(
       fromTermId.toString(),
       court.feeToken.address,
