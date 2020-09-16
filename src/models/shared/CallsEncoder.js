@@ -111,6 +111,11 @@ module.exports = class CallsEncoder {
     ])
   }
 
+  encodeGovernorSetter(setter, newGovernor) {
+    const setModulesABI = this._getFunctionABI(CONTROLLER_ABI, setter)
+    return abi.encodeFunctionCall(setModulesABI, [newGovernor])
+  }
+
   encodeChangeController(controllerAddress) {
     const changeControllerABI = this._getFunctionABI(MINIME_ABI, 'changeController', 1)
     return abi.encodeFunctionCall(changeControllerABI, [controllerAddress])
