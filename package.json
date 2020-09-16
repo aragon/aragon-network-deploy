@@ -1,6 +1,6 @@
 {
   "name": "@aragon/court-deploy",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Aragon Court deployment scripts",
   "author": "Aragon Association",
   "license": "GPL-3.0",
@@ -15,6 +15,7 @@
     "deploy:template": "node ./bin/index.js deploy-template --verbose",
     "deploy:wrapper-presale": "node ./bin/index.js deploy-wrapper-presale --verbose",
     "deploy:wrapper-bonding": "node ./bin/index.js deploy-wrapper-bonding --verbose",
+    "install:voting": "node ./bin/index.js install-voting --verbose",
     "upgrade:court": "node ./bin/index.js upgrade-court --verbose",
     "delay:court": "node ./bin/index.js delay-court --verbose",
     "migrate:registry": "node ./bin/index.js migrate-registry --verbose",
@@ -26,6 +27,7 @@
     "@aragon/apps-agent": "^2.0.0",
     "@aragon/apps-token-manager": "^2.1.0",
     "@aragon/apps-voting": "^2.1.0",
+    "@aragon/contract-helpers-test": "^0.1.0",
     "@aragon/court": "1.1.2",
     "@aragon/court-presale-activate": "1.3.0",
     "@aragon/minime": "^1.0.0",
@@ -44,7 +46,6 @@
     "yargs": "^14.0.0"
   },
   "devDependencies": {
-    "@aragon/test-helpers": "^2.1.0",
     "ganache-cli": "^6.4.5",
     "truffle": "^5.0.34"
   }

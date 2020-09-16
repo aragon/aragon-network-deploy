@@ -1,4 +1,5 @@
 const abi = require('web3-eth-abi')
+const ACL_ABI = require('@aragon/os/abi/ACL.json').abi
 const AGENT_ABI = require('@aragon/apps-agent/abi/Agent.json').abi
 const VOTING_ABI = require('@aragon/apps-voting/abi/Voting.json').abi
 const CONTROLLER_ABI = require('@aragon/court/abi/Controller.json').abi
@@ -158,6 +159,21 @@ module.exports = class CallsEncoder {
   encodeSubscriptionsOneParamSetter(functionName, param) {
     const functionABI = this._getFunctionABI(SUBSCRIPTIONS_ABI, functionName, 1)
     return abi.encodeFunctionCall(functionABI, [param.toString()])
+  }
+
+  encodeCreatePermission(entity, app, role, manager) {
+    const functionABI = this._getFunctionABI(ACL_ABI, 'createPermission')
+    return abi.encodeFunctionCall(functionABI, [entity, app, role, manager])
+  }
+
+  encodeGrantPermission(entity, app, role) {
+    const functionABI = this._getFunctionABI(ACL_ABI, 'grantPermission')
+    return abi.encodeFunctionCall(functionABI, [entity, app, role])
+  }
+
+  encodeSetPermissionManager(newManager, app, role) {
+    const functionABI = this._getFunctionABI(ACL_ABI, 'setPermissionManager')
+    return abi.encodeFunctionCall(functionABI, [newManager, app, role])
   }
 
   _getFunctionABI(ABI, functionName, inputsLength) {
