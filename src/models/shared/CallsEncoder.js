@@ -64,6 +64,11 @@ module.exports = class CallsEncoder {
     return abi.encodeFunctionCall(setModulesABI, [ids, addresses])
   }
 
+  encodeChangeConfigGovernor(newGovernor) {
+    const changeGovernorABI = this._getFunctionABI(CONTROLLER_ABI, 'changeConfigGovernor', 1)
+    return abi.encodeFunctionCall(changeGovernorABI, [newGovernor])
+  }
+
   encodeDelayStartTime(firstTermStartTime) {
     const functionABI = this._getFunctionABI(CONTROLLER_ABI, 'delayStartTime', 1)
     return abi.encodeFunctionCall(functionABI, [firstTermStartTime.toString()])
