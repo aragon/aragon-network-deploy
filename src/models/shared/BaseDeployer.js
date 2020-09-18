@@ -31,7 +31,7 @@ module.exports = class BaseDeployer {
     const tokenManagerScript = this.encoder.encodeCallsScript([{ to: voting, data: votingScript }])
     logger.success(`Call script for AN DAO generated`)
     logger.info(`${tokenManagerScript}`)
-    await this._runEvmScript(tokenManager, tokenManagerScript)
+    return this._runEvmScript(tokenManager, tokenManagerScript)
   }
 
   async _runEvmScript(tokenManager, tokenManagerScript) {

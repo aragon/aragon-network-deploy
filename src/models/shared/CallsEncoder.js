@@ -1,4 +1,6 @@
 const abi = require('web3-eth-abi')
+const ACL_ABI = require('@aragon/os/abi/ACL.json').abi
+const KERNEL_ABI = require('@aragon/os/abi/Kernel.json').abi
 const AGENT_ABI = require('@aragon/apps-agent/abi/Agent.json').abi
 const VOTING_ABI = require('@aragon/apps-voting/abi/Voting.json').abi
 const CONTROLLER_ABI = require('@aragon/court/abi/Controller.json').abi
@@ -51,6 +53,11 @@ module.exports = class CallsEncoder {
     const script = this._parseScript(executionScript)
     const newVoteABI = this._getFunctionABI(VOTING_ABI, 'newVote', 2)
     return abi.encodeFunctionCall(newVoteABI, [script, metadata])
+  }
+
+  encodeVotingInitialize(token, support, acceptance, duration) {
+    const initializeVotingABI = this._getFunctionABI(VOTING_ABI, 'initialize', 4)
+    return abi.encodeFunctionCall(initializeVotingABI, [token, support, acceptance, duration])
   }
 
   encodeExecute(target, ethValue, executionScript) {
@@ -109,37 +116,6 @@ module.exports = class CallsEncoder {
     return abi.encodeFunctionCall(changeControllerABI, [controllerAddress])
   }
 
-  encodeNewInstance({
-    owner,
-    id,
-    collateralToken,
-    bondedToken,
-    period,
-    openDate,
-    exchangeRate,
-    beneficiaryPct,
-    reserveRatio,
-    batchBlocks,
-    slippage
-  }) {
-    const newInstanceABI = this._getFunctionABI(EOPBCTEMPLATE_ABI, 'newInstance')
-    return abi.encodeFunctionCall(newInstanceABI, [
-      owner,
-      id,
-      collateralToken,
-      bondedToken,
-      period,
-      openDate,
-      [
-        exchangeRate,
-        beneficiaryPct,
-        reserveRatio,
-        batchBlocks,
-        slippage
-      ]
-    ])
-  }
-
   encodeRecoverFunds(tokenAddress, destination) {
     const functionABI = this._getFunctionABI(CONTROLLED_RECOVERABLE_ABI, 'recoverFunds', 2)
     return abi.encodeFunctionCall(functionABI, [tokenAddress, destination])
@@ -158,6 +134,34 @@ module.exports = class CallsEncoder {
   encodeSubscriptionsOneParamSetter(functionName, param) {
     const functionABI = this._getFunctionABI(SUBSCRIPTIONS_ABI, functionName, 1)
     return abi.encodeFunctionCall(functionABI, [param.toString()])
+  }
+
+  encodeCreatePermission(entity, app, role, manager) {
+    const functionABI = this._getFunctionABI(ACL_ABI, 'createPermission')
+    return abi.encodeFunctionCall(functionABI, [entity, app, role, manager])
+  }
+
+  encodeGrantPermission(entity, app, role) {
+    const functionABI = this._getFunctionABI(ACL_ABI, 'grantPermission')
+    return abi.encodeFunctionCall(functionABI, [entity, app, role])
+  }
+
+  encodeNewAppInstance(appId, base, initializePayload, setDefault) {
+    const functionABI = this._getFunctionABI(KERNEL_ABI, 'newAppInstance')
+    return abi.encodeFunctionCall(functionABI, [appId, base, initializePayload, setDefault])
+  }
+
+  encodeNewInstance({ owner, id, collateralToken, bondedToken, period, openDate, exchangeRate, beneficiaryPct, reserveRatio, batchBlocks, slippage }) {
+    const newInstanceABI = this._getFunctionABI(EOPBCTEMPLATE_ABI, 'newInstance')
+    return abi.encodeFunctionCall(newInstanceABI, [
+      owner,
+      id,
+      collateralToken,
+      bondedToken,
+      period,
+      openDate,
+      [exchangeRate, beneficiaryPct, reserveRatio, batchBlocks, slippage]
+    ])
   }
 
   _getFunctionABI(ABI, functionName, inputsLength) {
