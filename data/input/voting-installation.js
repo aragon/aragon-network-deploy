@@ -1,31 +1,34 @@
-const { bigExp, bn } = require('@aragon/contract-helpers-test')
-
 const governor = require('./governor')
+const { bn, bigExp } = require('../../src/helpers/numbers')
 const { requireOutput, getAddressIfDefined } = require('../../src/helpers/require-output')
 
 const ONE_HOUR = 60 * 60
 
-const VOTING_DEFAULTS = {
-  votingDuration:               ONE_HOUR * 60,                                 // 60 hours
-  neededSupport:                bn('6'.repeat(18)),                            // 66.666...%
-  minimumAcceptanceQuorum:      bigExp(25, 14),                                // 0.25%
-}
-
 const environments = {
   mainnet: {
-    ...VOTING_DEFAULTS,
+    duration:               ONE_HOUR * 60,                                 // 60 hours
+    support:                bn('6'.repeat(18)),                            // 66.666...%
+    acceptance:             bigExp(25, 14),                                // 0.25%
   },
   rinkeby: {
-    ...VOTING_DEFAULTS,
+    duration:               ONE_HOUR * 60,                                 // 60 hours
+    support:                bn('6'.repeat(18)),                            // 66.666...%
+    acceptance:             bigExp(1, 14),                                 // 0.01%
   },
   staging: {
-    ...VOTING_DEFAULTS,
+    duration:               ONE_HOUR / 2,                                  // 30 mins
+    support:                bigExp(20, 16),                                // 20%
+    acceptance:             bigExp(1, 14),                                 // 0.01%
   },
   ropsten: {
-    ...VOTING_DEFAULTS,
+    duration:               ONE_HOUR * 60,                                 // 60 hours
+    support:                bn('6'.repeat(18)),                            // 66.666...%
+    acceptance:             bigExp(25, 14),                                // 0.25%
   },
   rpc: {
-    ...VOTING_DEFAULTS,
+    duration:               ONE_HOUR / 2,                                  // 30 mins
+    support:                bigExp(20, 16),                                // 20%
+    acceptance:             bigExp(1, 14),                                 // 0.01%
   },
 }
 
@@ -33,7 +36,7 @@ Object.keys(environments).forEach(network => {
   environments[network] = {
     ...environments[network],
     governor:       governor[network],
-    ant:            requireOutput(`minime.${network}`, getAddressIfDefined('ANT')),
+    token:          requireOutput(`minime.${network}`, getAddressIfDefined('ANT')),
   }
 })
 
