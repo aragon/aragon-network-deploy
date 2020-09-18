@@ -1,6 +1,6 @@
 const CallsEncoder = require('../shared/CallsEncoder')
 const BaseDeployer = require('../shared/BaseDeployer')
-const logger = require('../../helpers/logger')('ANCouncilVotingAppInstaller')
+const logger = require('../../helpers/logger')('GovernorTransitioner')
 
 const VOTE_DESCRIPTION = 'Transition governor from AN Council to AN DAO'
 

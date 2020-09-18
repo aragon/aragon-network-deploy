@@ -1,6 +1,6 @@
 const path = require('path')
 const Verifier = require('../models/shared/Verifier')
-const GovernorTransitioner = require('../models/upgrades/GovernorTransitioner')
+const GovernorTransitioner = require('../models/apps/GovernorTransitioner')
 
 const command = 'transition-governor'
 const describe = 'Transition Governor from AN Council to AN DAO'
