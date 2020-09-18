@@ -3,19 +3,29 @@ const { requireOutput, getAddressIfDefined } = require('../../src/helpers/requir
 
 const environments = {
   mainnet: {
-    anDaoAgent: undefined,
+    funds: undefined,
+    config: undefined,
+    modules: undefined,
   },
   rinkeby: {
-    anDaoAgent: undefined,
+    funds: '0xb2157ad1747de2d978366c15a7bbdf5511dac6b1',
+    config: '0x47ceb55f3492343310736645d7c49bd150f49976',
+    modules: '0xb2157ad1747de2d978366c15a7bbdf5511dac6b1',
   },
   staging: {
-    anDaoAgent: undefined,
+    funds: '0x1f13ebb6e9b1453347cfcfc22e423d143090da96',
+    config: '0x1f13ebb6e9b1453347cfcfc22e423d143090da96',
+    modules: '0x1f13ebb6e9b1453347cfcfc22e423d143090da96',
   },
   ropsten: {
-    anDaoAgent: undefined,
+    funds: undefined,
+    config: undefined,
+    modules: undefined,
   },
   rpc: {
-    anDaoAgent: undefined,
+    funds: undefined,
+    config: undefined,
+    modules: undefined,
   },
 }
 
