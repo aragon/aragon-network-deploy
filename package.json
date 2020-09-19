@@ -45,6 +45,7 @@
     "yargs": "^14.0.0"
   },
   "devDependencies": {
+    "@aragon/test-helpers": "^2.1.0",
     "ganache-cli": "^6.4.5",
     "truffle": "^5.0.34"
   }
