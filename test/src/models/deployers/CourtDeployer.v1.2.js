@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const Config = require('../../../../data/input/court').rpc
 const Environment = require('../../../../src/models/shared/Environment')
-const CourtDeployer = require('../../../../src/models/deployers/CourtDeployer.v1.0')
+const CourtDeployer = require('../../../../src/models/deployers/CourtDeployer.v1.2')
 
 const { assertBn } = require('../../../helpers/assertBn')
 const { MAX_UINT64 } = require('../../../../src/helpers/numbers')
@@ -11,7 +11,7 @@ const { DISPUTE_MANAGER_ID, SUBSCRIPTIONS_ID, VOTING_ID, TREASURY_ID, JURORS_REG
 const SNAPSHOT_BLOCK = 0
 const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
-contract('CourtDeployer v1.0', ([_, sender]) => {
+contract('CourtDeployer v1.2', ([_, sender]) => {
   let environment, DAI, ANJ
   let court, disputes, treasury, voting, registry, subscriptions
 
@@ -150,10 +150,6 @@ contract('CourtDeployer v1.0', ([_, sender]) => {
   describe('subscriptions', () => {
     it('sets the config correctly', async () => {
       assertBn(await subscriptions.periodDuration(), Config.subscriptions.periodDuration, 'period duration does not match')
-      assertBn(await subscriptions.currentFeeAmount(), Config.subscriptions.feeAmount, 'subscriptions fee amount does not match')
-      assertBn(await subscriptions.prePaymentPeriods(), Config.subscriptions.prePaymentPeriods, 'pre payment periods do not match')
-      assertBn(await subscriptions.resumePrePaidPeriods(), Config.subscriptions.resumePrePaidPeriods, 'resume pre-paid periods do not match')
-      assertBn(await subscriptions.latePaymentPenaltyPct(), Config.subscriptions.latePaymentPenaltyPct, 'subscriptions penalty pct does not match')
       assertBn(await subscriptions.governorSharePct(), Config.subscriptions.governorSharePct, 'subscriptions governor share does not match')
       assert.equal(await subscriptions.currentFeeToken(), Config.subscriptions.feeToken.address, 'subscriptions fee token does not match')
     })
