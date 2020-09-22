@@ -11,10 +11,10 @@ const ANJ = {
   address: requireOutput('minime.ropsten', getAddressIfDefined('ANJ'))
 }
 
-const DAI = {
-  symbol: 'DAI',
+const ANT = {
+  symbol: 'ANT',
   decimals: 18,
-  address: requireOutput('minime.ropsten', getAddressIfDefined('DAI'))
+  address: requireOutput('minime.ropsten', getAddressIfDefined('ANT'))
 }
 
 module.exports = {
@@ -28,16 +28,16 @@ module.exports = {
     firstTermStartTime:            bn(START_DATE),               // first term start timestamp in seconds
   },
   court: {
-    feeToken:                      DAI,                          // fee token for the court is DAI
+    feeToken:                      ANT,                          // fee token for the court is ANT
     evidenceTerms:                 bn(21),                       // evidence period lasts 21 terms (7 days)
     commitTerms:                   bn(6),                        // vote commits last 6 terms (2 days)
     revealTerms:                   bn(6),                        // vote reveals last 6 terms (2 days)
     appealTerms:                   bn(6),                        // appeals last 6 terms (2 days)
     appealConfirmTerms:            bn(6),                        // appeal confirmations last 6 terms (2 days)
     maxJurorsPerDraftBatch:        bn(81),                       // max number of jurors drafted per batch
-    jurorFee:                      bigExp(40, DAI.decimals),     // 40 fee tokens for juror fees
-    draftFee:                      bigExp(6, DAI.decimals),      // 6 fee tokens for draft fees
-    settleFee:                     bigExp(4, DAI.decimals),      // 4 fee tokens for settle fees
+    jurorFee:                      bigExp(10, ANT.decimals),     // 10 fee tokens for juror fees
+    draftFee:                      bigExp(3, ANT.decimals),      // 3 fee tokens for draft fees
+    settleFee:                     bigExp(2, ANT.decimals),      // 2 fee tokens for settle fees
     penaltyPct:                    bn(1000),                     // 10% of the min active balance will be locked to each drafted juror
     finalRoundReduction:           bn(5000),                     // 50% of discount for final rounds
     firstRoundJurorsNumber:        bn(3),                        // disputes will start with 3 jurors
@@ -54,12 +54,8 @@ module.exports = {
     minActiveBalance:              bigExp(100, ANJ.decimals),    // 100 ANJ is the minimum balance jurors must activate to participate in the Court
   },
   subscriptions: {
-    feeToken:                      DAI,                          // fee token for subscriptions is DAI
-    feeAmount:                     bigExp(1, DAI.decimals),      // 1 fee tokens per subscription period
+    feeToken:                      ANT,                          // fee token for subscriptions is ANT
     periodDuration:                bn(90),                       // each subscription period lasts 90 terms (30 days)
-    prePaymentPeriods:             bn(12),                       // cannot pre-pay more than 12 periods in advance (1 year)
-    resumePrePaidPeriods:          bn(12),                       // 12 pre-paid periods when resuming activity (1 year)
-    latePaymentPenaltyPct:         bn(1000),                     // late payment subscriptions are charged 20%
     governorSharePct:              bn(0),                        // 0% of the subscription fees
   }
 }
