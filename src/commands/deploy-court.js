@@ -1,11 +1,11 @@
 const fs = require('fs')
 const path = require('path')
 const Verifier = require('../models/shared/Verifier')
-const CourtDeployer = require('../models/deployers/CourtDeployer.v1.0')
+const CourtDeployer = require('../models/deployers/CourtDeployer.v1.2')
 const { command: tokenCommand } = require('./deploy-minime')
 
 const command = 'deploy-court'
-const describe = 'Deploy Court core contracts v1'
+const describe = 'Deploy Court core contracts v1.2'
 
 const builder = {
   input: { alias: 'i', describe: 'Court config JS file', type: 'string', default: './data/input/court' },
