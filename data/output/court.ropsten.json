@@ -30,9 +30,9 @@
     "verification": "https://ropsten.etherscan.io/address/0x63b52b8aC66E6e619fcE1a4FdD1a3eDb5A580fE3#code"
   },
   "subscriptions": {
-    "address": "0x858870687c3270Bcd33Fd24166bE9b4a50594283",
-    "transactionHash": "0x09e5449dd9b5f854f80ac13b8e143140eb20955d0dc80e23c06b39304d1bc421",
-    "version": "v1.0",
-    "verification": "https://ropsten.etherscan.io/address/0x858870687c3270Bcd33Fd24166bE9b4a50594283#code"
+    "address": "0x0f1Ae6Fed57D4B0700f11D22C65bd8223D3Bf684",
+    "transactionHash": "0x485343ff5e86ab88875a718465117291f4899fe533151a2f30bd51d83885cf77",
+    "version": "v2.0",
+    "verification": "https://ropsten.etherscan.io/address/0x0f1Ae6Fed57D4B0700f11D22C65bd8223D3Bf684#code"
   }
 }

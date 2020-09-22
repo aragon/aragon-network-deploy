@@ -25,8 +25,8 @@
     "version": "v1.0"
   },
   "subscriptions": {
-    "address": "0xf575097e4028a807FFB95e4969D888e98ebFCde0",
-    "transactionHash": "0xd2f33a0845187b44dfa07d72e32c5f5349d311532c5344226edb0e5847136ee4",
-    "version": "v1.0"
+    "address": "0x82B64bC09BB122F9c7718b36919B496c8045085c",
+    "transactionHash": "0x122649b2a2fdf1c742e7b83c80526a866a567345d93188173933dc26bcee5244",
+    "version": "v2.0"
   }
 }
