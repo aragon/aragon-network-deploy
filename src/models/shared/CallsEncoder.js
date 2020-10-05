@@ -151,6 +151,11 @@ module.exports = class CallsEncoder {
     return abi.encodeFunctionCall(functionABI, [entity, app, role])
   }
 
+  encodeRevokePermission(entity, app, role) {
+    const functionABI = this._getFunctionABI(ACL_ABI, 'revokePermission')
+    return abi.encodeFunctionCall(functionABI, [entity, app, role])
+  }
+
   encodeNewAppInstance(appId, base, initializePayload, setDefault) {
     const functionABI = this._getFunctionABI(KERNEL_ABI, 'newAppInstance')
     return abi.encodeFunctionCall(functionABI, [appId, base, initializePayload, setDefault])
