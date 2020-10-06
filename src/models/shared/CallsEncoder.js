@@ -66,6 +66,11 @@ module.exports = class CallsEncoder {
     return abi.encodeFunctionCall(executeABI, [target, ethValue, script])
   }
 
+  encodeTokenTransfer(token, recipient, amount) {
+    const tokenTransferABI = this._getFunctionABI(AGENT_ABI, 'transfer')
+    return abi.encodeFunctionCall(tokenTransferABI, [token, recipient, amount])
+  }
+
   encodeSetModules(ids, addresses) {
     const setModulesABI = this._getFunctionABI(CONTROLLER_ABI, 'setModules', 2)
     return abi.encodeFunctionCall(setModulesABI, [ids, addresses])
@@ -126,6 +131,11 @@ module.exports = class CallsEncoder {
     return abi.encodeFunctionCall(functionABI, [tokenAddress, destination])
   }
 
+  encodeClaimTokens(token, recipient) {
+    const functionABI = { name: 'claimTokens', inputs: [ {type: 'address', name:'' }, { type: 'address', name: '' }] }
+    return abi.encodeFunctionCall(functionABI, [token, recipient])
+  }
+
   encodeCloseMigrator() {
     const functionABI = this._getFunctionABI(JUROS_REGISTRY_MIGRATOR_ABI, 'close')
     return abi.encodeFunctionCall(functionABI, [])
@@ -154,6 +164,16 @@ module.exports = class CallsEncoder {
   encodeRevokePermission(entity, app, role) {
     const functionABI = this._getFunctionABI(ACL_ABI, 'revokePermission')
     return abi.encodeFunctionCall(functionABI, [entity, app, role])
+  }
+
+  encodeRemovePermissionManager(app, role) {
+    const functionABI = this._getFunctionABI(ACL_ABI, 'removePermissionManager')
+    return abi.encodeFunctionCall(functionABI, [app, role])
+  }
+
+  encodeSetApp(namespace, appId, base) {
+    const functionABI = this._getFunctionABI(KERNEL_ABI, 'setApp')
+    return abi.encodeFunctionCall(functionABI, [namespace, appId, base])
   }
 
   encodeNewAppInstance(appId, base, initializePayload, setDefault) {

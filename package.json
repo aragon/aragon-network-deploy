@@ -18,6 +18,7 @@
     "install:voting": "node ./bin/index.js install-voting --verbose",
     "transition:governor": "node ./bin/index.js transition-governor --verbose",
     "freeze:bonding": "node ./bin/index.js freeze-bonding --verbose",
+    "rescue:funds": "node ./bin/index.js rescue-funds --verbose",
     "upgrade:court": "node ./bin/index.js upgrade-court --verbose",
     "delay:court": "node ./bin/index.js delay-court --verbose",
     "migrate:registry": "node ./bin/index.js migrate-registry --verbose",
