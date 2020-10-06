@@ -10,10 +10,10 @@ const staging = governor({ // https://rinkeby.aragon.org/#/andaostaging
   tokenManager: '0x22bf27749a04b437ab0dd4feaab184913ba4e3fa',             // Token Manager of AN DAO Staging
 })
 
-const rinkeby = governor({ // https://rinkeby.aragon.org/#/andao
-  agent:        '0x9aedfbe0f3ed33cbb71f937cb9eb0ff1f4dfc076',             // Agent of AN DAO Rinkeby
-  voting:       '0xb0c839957bc47541d747e5238c06990e3a41c2a3',             // Voting of AN DAO Rinkeby
-  tokenManager: '0x0cc31e2d5117d25fe50ee9d569613851e6bb0dd9',             // Token Manager of AN DAO Rinkeby
+const rinkeby = governor({ // https://rinkeby.client.aragon.org/#/andaocouncil/
+  agent:        '0x5ef7ec1a0b4f162e5a4971822c5e4a90766026b7',             // Agent of AN DAO Rinkeby
+  voting:       '0x2acb30fa47af2e3d4c6ba3a8d2e0563fca98b252',             // Voting of AN DAO Rinkeby
+  tokenManager: '0x544c07c27b1fefbb97092b4f471b8eb8328bee88',             // Token Manager of AN DAO Rinkeby
 })
 
 const mainnet = governor({ // https://mainnet.aragon.org/#/network
