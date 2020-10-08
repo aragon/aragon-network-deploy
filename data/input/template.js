@@ -94,7 +94,8 @@ const environments = {
 
 Object.keys(environments).forEach(network => {
   environments[network].governor = governor[network]
-  environments[network].instance.id = 'templates-externally-owned-presale-bonding-curve'
+  environments[network].instance.owner = governor[network].address
+  environments[network].instance.id = 'fundraising-dao'
   environments[network].instance.bondedToken = requireOutput(`minime.${network}`, getAddressIfDefined('ANJ'))
   environments[network].instance.collateralToken = requireOutput(`minime.${network}`, getAddressIfDefined('ANT'))
 })

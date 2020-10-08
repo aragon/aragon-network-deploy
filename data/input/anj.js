@@ -5,15 +5,15 @@ const environments = {
     factory:          undefined,                                      // Will be deployed unless specified
   },
   staging: {
-    controller:       undefined,				                              // Will be set to the sender
+    controller:       undefined,				                      // Will be set to the sender
     factory:          '0x6ffeb4038f7f077c4d20eaf1706980caec31e2bf',   // MiniMe token factory used for the templates
   },
   ropsten: {
-    controller:       undefined,  				                            // Will be set to the sender
+    controller:       undefined,  				                      // Will be set to the sender
     factory:          '0x1ce5621d386b2801f5600f1dbe29522805b8ac11',   // MiniMe token factory used for the templates
   },
   rinkeby: {
-    controller:       undefined, 				                              // Will be set to the sender
+    controller:       governor.rinkeby,                               // Will be set to the rinkeby governor
     factory:          '0x6ffeb4038f7f077c4d20eaf1706980caec31e2bf',   // MiniMe token factory used for the templates
   },
   mainnet: {

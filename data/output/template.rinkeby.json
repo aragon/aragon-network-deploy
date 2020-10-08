@@ -4,23 +4,23 @@
     "transactionHash": "0x13007537f25feef9dc70471d2ee4b5cf3860ae94db10d63b1e41bf52b5e12ebd"
   },
   "agent": {
-    "address": "0xEdf4C05D31ea053C69E065b2F6744DA8B76258b3",
-    "transactionHash": "0xacc1f47aed7b750012c42c0f6eb54e41d3c8c792ad84e3959bc164d2a6bed8a1"
+    "address": "0x59a3fb2fe013a1630cda75d11422c73c1219b9f1",
+    "transactionHash": "0x7514e50762ea4b1dd2ea2e958f264e85e8d9b5124341a5cf45bd2080ad960d03"
   },
   "token-manager": {
-    "address": "0x52B7852D1C4c78D76b5B52f05A309A50A1a22847",
-    "transactionHash": "0xacc1f47aed7b750012c42c0f6eb54e41d3c8c792ad84e3959bc164d2a6bed8a1"
+    "address": "0xfc3fce55fcb2ab36089fb6aa1498397716ed89ce",
+    "transactionHash": "0x7514e50762ea4b1dd2ea2e958f264e85e8d9b5124341a5cf45bd2080ad960d03"
   },
   "batched-bancor-market-maker": {
-    "address": "0xb9aB1Cc6AdC7c3bacc4ea26235838497abe865e0",
-    "transactionHash": "0xacc1f47aed7b750012c42c0f6eb54e41d3c8c792ad84e3959bc164d2a6bed8a1"
+    "address": "0x58d8ea0b228bd42064b1440193ab942d07d44cd2",
+    "transactionHash": "0x7514e50762ea4b1dd2ea2e958f264e85e8d9b5124341a5cf45bd2080ad960d03"
   },
   "aragon-fundraising": {
-    "address": "0x8Ab84819C08355B029CDa21457192d0d249bCC0d",
-    "transactionHash": "0xacc1f47aed7b750012c42c0f6eb54e41d3c8c792ad84e3959bc164d2a6bed8a1"
+    "address": "0x3dda72942fef18cb6dc386c8cd2f3cd68399138e",
+    "transactionHash": "0x7514e50762ea4b1dd2ea2e958f264e85e8d9b5124341a5cf45bd2080ad960d03"
   },
   "balance-redirect-presale": {
-    "address": "0xf8A15b0DE7D96ecdAdBa1C1Bd1eD199CA66769a5",
-    "transactionHash": "0xacc1f47aed7b750012c42c0f6eb54e41d3c8c792ad84e3959bc164d2a6bed8a1"
+    "address": "0xb8d7dfa20f29bb0157a0f833ad60deec3753a53e",
+    "transactionHash": "0x7514e50762ea4b1dd2ea2e958f264e85e8d9b5124341a5cf45bd2080ad960d03"
   }
 }

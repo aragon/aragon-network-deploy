@@ -2,7 +2,7 @@ const { bn, bigExp } = require('../../src/helpers/numbers')
 const { rinkeby: governor } = require('./governor')
 const { requireOutput, getAddressIfDefined } = require('../../src/helpers/require-output')
 
-const TERM_DURATION = 60 * 60 * 8                                      // 8 hours
+const TERM_DURATION = 60 * 10                                          // 10 minutes
 const START_DATE = Math.floor(new Date() / 1000 + TERM_DURATION + 120) // 2 minutes from now
 
 const ANJ = {
@@ -24,16 +24,16 @@ module.exports = {
     modules:                       governor,
   },
   clock: {
-    termDuration:                  bn(TERM_DURATION),            // terms lasts 8 hours
+    termDuration:                  bn(TERM_DURATION),            // terms lasts 10 minutes
     firstTermStartTime:            bn(START_DATE),               // first term start timestamp in seconds
   },
   court: {
     feeToken:                      ANT,                          // fee token for the court is ANT
-    evidenceTerms:                 bn(21),                       // evidence period lasts 21 terms (7 days)
-    commitTerms:                   bn(6),                        // vote commits last 6 terms (2 days)
-    revealTerms:                   bn(6),                        // vote reveals last 6 terms (2 days)
-    appealTerms:                   bn(6),                        // appeals last 6 terms (2 days)
-    appealConfirmTerms:            bn(6),                        // appeal confirmations last 6 terms (2 days)
+    evidenceTerms:                 bn(2),                        // evidence period lasts 2 terms (20 minutes)
+    commitTerms:                   bn(2),                        // vote commits last 2 terms (20 minutes)
+    revealTerms:                   bn(2),                        // vote reveals last 2 terms (20 minutes)
+    appealTerms:                   bn(2),                        // appeals last 2 terms (20 minutes)
+    appealConfirmTerms:            bn(2),                        // appeal confirmations last 2 terms (20 minutes)
     maxJurorsPerDraftBatch:        bn(81),                       // max number of jurors drafted per batch
     jurorFee:                      bigExp(10, ANT.decimals),     // 10 fee tokens for juror fees
     draftFee:                      bigExp(3, ANT.decimals),      // 3 fee tokens for draft fees
@@ -47,7 +47,7 @@ module.exports = {
     appealCollateralFactor:        bn(30000),                    // appeal collateral is 3x of the corresponding juror fees
     appealConfirmCollateralFactor: bn(20000),                    // appeal-confirmation collateral is 2x of the corresponding juror fees
     finalRoundWeightPrecision:     bn(1000),                     // use to improve division rounding for final round maths
-    skippedDisputes:               2,                            // number of dispute to skip
+    skippedDisputes:               0,                            // number of dispute to skip
   },
   jurors: {
     token:                         ANJ,
@@ -55,7 +55,7 @@ module.exports = {
   },
   subscriptions: {
     feeToken:                      ANT,                          // fee token for subscriptions is ANT
-    periodDuration:                bn(90),                       // each subscription period lasts 90 terms (30 days)
+    periodDuration:                bn(3),                        // each subscription period lasts 3 terms (30 minutes)
     governorSharePct:              bn(0),                        // 0% of the subscription fees
   }
 }

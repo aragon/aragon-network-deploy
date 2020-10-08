@@ -95,7 +95,7 @@ module.exports = class extends BaseDeployer {
   }
 
   async _instanceTemplateThroughDAO() {
-    const { bondedToken, governor } = this.config.instance
+    const { governor, instance: { bondedToken } } = this.config
     logger.info('Building EVM script to change ANJ controller and deploy new fundraising template...')
     const changeControllerData = this.encoder.encodeExecute(bondedToken, 0, this.encoder.encodeChangeController(this.template.address))
     const newInstanceData = this.encoder.encodeExecute(this.template.address, 0, this.encoder.encodeNewInstance(this.config.instance))
